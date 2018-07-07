@@ -5,18 +5,18 @@
 ## java底层基础
 ### java集合相关
 #### ArrayList/Vector
-<!-- - [ArrayList/Vector](https://github.com/crossoverJie/Java-Interview/blob/master/MD/ArrayList.md) -->
 
 
 ### java多线程
 
 
 
-### 其他。。。
+### 其他
 
 
 
 ## JVM相关
+
 
 
 ## 算法设计
@@ -32,7 +32,7 @@
 
 
 ## 数据库相关
-
+- [索引相关](https://github.com/havenBoy/interview/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%B8%E5%85%B3/%E7%B4%A2%E5%BC%95.md)
 
 
 ## 附加其他
