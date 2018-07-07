@@ -20,10 +20,16 @@
 
 
 ## 算法设计
-- [leetcode](https://github.com/havenBoy/LeetCode/blob/master/README.md)
+> leetcode 问题解法总结
+- [leetcode](https://github.com/havenBoy/LeetCode)
 
 
 ## 架构设计
+### spring
+### springMVC
+### hibernate
+### mabatis
+### Redis
 
 
 
