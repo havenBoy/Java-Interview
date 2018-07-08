@@ -4,7 +4,7 @@
 
 ## java底层基础
 ### java集合相关
-#### ArrayList/Vector
+#### ArrayList/Vector/linkedList
 
 
 ### java多线程
@@ -30,8 +30,10 @@
 ### spring
 ### springMVC
 ### hibernate
-### mabatis
+### mybatis
 ### Redis
+### Maven
+- - [maven介绍](https://github.com/havenBoy/LeetCode)
 
 
 
