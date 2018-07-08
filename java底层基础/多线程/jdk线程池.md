@@ -34,7 +34,7 @@ this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
             (new ThreadPoolExecutor(1, 1,
                                     0L, TimeUnit.MILLISECONDS,
                                     new LinkedBlockingQueue<Runnable>()));
-    }
+      }
   ```
   * 解释：此方法返回单线程的Excutors,线程池会依次执行请求的线程，如果有异常，会有新的对象来接管，且处理是按照次序来处理的；
 - newfixedThreadPool()
@@ -57,7 +57,6 @@ this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
 				System.out.println(new Date().getSeconds());
 			}
 		}, 1000, 200000, TimeUnit.MICROSECONDS);
-	}
   ```
 - newCachedThreadPool()
   ```java
@@ -69,6 +68,6 @@ this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
   ```
   * 解释：此线程池的大小不是固定的，如果当前的线程大于当前任务的线程数，就会回收一部分资源，如果有新的任务创建时，则会生成新的线程来处理；
   * 线程池的corePoolSize是0，需要新创建线程时，大小是由当前的jVM来决定；
-  
+
 - newSingleThreadScheduledExcutors()
   * 执行单个数目定时任务的线程池
