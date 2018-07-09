@@ -3,15 +3,15 @@
 > 关于我的面试分享，包括java基础，算法，框架设计，以及数据、结构等问题（不定期更新）
 
 ## java底层基础
-### java集合相关
-#### ArrayList/Vector/linkedList
+- java集合相关
+  * [ArrayList/Vector/linkedList](https://github.com/havenBoy/java--Interview/blob/master/java%E5%BA%95%E5%B1%82%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/ArrayListVectorlinkedlist.md)
+  * [List/Set]()
+
+- java多线程
+  * [JDK线程池介绍](https://github.com/havenBoy/interview/blob/master/java%E5%BA%95%E5%B1%82%E5%9F%BA%E7%A1%80/%E5%A4%9A%E7%BA%BF%E7%A8%8B/jdk%E7%BA%BF%E7%A8%8B%E6%B1%A0.md)
 
 
-### java多线程
-- [JDK线程池介绍](https://github.com/havenBoy/interview/blob/master/java%E5%BA%95%E5%B1%82%E5%9F%BA%E7%A1%80/%E5%A4%9A%E7%BA%BF%E7%A8%8B/jdk%E7%BA%BF%E7%A8%8B%E6%B1%A0.md)
-
-
-### 其他
+- 其他
 
 
 
@@ -27,17 +27,21 @@
 
 
 ## 架构设计
-### spring
-### springMVC
-### hibernate
-### mybatis
-### Redis
-### Maven
-- [maven介绍](https://github.com/havenBoy/interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/maven/maven.md)
+- spring
+- springMVC
+- hibernate
+- mybatis
+- Redis
+- Maven
+  * [maven介绍](https://github.com/havenBoy/interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/maven/maven.md)
 
 
 
 ## 数据结构
+
+
+
+## 操作系统
 
 
 
