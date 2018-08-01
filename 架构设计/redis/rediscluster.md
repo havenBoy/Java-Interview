@@ -47,5 +47,6 @@
         jedisclu = new JedisCluster(nodes);
         jedisclu.set("add", "value");
         System.out.println(jedisclu.get("add"));
+        	jedisclu.close();
       }
      ```

@@ -30,6 +30,7 @@
 - spring
 - springMVC
 - hibernate
+  * [hibernate性能优化策略](https://github.com/havenBoy/interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/hibernate/hibernate.md)
 - mybatis
 - nginx
   * [nginx环境搭建](https://github.com/havenBoy/interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/nginx/nginx.md)
