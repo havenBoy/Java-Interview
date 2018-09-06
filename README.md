@@ -39,8 +39,8 @@
 - Maven
   * [maven介绍](https://github.com/havenBoy/interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/maven/maven.md)
 - Others
-  * [防止订单的重复提交]()
-  * [系统的幂等性]()
+  * [防止订单的重复提交](https://github.com/havenBoy/havenboy-java-Interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/others/first.md)
+  * [分布式系统的幂等性]()
   * 
 
 
