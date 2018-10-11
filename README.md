@@ -57,5 +57,12 @@
 - [索引相关](https://github.com/havenBoy/interview/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%B8%E5%85%B3/%E7%B4%A2%E5%BC%95.md)
 
 
+## 典型面试题集锦（附答案）
+
+- [面试题]()
+
+- [答案]()
+
+
 ## 附加其他
 - [博客园](http://www.cnblogs.com/zxx-813/)
