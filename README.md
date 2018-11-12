@@ -28,12 +28,18 @@
 
 ## 架构设计
 - spring
+  * IOC (...)
+  * AOP (...)
 - springMVC
+  * 与Servlet的区别
+  * 涉及的设计模式
 - hibernate
   * [hibernate性能优化策略](https://github.com/havenBoy/interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/hibernate/hibernate.md)
 - mybatis
+  * 与hibernate的区别
 - nginx
   * [nginx环境搭建](https://github.com/havenBoy/interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/nginx/nginx.md)
+  * 配置文件的解释
 - Redis
   * [redis集群搭建](https://github.com/havenBoy/interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/redis/rediscluster.md)
 - Maven
@@ -41,7 +47,7 @@
 - Others
   * [防止订单的重复提交](https://github.com/havenBoy/havenboy-java-Interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/others/first.md)
   * [分布式系统的幂等性]()
-  * 
+  * [设计模式]()
 
 
 
@@ -59,9 +65,9 @@
 
 ## 典型面试题集锦（附答案）
 
-- [面试题]()
+- [面试题](https://github.com/havenBoy/havenboy-java-Interview/blob/master/interview_cases.md)
 
-- [答案]()
+- [答案](https://github.com/havenBoy/havenboy-java-Interview/blob/master/interview_key.md)
 
 
 ## 附加其他
