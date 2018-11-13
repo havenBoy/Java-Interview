@@ -47,7 +47,7 @@
 - Others
   * [防止订单的重复提交](https://github.com/havenBoy/havenboy-java-Interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/others/first.md)
   * [分布式系统的幂等性]()
-  * [设计模式]()
+  * [设计模式](https://github.com/havenBoy/havenboy-java-Interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/Java%2024%20%20design-pattern%20%20and%20%207%20standard/conclusion.md)
 
 
 
