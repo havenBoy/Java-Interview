@@ -27,7 +27,7 @@
 
 
 ## JVM相关
-- 类的加载机制
+- [类的加载机制](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/jvm1.md)
 - jvm内存结构
 - GC算法，垃圾回收
 - GC分析，命令调优
