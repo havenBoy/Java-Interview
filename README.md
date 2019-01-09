@@ -4,8 +4,7 @@
 
 ## java底层基础
 - java集合相关
-  * [ArrayList/Vector/linkedList]
-  (https://github.com/havenBoy/java--Interview/blob/master/java%E5%BA%95%E5%B1%82%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/ArrayListVectorlinkedlist.md)
+  * [ArrayList/Vector/linkedList](https://github.com/havenBoy/java--Interview/blob/master/java%E5%BA%95%E5%B1%82%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/ArrayListVectorlinkedlist.md)
   * [List/Set]()
   * HashMap初识以及与HashTable区别
   * HashMap实现
@@ -16,10 +15,11 @@
     - jdk1.8之后
 
 - java多线程
-  * [JDK线程池介绍]
-  (https://github.com/havenBoy/interview/blob/master/java%E5%BA%95%E5%B1%82%E5%9F%BA%E7%A1%80/%E5%A4%9A%E7%BA%BF%E7%A8%8B/jdk%E7%BA%BF%E7%A8%8B%E6%B1%A0.md)
+  * [JDK线程池介绍](https://github.com/havenBoy/interview/blob/master/java%E5%BA%95%E5%B1%82%E5%9F%BA%E7%A1%80/%E5%A4%9A%E7%BA%BF%E7%A8%8B/jdk%E7%BA%BF%E7%A8%8B%E6%B1%A0.md)
   * 乐观锁与悲观锁
-
+  * sysnchronize
+  * ReentrantLock
+  * 上述二者的比较
 - javaIO/javaNIO
   * 
 - 其他
@@ -59,8 +59,7 @@
   * 涉及的设计模式
   * 工作原理详解
 - hibernate
-  * [hibernate性能优化策略]
-  (https://github.com/havenBoy/interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/hibernate/hibernate.md)
+  * [hibernate性能优化策略](https://github.com/havenBoy/interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/hibernate/hibernate.md)
 - mybatis
   * 与hibernate的区别
 - nginx
