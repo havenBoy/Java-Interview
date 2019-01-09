@@ -36,7 +36,7 @@
 
 
 ## 算法设计
-- [时间复杂度与空间复杂度](https://github.com/havenBoy/interview/blob/master/Algorithm design/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6.md)
+- [时间复杂度与空间复杂度](https://github.com/havenBoy/interview/blob/master/Algorithm/complex.md)
 
 - [leetcode详解](https://github.com/havenBoy/LeetCode)
 
