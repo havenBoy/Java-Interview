@@ -16,8 +16,8 @@
 
 - java多线程
   * [JDK线程池介绍](https://github.com/havenBoy/interview/blob/master/java%E5%BA%95%E5%B1%82%E5%9F%BA%E7%A1%80/%E5%A4%9A%E7%BA%BF%E7%A8%8B/jdk%E7%BA%BF%E7%A8%8B%E6%B1%A0.md)
-  * 乐观锁与悲观锁
-  * sysnchronize
+  * [乐观锁与悲观锁](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Pessimistic-lock&&optimistic-lock.md)
+  * synchronize
   * ReentrantLock
   * 上述二者的比较
 - javaIO/javaNIO
@@ -32,7 +32,7 @@
 - GC算法，垃圾回收
 - GC分析，命令调优
 
-- jvm读书笔记
+- [jvm读书笔记](https://github.com/havenBoy/java-book-notes/tree/master/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA)
 
 
 ## 算法设计
