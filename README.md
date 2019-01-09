@@ -4,7 +4,7 @@
 
 ## java底层基础
 - java集合相关
-  * [ArrayList/Vector/linkedList](https://github.com/havenBoy/java--Interview/blob/master/java%E5%BA%95%E5%B1%82%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/ArrayListVectorlinkedlist.md)
+  * [ArrayList/Vector/linkedList](https://github.com/havenBoy/java--Interview/blob/master/javabasic/ArrayListVectorlinkedlist.md)
   * [List/Set]()
   * HashMap初识以及与HashTable区别
   * HashMap实现
@@ -15,7 +15,7 @@
     - jdk1.8之后
 
 - java多线程
-  * [JDK线程池介绍](https://github.com/havenBoy/interview/blob/master/java%E5%BA%95%E5%B1%82%E5%9F%BA%E7%A1%80/%E5%A4%9A%E7%BA%BF%E7%A8%8B/jdk%E7%BA%BF%E7%A8%8B%E6%B1%A0.md)
+  * [JDK线程池介绍](https://github.com/havenBoy/interview/blob/master/javabasic/jdk%E7%BA%BF%E7%A8%8B%E6%B1%A0.md)
   * [乐观锁与悲观锁](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Pessimistic-lock&&optimistic-lock.md)
   * synchronize
   * ReentrantLock
@@ -36,7 +36,7 @@
 
 
 ## 算法设计
-- [时间复杂度与空间复杂度](https://github.com/havenBoy/interview/blob/master/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6.md)
+- [时间复杂度与空间复杂度](https://github.com/havenBoy/interview/blob/master/Algorithm design/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6.md)
 
 - [leetcode详解](https://github.com/havenBoy/LeetCode)
 
@@ -59,14 +59,14 @@
   * 涉及的设计模式
   * 工作原理详解
 - hibernate
-  * [hibernate性能优化策略](https://github.com/havenBoy/interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/hibernate/hibernate.md)
+  * [hibernate性能优化策略](https://github.com/havenBoy/interview/blob/master/Architecture-design/hibernate/hibernate.md)
 - mybatis
   * 与hibernate的区别
 - nginx
-  * [nginx环境搭建](https://github.com/havenBoy/interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/nginx/nginx.md)
+  * [nginx环境搭建](https://github.com/havenBoy/interview/blob/master/Architecture-design/nginx/nginx.md)
   * 配置文件的解释
 - Redis
-  * [redis集群搭建](https://github.com/havenBoy/interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/redis/rediscluster.md)
+  * [redis集群搭建](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/rediscluster.md)
   * redis三种模式介绍
 - docker
 
@@ -74,11 +74,11 @@
   * activeMq
   * rabbitMq
 - Maven
-  * [maven介绍](https://github.com/havenBoy/interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/maven/maven.md)
+  * [maven介绍](https://github.com/havenBoy/interview/blob/master/Architecture-design/maven/maven.md)
 - Others
-  * [防止订单的重复提交](https://github.com/havenBoy/havenboy-java-Interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/others/first.md)
+  * [防止订单的重复提交](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/first.md)
   * [分布式系统的幂等性]()
-  * [设计模式](https://github.com/havenBoy/havenboy-java-Interview/blob/master/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/Java%2024%20%20design-pattern%20%20and%20%207%20standard/conclusion.md)
+  * [设计模式](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/Java%2024%20%20design-pattern%20%20and%20%207%20standard/conclusion.md)
 
 
 ## 数据结构
@@ -90,7 +90,7 @@
 
 
 ## 数据库相关
-- [索引相关](https://github.com/havenBoy/interview/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%B8%E5%85%B3/%E7%B4%A2%E5%BC%95.md)
+- [索引相关](https://github.com/havenBoy/interview/blob/master/databases/%E7%B4%A2%E5%BC%95.md)
 
 
 ## 典型面试题集锦（附答案）
