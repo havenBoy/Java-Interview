@@ -17,7 +17,7 @@
 - java多线程
   * [JDK线程池介绍](https://github.com/havenBoy/interview/blob/master/javabasic/jdk%E7%BA%BF%E7%A8%8B%E6%B1%A0.md)
   * [乐观锁与悲观锁](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Pessimistic-lock&&optimistic-lock.md)
-  * synchronize
+  * [Synchronize](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Synchronize.md)
   * ReentrantLock
   * 上述二者的比较
 - javaIO/javaNIO
