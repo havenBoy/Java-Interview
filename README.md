@@ -15,7 +15,7 @@
     - jdk1.8之后
 
 - java多线程
-  * [JDK线程池介绍](https://github.com/havenBoy/interview/blob/master/javabasic/jdk%E7%BA%BF%E7%A8%8B%E6%B1%A0.md)
+  * [JDK线程池介绍](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/jdk-threadPool.md)
   * [乐观锁与悲观锁](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Pessimistic-lock&&optimistic-lock.md)
   * [Synchronize](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Synchronize.md)
   * ReentrantLock
