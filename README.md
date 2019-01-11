@@ -18,10 +18,8 @@
   * [JDK线程池介绍](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/jdk-threadPool.md)
   * [乐观锁与悲观锁](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Pessimistic-lock&&optimistic-lock.md)
   * [Synchronize](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Synchronize.md)
-  * ReentrantLock
-  * 上述二者的比较
+  * [ReentrantLock](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/ReentrantLock.md)
 - javaIO/javaNIO
-  * 
 - 其他
 
 
