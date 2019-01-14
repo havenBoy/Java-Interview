@@ -13,13 +13,15 @@
   * concurrentHashMap实现
     - jdk1.8之前
     - jdk1.8之后
-
 - java多线程
   * [JDK线程池介绍](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/jdk-threadPool.md)
   * [乐观锁与悲观锁](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Pessimistic-lock&&optimistic-lock.md)
   * [Synchronize](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Synchronize.md)
   * [ReentrantLock](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/ReentrantLock.md)
+  * [ThreadLocal](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/ThreadLocal.md)
 - [javaIO/javaNIO](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/javaIO-javaNIO.md)
+- [Java序列化](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/serializable.md)
+-[泛型](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/serializable.md)
 - 其他
 
 
@@ -59,7 +61,7 @@
 - hibernate
   * [hibernate性能优化策略](https://github.com/havenBoy/interview/blob/master/Architecture-design/hibernate/hibernate.md)
 - mybatis
-  * [与hibernate的区别](https://github.com/havenBoy/interview/blob/master/Architecture-design/hibernate/Hibernate-MyBatis.md)
+  * [与hibernate的区别](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Hibernate-MyBatis.md)
 - nginx
   * [nginx环境搭建](https://github.com/havenBoy/interview/blob/master/Architecture-design/nginx/nginx.md)
   * 配置文件的解释

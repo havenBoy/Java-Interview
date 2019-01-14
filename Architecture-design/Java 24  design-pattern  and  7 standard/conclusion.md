@@ -2,9 +2,13 @@
 
 * #### 一、创建型模式
     * ##### 抽象工厂模式(Abstract factory pattern)
+
     * ##### 生成器模式(Builder pattern)
+
     * ##### 工厂模式(factory method pattern)
+
     * ##### 原型模式(prototype pattern)
+
     * ##### 单例了模式(Singleton pattern)
         * 饿汉：饿汉是指在程序启动或者单例所在类加载的时候就加载了（能很好的保证线程的安全）
         ```java
@@ -19,24 +23,49 @@
            }
         ```
         * 懒汉：懒汉是指需要使用的时候才创建加载初始化（需要很好的运用同步，在多线程下才能保证线程安全）
-        ```java
+
+          ~~~java
            public class SingletonPatteran {
-              
-              private SingletonPatteran instance = null;
-              private SingletonPatteran() {};
-              
-              public static SingletonPatteran getInstance() {
-                  if (instance == null) {       
-                      synchronized(instance.class) {
-                          if (instance == null) {
-                              return instance = new SingletonPatteran();
-                          }
-                      }
-                  }
-                  return instance;
-              }
-           }
+                
+                private SingletonPatteran instance = null;
+                private SingletonPatteran() {};
+                
+                public static SingletonPatteran getInstance() {
+                    if (instance == null) {       
+                        synchronized(instance.class) {
+                            if (instance == null) {
+                                return instance = new SingletonPatteran();
+                            }
+                        }
+                    }
+                    return instance;
+                }
+             }
+          ~~~
+
+          ​
+
+        * CAS实现不使用Synchronize与Lock实现单例模式，缺点是：如果不成功一直处于死循环状态，消耗CPU
+        ```java
+           public class Singleton {
+        	private static final AtomicReference<Singleton> Instance = new AtomicReference<Singleton>();
+        	
+        	private Singleton() {}; //构造函数私有化
+        	
+        	public static Singleton getSingleton() {
+        		for (; ; ) {
+        			Singleton singleton = Instance.get();
+        			if(singleton != null) return singleton;
+        			
+        			singleton = new Singleton();
+        			if(Instance.compareAndSet(null, singleton)) return singleton; 
+        		}
+        	}
+        }
+
         ```
+        ​
+
     * ##### 多例模式(Multition pattern)
 
 * #### 结构型模式
