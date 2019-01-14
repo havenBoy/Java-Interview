@@ -59,7 +59,7 @@
 - hibernate
   * [hibernate性能优化策略](https://github.com/havenBoy/interview/blob/master/Architecture-design/hibernate/hibernate.md)
 - mybatis
-  * 与hibernate的区别
+  * [与hibernate的区别](https://github.com/havenBoy/interview/blob/master/Architecture-design/hibernate/Hibernate-MyBatis.md)
 - nginx
   * [nginx环境搭建](https://github.com/havenBoy/interview/blob/master/Architecture-design/nginx/nginx.md)
   * 配置文件的解释
@@ -88,7 +88,7 @@
 
 
 ## 数据库相关
-- [索引相关](https://github.com/havenBoy/interview/blob/master/databases/%E7%B4%A2%E5%BC%95.md)
+- [索引相关](https://github.com/havenBoy/interview/blob/master/databases/index.md)
 
 
 ## 典型面试题集锦（附答案）
