@@ -6,7 +6,7 @@
 - java集合相关
   * [ArrayList/Vector/linkedList](https://github.com/havenBoy/java--Interview/blob/master/javabasic/ArrayListVectorlinkedlist.md)
   * [List/Set]()
-  * [HashMap初识以及与HashTable区别]((https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/hashmap-hashtable.md))
+  * [HashMap初识以及与HashTable区别](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/hashmap-hashtable.md)
   * HashMap实现
     - jdk1.8之前
     - jdk1.8之后
@@ -21,7 +21,7 @@
   * [ThreadLocal](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/ThreadLocal.md)
 - [javaIO/javaNIO](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/javaIO-javaNIO.md)
 - [Java序列化](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/serializable.md)
--[泛型](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/serializable.md)
+- [泛型](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/generics.md)
 - 其他
 
 
