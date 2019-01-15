@@ -6,7 +6,7 @@
 - java集合相关
   * [ArrayList/Vector/linkedList](https://github.com/havenBoy/java--Interview/blob/master/javabasic/ArrayListVectorlinkedlist.md)
   * [List/Set]()
-  * HashMap初识以及与HashTable区别
+  * [HashMap初识以及与HashTable区别]((https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/hashmap-hashtable.md))
   * HashMap实现
     - jdk1.8之前
     - jdk1.8之后
@@ -55,9 +55,7 @@
   * AOP (...)
   * bean生命周期
 - springMVC
-  * 与Servlet的区别
-  * 涉及的设计模式
-  * 工作原理详解
+  * [原理、注解及其原理](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/springmvc.md)
 - hibernate
   * [hibernate性能优化策略](https://github.com/havenBoy/interview/blob/master/Architecture-design/hibernate/hibernate.md)
 - mybatis
