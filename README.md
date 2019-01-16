@@ -93,9 +93,6 @@
 - [索引相关](https://github.com/havenBoy/interview/blob/master/databases/index.md)
 
 
-### 典型面试题集锦（附答案）
+### [典型面试题集锦（附答案）](https://github.com/havenBoy/havenboy-java-Interview/blob/master/interviewcases/interview_cases.md)
 
-- [面试题](https://github.com/havenBoy/havenboy-java-Interview/blob/master/interviewcases/interview_cases.md)
-
-### 附加其他
-- [博客园](http://www.cnblogs.com/zxx-813/)
+### [我的博客园](http://www.cnblogs.com/zxx-813/)

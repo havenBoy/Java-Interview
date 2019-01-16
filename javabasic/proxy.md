@@ -61,7 +61,7 @@
 
   - 程序在运行中创立的代理方式就是动态代理，优点就是可以在代理类中统一对函数处理，而不用一一的添加对应的方法
 
-  - 代码实现;
+  - 代码实现： 代理类需要实现InvocationHandler接口
 
     ~~~java
     public class StudentInvocation<T> implements InvocationHandler {
@@ -81,9 +81,7 @@
     	public static void main(String[] args) {
     		Person student = new Student("ming");
     		InvocationHandler studentHandler = new StudentInvocation<Person>(student);
-    		
-    		Person studengProxy = (Person) Proxy.newProxyInstance(Person.class.getClassLoader(),  new Class<?>[] {Person.class}, studentHandler);
-    		
+    		Person studengProxy = (Person)           Proxy.newProxyInstance(Person.class.getClassLoader(),  new Class<?>{Person.class}, studentHandler);
     		studengProxy.giveMoney();
     	}
     }
