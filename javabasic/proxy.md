@@ -82,7 +82,7 @@
     		Person student = new Student("ming");
     		InvocationHandler studentHandler = new StudentInvocation<Person>(student);
     		Person studengProxy = (Person)           Proxy.newProxyInstance(Person.class.getClassLoader(),  new Class<?>{Person.class}, studentHandler);
-    		studengProxy.giveMoney();
+    		studengProxy.giveHomeWork();
     	}
     }
     ~~~

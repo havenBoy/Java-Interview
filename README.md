@@ -55,6 +55,7 @@
   * IOC (...)
   * AOP (...)
   * bean生命周期
+  * 事务管理
 - springMVC
   * [原理、注解及其原理](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/springmvc.md)
 - hibernate
