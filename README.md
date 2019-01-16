@@ -7,12 +7,8 @@
   * [ArrayList/Vector/linkedList](https://github.com/havenBoy/java--Interview/blob/master/javabasic/ArrayListVectorlinkedlist.md)
   * [List/Set]()
   * [HashMap初识以及与HashTable区别](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/hashmap-hashtable.md)
-  * HashMap实现
-    - jdk1.8之前
-    - jdk1.8之后
-  * concurrentHashMap实现
-    - jdk1.8之前
-    - jdk1.8之后
+  * [HashMap实现](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/hashmap.md)
+  * [concurrentHashMap实现](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/currenthashmap.md)
 - java多线程
   * [JDK线程池介绍](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/jdk-threadPool.md)
   * [乐观锁与悲观锁](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Pessimistic-lock&&optimistic-lock.md)
