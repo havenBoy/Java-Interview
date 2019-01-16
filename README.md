@@ -10,6 +10,7 @@
   * [HashMap实现](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/hashmap.md)
   * [ConcurrentHashMap实现](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/concurrenthashmap.md)
 - java多线程
+  * [什么是线程？与进程的比较](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/thread.md)
   * [JDK线程池介绍](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/jdk-threadPool.md)
   * [乐观锁与悲观锁](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Pessimistic-lock&&optimistic-lock.md)
   * [Synchronize](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Synchronize.md)
@@ -66,7 +67,9 @@
 - Redis
   * [redis集群搭建](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/rediscluster.md)
   * redis三种模式介绍
-- docker
+- Docker
+
+- Elasticsearch
 
 - 消息队列
   * activeMq
@@ -77,7 +80,6 @@
   * [防止订单的重复提交](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/first.md)
   * [分布式系统的幂等性]()
   * [设计模式](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/Java%2024%20%20design-pattern%20%20and%20%207%20standard/conclusion.md)
-
 
 ### 数据结构
 - 

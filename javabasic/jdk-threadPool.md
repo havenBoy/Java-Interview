@@ -1,6 +1,6 @@
 # JDK线程池
 
-> 关于java自己提供的线程池的介绍以及使用，在1.5以后加入了java.lang.concurrent包，主要是关于线程以及线程池的包
+> 介绍java.lang.concurrent包，主要是关于线程以及线程池的包
 
 ## 线程池的作用
 - 主要是为了限制系统中线程的执行的数量
@@ -36,7 +36,9 @@ this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
                                     new LinkedBlockingQueue<Runnable>()));
       }
   ```
-  * 解释：此方法返回单线程的Excutors,线程池会依次执行请求的线程，如果有异常，会有新的对象来接管，且处理是按照次序来处理的；
+  * 解释：
+
+    此方法返回单线程的Excutors,线程池会依次执行请求的线程，如果有异常，会有新的对象来接管，且处理是按照次序来处理的；
 - newfixedThreadPool()
   ```java
       public static ExecutorService newFixedThreadPool(int nThreads) {
@@ -45,18 +47,20 @@ this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
                                       new LinkedBlockingQueue<Runnable>());
     }
   ```
-  * 解释：创建创建固定数目的线程池，达到最大线程数时，不再会扩容，会等待，直到有其他的任务退出线程池；
+  * 解释：
+
+    创建创建固定数目的线程池，达到最大线程数时，不再会扩容，会等待，直到有其他的任务退出线程池；
 - newscheduleThreadPool()
   * 解释：是一种没有固定大小的线程池，可以用于执行定时或者周期性的任务；
   * 使用示例：
   ```java
   	ScheduledExecutorService service = Executors.newScheduledThreadPool(10);
-		service.scheduleWithFixedDelay(new Runnable() {
-			@Override
-			public void run() {
-				System.out.println(new Date().getSeconds());
-			}
-		}, 1000, 200000, TimeUnit.MICROSECONDS);
+  	service.scheduleWithFixedDelay(new Runnable() {
+  		@Override
+  		public void run() {
+  			System.out.println(new Date().getSeconds());
+  		}
+  	}, 1000, 200000, TimeUnit.MICROSECONDS);
   ```
 - newCachedThreadPool()
   ```java
@@ -66,8 +70,10 @@ this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
                                       new SynchronousQueue<Runnable>());
     }
   ```
-  * 解释：此线程池的大小不是固定的，如果当前的线程大于当前任务的线程数，就会回收一部分资源，如果有新的任务创建时，则会生成新的线程来处理；
-  * 线程池的corePoolSize是0，需要新创建线程时，大小是由当前的jVM来决定；
+  * 解释：
+    - 此线程池的大小不是固定的，如果当前的线程大于当前任务的线程数，就会回收一部分资源，如果有新的任务创建时，则会生成新的线程来处理；
+    - 线程池的corePoolSize是0，需要新创建线程时，大小是由当前的jVM来决定；
 
 - newSingleThreadScheduledExcutors()
   * 执行单个数目定时任务的线程池
+
