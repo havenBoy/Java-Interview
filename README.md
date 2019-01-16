@@ -1,4 +1,4 @@
-![图片](https://github.com/havenBoy/havenboy-java-Interview/blob/master/image/2.webp)
+![图片](https://github.com/havenBoy/havenboy-java-Interview/blob/master/image/2.jpg)
 
 > 关于我的面试分享，包括java基础，算法，框架设计，以及数据、结构等问题（不定期更新）
 
