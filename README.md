@@ -8,7 +8,7 @@
   * [List/Set]()
   * [HashMap初识以及与HashTable区别](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/hashmap-hashtable.md)
   * [HashMap实现](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/hashmap.md)
-  * [concurrentHashMap实现](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/concurrenthashmap.md)
+  * [ConcurrentHashMap实现](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/concurrenthashmap.md)
 - java多线程
   * [JDK线程池介绍](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/jdk-threadPool.md)
   * [乐观锁与悲观锁](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Pessimistic-lock&&optimistic-lock.md)
@@ -19,6 +19,7 @@
 - [Java序列化](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/serializable.md)
 - [泛型](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/generics.md)
 - [反射](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/reflection.md)
+- [代理](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/proxy.md)
 - 其他
 
 
@@ -37,13 +38,15 @@
 
 - [leetcode详解](https://github.com/havenBoy/LeetCode)
 
-- 递归算法
+- **常见算法简介**
 
-- 枚举算法
+  * 递归算法
 
-- 分治算法
+  * 枚举算法
 
-- 贪婪算法
+  * 分治算法
+
+  * 贪婪算法
 
 
 ### 架构设计
@@ -90,9 +93,7 @@
 
 ### 典型面试题集锦（附答案）
 
-- [面试题](https://github.com/havenBoy/havenboy-java-Interview/blob/master/interview_cases.md)
-
-- [答案](https://github.com/havenBoy/havenboy-java-Interview/blob/master/interview_key.md)
+- [面试题](https://github.com/havenBoy/havenboy-java-Interview/blob/master/interviewcases/interview_cases.md)
 
 ### 附加其他
 - [博客园](http://www.cnblogs.com/zxx-813/)
