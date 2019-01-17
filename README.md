@@ -21,6 +21,7 @@
   * [Synchronize](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Synchronize.md)
   * [ReentrantLock](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/ReentrantLock.md)
   * [ThreadLocal](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/ThreadLocal.md)
+  * [sleep和wait的区别]()
 - [javaIO/javaNIO](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/javaIO-javaNIO.md)
 - [Java序列化](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/serializable.md)
 - [泛型](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/generics.md)
@@ -87,7 +88,7 @@
 - Others
   * [防止订单的重复提交](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/first.md)
   * [分布式系统的幂等性]()
-  * [分布式事务出现及解决]
+  * [分布式事务出现及解决]()
   * [设计模式](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/Java%2024%20%20design-pattern%20%20and%20%207%20standard/conclusion.md)
 
 ### 数据结构
