@@ -9,7 +9,7 @@
 - [对于hashcode和equals理解](hashcode-equals)
 - java集合相关
   * [ArrayList/Vector/linkedList](https://github.com/havenBoy/java--Interview/blob/master/javabasic/ArrayListVectorlinkedlist.md)
-  * [List/Set]()
+  * [List/Set](list-set)
   * [HashMap初识以及与HashTable区别](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/hashmap-hashtable.md)
   * [HashMap实现](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/hashmap.md)
   * [ConcurrentHashMap实现](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/concurrenthashmap.md)
@@ -21,7 +21,7 @@
   * [Synchronize](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Synchronize.md)
   * [ReentrantLock](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/ReentrantLock.md)
   * [ThreadLocal](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/ThreadLocal.md)
-  * [sleep和wait的区别]()
+  * [sleep和wait的区别](sleep-wait)
 - [javaIO/javaNIO](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/javaIO-javaNIO.md)
 - [Java序列化](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/serializable.md)
 - [泛型](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/generics.md)
@@ -66,6 +66,8 @@
   * 事务管理以及事务传播属性
 - springMVC
   * [原理、注解及其原理](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/springmvc.md)
+  - springboot
+  * [启动原理](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/springboot.md)
 - hibernate
   * [hibernate性能优化策略](https://github.com/havenBoy/interview/blob/master/Architecture-design/hibernate/hibernate.md)
 - mybatis
