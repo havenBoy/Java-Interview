@@ -21,7 +21,7 @@
   * [Synchronize](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Synchronize.md)
   * [ReentrantLock](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/ReentrantLock.md)
   * [ThreadLocal](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/ThreadLocal.md)
-  * [sleep和wait的区别](sleep-wait)
+  * [多线程常用方法(sleep,wait,notify...](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/sleep-wait.md)
 - [javaIO/javaNIO](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/javaIO-javaNIO.md)
 - [Java序列化](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/serializable.md)
 - [泛型](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/generics.md)
