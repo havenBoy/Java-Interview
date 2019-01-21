@@ -7,28 +7,28 @@
 - [深拷贝与浅拷贝区别](cpoy)
 - [对象之间引用类型及其区别](reference)
 - [对于hashcode和equals理解](hashcode-equals)
-- java集合相关
+- **java集合相关**
   * [ArrayList/Vector/linkedList](https://github.com/havenBoy/java--Interview/blob/master/javabasic/ArrayListVectorlinkedlist.md)
   * [List/Set](list-set)
   * [HashMap初识以及与HashTable区别](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/hashmap-hashtable.md)
   * [HashMap实现](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/hashmap.md)
   * [ConcurrentHashMap实现](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/concurrenthashmap.md)
   * [红黑树](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/red-black.md)
-- java多线程
+- **java多线程**
   * [什么是线程？与进程的比较](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/thread.md)
   * [JDK线程池介绍](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/jdk-threadPool.md)
   * [乐观锁与悲观锁](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Pessimistic-lock&&optimistic-lock.md)
   * [Synchronize](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Synchronize.md)
   * [ReentrantLock](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/ReentrantLock.md)
   * [ThreadLocal](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/ThreadLocal.md)
-  * [多线程常用方法(sleep,wait,notify...](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/sleep-wait.md)
+  * [多线程常用方法(sleep,wait,notify,join...)](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/sleep-wait.md)
 - [javaIO/javaNIO](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/javaIO-javaNIO.md)
 - [Java序列化](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/serializable.md)
 - [泛型](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/generics.md)
 - [反射](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/reflection.md)
 - [代理](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/proxy.md)
 - [Error与Exception区别](exception-error)
-- 其他
+- **其他**
 
 
 
@@ -66,7 +66,7 @@
   * 事务管理以及事务传播属性
 - springMVC
   * [原理、注解及其原理](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/springmvc.md)
-  - springboot
+- springboot
   * [启动原理](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/springboot.md)
 - hibernate
   * [hibernate性能优化策略](https://github.com/havenBoy/interview/blob/master/Architecture-design/hibernate/hibernate.md)
@@ -94,7 +94,7 @@
   * [设计模式](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/Java%2024%20%20design-pattern%20%20and%20%207%20standard/conclusion.md)
 
 ### 数据结构
-- 
+- [数据库系统原理](database)
 
 
 ### 操作系统
