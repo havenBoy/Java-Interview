@@ -3,10 +3,10 @@
 > 关于我的面试分享，包括java基础，算法，框架设计，以及数据、结构等问题（不定期更新）
 
 ### java底层基础
-- [String,StringBuffer,StringBuilder](string)
-- [深拷贝与浅拷贝区别](cpoy)
-- [对象之间引用类型及其区别](reference)
-- [对于hashcode和equals理解](hashcode-equals)
+- [String,StringBuffer,StringBuilder](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/string.md)
+- [深拷贝与浅拷贝区别](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/copy.md)
+- [对象之间引用类型及其区别](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/reference.md)
+- [对于hashcode和equals理解](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/hashcode-equals.md)
 - **java集合相关**
   * [ArrayList/Vector/linkedList](https://github.com/havenBoy/java--Interview/blob/master/javabasic/ArrayListVectorlinkedlist.md)
   * [List/Set](list-set)
@@ -27,7 +27,7 @@
 - [泛型](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/generics.md)
 - [反射](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/reflection.md)
 - [代理](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/proxy.md)
-- [Error与Exception区别](exception-error)
+- [Error与Exception区别](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/exception-error.md)
 - **其他**
 
 
