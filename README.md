@@ -15,7 +15,7 @@
   * [ConcurrentHashMap实现](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/concurrenthashmap.md)
   * [红黑树](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/red-black.md)
 - **java多线程**
-  * [什么是线程？与进程的比较](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/thread.md)
+  * [什么是线程？与进程的比较?线程通信方式，进程通信方式？](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/thread.md)
   * [JDK线程池介绍](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/jdk-threadPool.md)
   * [乐观锁与悲观锁](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Pessimistic-lock&&optimistic-lock.md)
   * [Synchronize](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Synchronize.md)
@@ -28,9 +28,7 @@
 - [反射](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/reflection.md)
 - [代理](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/proxy.md)
 - [Error与Exception区别](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/exception-error.md)
-- **其他**
-
-
+- [java8新特性](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/java8.md)
 
 ### JVM相关
 - [类的加载机制](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/jvm1.md)
