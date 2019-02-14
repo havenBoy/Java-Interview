@@ -1,8 +1,12 @@
 ![图片](https://github.com/havenBoy/havenboy-java-Interview/blob/master/image/2.jpg)
+| &nbsp;&nbsp;&nbsp;算法&nbsp;&nbsp;&nbsp; | 操作系统 | &nbsp;&nbsp;&nbsp;网络&nbsp;&nbsp;&nbsp; | 面向对象 | &nbsp;&nbsp;数据库&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Java&nbsp;&nbsp;&nbsp; | 系统设计 | &nbsp;&nbsp;&nbsp;工具&nbsp;&nbsp;&nbsp; | 编码实践 | &nbsp;&nbsp;&nbsp;后记&nbsp;&nbsp;&nbsp; |
+| :--------: | :---------: | :---------: | :---------: | :---------: | :---------:| :---------: | :-------: | :-------:| :------:|
+| [:pencil:](#pencil-算法) | [:computer:](#computer-操作系统)|[:cloud:](#cloud-网络) | [:art:](#art-面向对象) |[:floppy_disk:](#floppy_disk-数据库)|  [:coffee:](#coffee-java)| [:bulb:](#bulb-系统设计)| [:wrench:](#wrench-工具)| [:watermelon:](#watermelon-编码实践)| [:memo:](#memo-后记) |
 
+<br>
 > 关于我的面试分享，包括java基础，算法，框架设计，以及数据、结构等问题（不定期更新）
 
-### java底层基础
+## :coffee: java底层基础
 - [String,StringBuffer,StringBuilder](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/string.md)
 - [深拷贝与浅拷贝区别](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/copy.md)
 - [对象之间引用类型及其区别](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/reference.md)
@@ -45,11 +49,13 @@
 
 - **常见算法简介**
 
-  * 递归算法
-  * 枚举算法
-  * 分治算法
-  * 贪婪算法
-
+  * [递归算法](https://github.com/havenBoy/interview/blob/master/Algorithm/ALG1.md)
+  * [回溯算法](https://github.com/havenBoy/interview/blob/master/Algorithm/ALG2.md)
+  * [分治算法](https://github.com/havenBoy/interview/blob/master/Algorithm/ALG3.md)
+  * [贪婪算法](https://github.com/havenBoy/interview/blob/master/Algorithm/ALG4.md)
+  * [动态规划](https://github.com/havenBoy/interview/blob/master/Algorithm/ALG5.md)
+  * [深度优先、广度优先](https://github.com/havenBoy/interview/blob/master/Algorithm/ALG6.md)
+  * [排序算法](https://github.com/havenBoy/interview/blob/master/Algorithm/ALG7.md)
 ### 架构设计
 - spring
   * 初始化流程及原理
@@ -87,17 +93,15 @@
   * [设计模式](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/Java%2024%20%20design-pattern%20%20and%20%207%20standard/conclusion.md)
   * [什么是一致性hash]()
 ### 微服务
-- [服务雪崩，服务降级，服务熔断]()
-### 数据结构
-- [数据库系统原理](database)
+- [服务雪崩，服务降级，服务熔断](https://github.com/havenBoy/havenboy-java-Interview/blob/master/microService/others/first.md)
 
-### 操作系统
+## :computer: 操作系统
 - [进程调度算法]()
 
 ### Linux
 - [常用的命令有那些？]()
 
-### 数据库相关
+## :floppy_disk: 数据库
 - [索引相关](https://github.com/havenBoy/interview/blob/master/databases/index.md)
 
 
