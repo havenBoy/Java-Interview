@@ -3,7 +3,7 @@
 
 | &nbsp;Java基础&nbsp; | &nbsp;&nbsp;&nbsp;JVM&nbsp;&nbsp;&nbsp; | 算法设计 | 架构设计 | 操作系统 | &nbsp;数据库&nbsp; | &nbsp;&nbsp;Linux&nbsp;&nbsp;&nbsp; |
 | :--------: | :---------: | :---------: | :---------: | :---------: | :---------:| :---------: | 
-| [:coffee:](#coffee-java) | [:bulb:](#bulb-JVM) | [:pencil:](#pencil-算法设计) | [:art:](#art-架构设计) | [:computer:](#computer-操作系统)|  [:floppy_disk:](#floppy_disk-databases) | [:banana:](#watermelon-linux) | 
+| [:coffee:](#coffee-java) | [:bulb:](#bulb-JVM) | [:pencil:](#pencil-算法设计) | [:art:](#art-架构设计) | [:computer:](#computer-操作系统)| [:floppy_disk:](#floppy_disk-databases) | [:banana:](#banana-linux) | 
 
 ## :coffee: java基础
 - [String,StringBuffer,StringBuilder](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/string.md)
@@ -77,9 +77,9 @@
   * [redis集群搭建](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/rediscluster.md)
   * redis三种模式介绍
 - Docker
-
+- zookeeper
 - Elasticsearch
-
+- dubbo
 - 消息队列
   * activeMq
   * rabbitMq
@@ -87,10 +87,10 @@
   * [maven介绍](https://github.com/havenBoy/interview/blob/master/Architecture-design/maven/maven.md)
 - Others
   * [防止订单的重复提交](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/first.md)
-  * [分布式系统的幂等性]()
+  * [分布式系统的幂等性](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/second.md)
   * [分布式事务出现及解决]()
   * [设计模式](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/Java%2024%20%20design-pattern%20%20and%20%207%20standard/conclusion.md)
-  * [什么是一致性hash]()
+  * [什么是一致性hash](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/third.md)
 ## :art: 微服务
 - [服务雪崩，服务降级，服务熔断](https://github.com/havenBoy/havenboy-java-Interview/blob/master/microService/others/first.md)
 
