@@ -1,7 +1,7 @@
 ![图片](https://github.com/havenBoy/havenboy-java-Interview/blob/master/image/2.jpg)
 > 关于我的面试分享，包括java基础，算法，框架设计，以及数据、结构等问题（不定期更新）
 
-| &nbsp;&nbsp;&nbsp;Java基础&nbsp;&nbsp;&nbsp; | JVM | &nbsp;&nbsp;&nbsp;算法设计&nbsp;&nbsp;&nbsp; | 架构设计 | &nbsp;&nbsp;操作系统&nbsp;&nbsp; | &nbsp;&nbsp;数据库&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;Linux&nbsp;&nbsp;&nbsp; | 
+| &nbsp;Java基础&nbsp; | &nbsp;&nbsp;&nbsp;JVM&nbsp;&nbsp;&nbsp; | 算法设计 | 架构设计 | 操作系统 | &nbsp;数据库&nbsp; | &nbsp;&nbsp;Linux&nbsp;&nbsp;&nbsp; | 
 | :--------: | :---------: | :---------: | :---------: | :---------: | :---------:| :---------: | :---------: | 
 | [:coffee:](#coffee-java) | [:bulb:](#computer-JVM)|[:pencil:](#cloud-算法设计) | [:art:](#art-架构设计) |[:computer:](#floppy_disk-操作系统)|  [:floppy_disk:](#coffee-databases) | [:watermelon:](#coffee-linux)| 
 
