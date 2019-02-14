@@ -22,6 +22,7 @@
   * [ReentrantLock](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/ReentrantLock.md)
   * [ThreadLocal](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/ThreadLocal.md)
   * [多线程常用方法(sleep,wait,notify,join...)](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/sleep-wait.md)
+  * [CountDownLatch、CyclicBarrier和Semaphore](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/CountDownLatch)
 - [javaIO/javaNIO](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/javaIO-javaNIO.md)
 - [Java序列化](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/serializable.md)
 - [泛型](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/generics.md)
@@ -35,25 +36,19 @@
 - [jvm内存结构](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/jvm2.md)
 - [GC算法，垃圾回收](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/jvm3.md)
 - [GC分析，命令调优](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/jvm4.md)
-
 - [jvm读书笔记](https://github.com/havenBoy/java-book-notes/tree/master/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA)
 
 
 ### 算法设计
 - [时间复杂度与空间复杂度](https://github.com/havenBoy/interview/blob/master/Algorithm/complex.md)
-
 - [leetcode详解](https://github.com/havenBoy/LeetCode)
 
 - **常见算法简介**
 
   * 递归算法
-
   * 枚举算法
-
   * 分治算法
-
   * 贪婪算法
-
 
 ### 架构设计
 - spring
@@ -90,10 +85,11 @@
   * [分布式系统的幂等性]()
   * [分布式事务出现及解决]()
   * [设计模式](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/Java%2024%20%20design-pattern%20%20and%20%207%20standard/conclusion.md)
-
+  * [什么是一致性hash]()
+### 微服务
+- [服务雪崩，服务降级，服务熔断]()
 ### 数据结构
 - [数据库系统原理](database)
-
 
 ### 操作系统
 - [进程调度算法]()
