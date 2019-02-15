@@ -75,7 +75,8 @@
   * 配置文件的解释
 - Redis
   * [redis集群搭建](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/rediscluster.md)
-  * redis三种模式介绍
+  * [redis线程模型原理](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redisthread.md)
+  * [redis三种模式介绍](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redismode.md)
 - Docker
 - zookeeper
 - Elasticsearch
