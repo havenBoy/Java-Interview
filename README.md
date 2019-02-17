@@ -45,7 +45,7 @@
 ## :pencil: 算法设计
 - [leetcode题解](https://github.com/havenBoy/LeetCode)
 - [时间复杂度与空间复杂度](https://github.com/havenBoy/interview/blob/master/Algorithm/complex.md)
-
+- [常见的负载均衡算法](https://github.com/havenBoy/interview/blob/master/Algorithm/load.md)
 - **常见算法简介**
   * [递归算法](https://github.com/havenBoy/interview/blob/master/Algorithm/ALG1.md)
   * [回溯算法](https://github.com/havenBoy/interview/blob/master/Algorithm/ALG2.md)
