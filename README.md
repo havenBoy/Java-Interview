@@ -2,8 +2,8 @@
 ### 关于我的面试分享，包括java基础，算法，框架设计，以及数据、结构等问题（不定期更新）
 
 | &nbsp;Java基础&nbsp; | &nbsp;&nbsp;&nbsp;JVM&nbsp;&nbsp;&nbsp; | 算法设计 | 架构设计 | 操作系统 | &nbsp;数据库&nbsp; | &nbsp;&nbsp;Linux&nbsp;&nbsp;&nbsp; |
-| :--------: | :---------: | :---------: | :---------: | :---------: | :---------:| :---------: | 
-| [:coffee:](#coffee-java) | [:bulb:](#bulb-JVM) | [:pencil:](#pencil-算法设计) | [:art:](#art-架构设计) | [:computer:](#computer-操作系统)| [:floppy_disk:](#floppy_disk-databases) | [:banana:](#banana-linux) | 
+| :--------: | :---------: | :---------: | :---------: | :---------: | :---------:| :---------: |
+| [:coffee:](#coffee-java) | [:bulb:](#bulb-JVM) | [:pencil:](#pencil-算法设计) | [:art:](#art-架构设计) | [:computer:](#computer-操作系统)| [:floppy_disk:](#floppy_disk-databases) | [:banana:](#banana-linux) |
 
 ## :coffee: java基础
 - [String,StringBuffer,StringBuilder](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/string.md)
@@ -56,37 +56,37 @@
   * [排序算法](https://github.com/havenBoy/interview/blob/master/Algorithm/ALG7.md)
 
 ## :art: 架构设计
-- spring
+- **spring**
   * 初始化流程及原理
   * IOC (...)
   * AOP (...)
   * bean生命周期
   * 事务管理以及事务传播属性
-- springMVC
+- **springMVC**
   * [原理、注解及其原理](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/springmvc.md)
-- springboot
+- **springboot**
   * [启动原理](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/springboot.md)
-- hibernate
+- **hibernate**
   * [hibernate性能优化策略](https://github.com/havenBoy/interview/blob/master/Architecture-design/hibernate/hibernate.md)
-- mybatis
+- **mybatis**
   * [与hibernate的区别](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Hibernate-MyBatis.md)
-- nginx
+- **nginx**
   * [nginx环境搭建](https://github.com/havenBoy/interview/blob/master/Architecture-design/nginx/nginx.md)
   * 配置文件的解释
-- Redis
+- **Redis**
   * [redis集群搭建](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/rediscluster.md)
   * [redis线程模型原理](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redisthread.md)
   * [redis三种模式介绍及其持久化方式比较](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redismode.md)
-- Docker
-- zookeeper
-- Elasticsearch
-- dubbo
-- 消息队列
+- **Docker**
+- **zookeeper**
+- **Elasticsearch**
+- **dubbo**
+- **mq**
   * activeMq
   * rabbitMq
-- Maven
+- **Maven**
   * [maven介绍](https://github.com/havenBoy/interview/blob/master/Architecture-design/maven/maven.md)
-- Others
+- **Others**
   * [防止订单的重复提交](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/first.md)
   * [分布式系统的幂等性](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/second.md)
   * [分布式事务出现及解决]()
@@ -103,8 +103,5 @@
 
 ## :floppy_disk: 数据库
 - [索引相关](https://github.com/havenBoy/interview/blob/master/databases/index.md)
-
-
-### [典型面试题集锦（附答案）](https://github.com/havenBoy/havenboy-java-Interview/blob/master/interviewcases/interview_cases.md)
 
 ### [我的博客园](http://www.cnblogs.com/zxx-813/)
