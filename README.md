@@ -76,7 +76,7 @@
 - Redis
   * [redis集群搭建](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/rediscluster.md)
   * [redis线程模型原理](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redisthread.md)
-  * [redis三种模式介绍](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redismode.md)
+  * [redis三种模式介绍及其持久化方式比较](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redismode.md)
 - Docker
 - zookeeper
 - Elasticsearch
@@ -93,7 +93,7 @@
   * [设计模式](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/Java%2024%20%20design-pattern%20%20and%20%207%20standard/conclusion.md)
   * [什么是一致性hash](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/third.md)
 ## :art: 微服务
-- [服务雪崩，服务降级，服务熔断](https://github.com/havenBoy/havenboy-java-Interview/blob/master/microService/others/first.md)
+- [服务雪崩，服务降级，服务熔断](https://github.com/havenBoy/havenboy-java-Interview/blob/master/microService/microService/first.md)
 
 ## :computer: 操作系统
 - [进程调度算法]()
