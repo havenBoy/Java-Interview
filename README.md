@@ -82,8 +82,7 @@
 - **Elasticsearch**
 - **dubbo**
 - **mq**
-  * activeMq
-  * rabbitMq
+  * [消息队列概述](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redismode.md)
 - **Maven**
   * [maven介绍](https://github.com/havenBoy/interview/blob/master/Architecture-design/maven/maven.md)
 - **Others**
