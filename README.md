@@ -53,7 +53,7 @@
   * [贪婪算法](https://github.com/havenBoy/interview/blob/master/Algorithm/ALG4.md)
   * [动态规划](https://github.com/havenBoy/interview/blob/master/Algorithm/ALG5.md)
   * [深度优先、广度优先](https://github.com/havenBoy/interview/blob/master/Algorithm/ALG6.md)
-  * [排序算法](https://github.com/havenBoy/interview/blob/master/Algorithm/ALG7.md)
+  * [排序算法](https://github.com/havenBoy/interview/blob/master/Algorithm/sort.md)
 
 ## :art: 架构设计
 - **spring**
@@ -82,7 +82,7 @@
 - **Elasticsearch**
 - **dubbo**
 - **mq**
-  * [消息队列概述](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redismode.md)
+  * [消息队列概述](https://github.com/havenBoy/interview/blob/master/Architecture-design/others/mq.md)
 - **Maven**
   * [maven介绍](https://github.com/havenBoy/interview/blob/master/Architecture-design/maven/maven.md)
 - **Others**
