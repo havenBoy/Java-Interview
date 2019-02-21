@@ -25,7 +25,7 @@
   * [ReentrantLock](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/ReentrantLock.md)
   * [ThreadLocal](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/ThreadLocal.md)
   * [多线程常用方法(sleep,wait,notify,join...)](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/sleep-wait.md)
-  * [CountDownLatch、CyclicBarrier和Semaphore](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/CountDownLatch)
+  * [CountDownLatch、CyclicBarrier和Semaphore](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/CountDownLatch.md)
 - [javaIO/javaNIO](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/javaIO-javaNIO.md)
 - [Java序列化](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/serializable.md)
 - [泛型](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/generics.md)
