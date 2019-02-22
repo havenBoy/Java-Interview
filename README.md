@@ -77,6 +77,7 @@
   * [redis集群搭建](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/rediscluster.md)
   * [redis线程模型原理](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redisthread.md)
   * [redis三种模式介绍及其持久化方式比较](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redismode.md)
+  * [缓存概述](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redisall.md)
 - **Docker**
 - **zookeeper**
 - **Elasticsearch**
