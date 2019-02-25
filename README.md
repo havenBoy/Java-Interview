@@ -39,6 +39,7 @@
 - [jvm内存结构](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/jvm2.md)
 - [GC算法，垃圾回收](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/jvm3.md)
 - [GC分析，命令调优](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/jvm4.md)
+- [CMS与G1比较](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/jvm5.md)
 - [jvm读书笔记](https://github.com/havenBoy/java-book-notes/tree/master/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA)
 
 
