@@ -31,6 +31,7 @@
 - [泛型](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/generics.md)
 - [反射](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/reflection.md)
 - [代理](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/proxy.md)
+- [注解](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/annotation.md)
 - [Error与Exception区别](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/exception-error.md)
 - [java8新特性](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/java8.md)
 
