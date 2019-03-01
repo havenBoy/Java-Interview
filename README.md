@@ -80,6 +80,7 @@
   * [redis线程模型原理](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redisthread.md)
   * [redis三种模式介绍及其持久化方式比较](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redismode.md)
   * [缓存概述](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redisall.md)
+  * [缓存雪崩、击穿、穿透](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redis-destroy.md)
 - **Docker**
 - **zookeeper**
 - **Elasticsearch**
@@ -94,10 +95,13 @@
   * [分布式事务出现及解决]()
   * [设计模式](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/Java%2024%20%20design-pattern%20%20and%20%207%20standard/conclusion.md)
   * [什么是一致性hash](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/third.md)
+  * [缓存与数据库的一致性](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/cache-same.md)
+  * [分布式锁与事务](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/lock-transaction.md)
 ## :art: 微服务
-- [服务雪崩，服务降级，服务熔断](https://github.com/havenBoy/havenboy-java-Interview/blob/master/microService/microService/first.md)
+- [服务雪崩，服务降级，服务熔断](https://github.com/havenBoy/Java-Interview/blob/master/microService/first.md)
 
 ## :computer: 操作系统
+- [http1.0-1.1](https://github.com/havenBoy/Java-Interview/blob/master/operator/http1.0-1.1.md)
 - [进程调度算法]()
 - [进程切换]()
 
