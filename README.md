@@ -70,7 +70,7 @@
 - **hibernate**
   * [hibernate性能优化策略](https://github.com/havenBoy/interview/blob/master/Architecture-design/hibernate/hibernate.md)
 - **mybatis**
-  * [与hibernate的区别](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Hibernate-MyBatis.md)
+  * [与hibernate的区别](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/hibernate-mybatis.md)
 - **nginx**
   * [nginx环境搭建](https://github.com/havenBoy/interview/blob/master/Architecture-design/nginx/nginx.md)
   * [配置文件的解释](https://github.com/havenBoy/interview/blob/master/Architecture-design/nginx/nginx-config.md)
@@ -100,6 +100,7 @@
   * [缓存与数据库的一致性](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/cache-same.md)
   * [分布式锁与事务](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/lock-transaction.md)
   * [如何设计秒杀系统](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/seconds-kill.md)
+  * [负载均衡算法](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/load-balance.md)
 ## :art: 微服务
 - [服务雪崩，服务降级，服务熔断](https://github.com/havenBoy/Java-Interview/blob/master/microService/first.md)
 
