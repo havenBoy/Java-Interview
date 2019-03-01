@@ -2,8 +2,8 @@
 ### 关于我的面试分享，包括java基础，算法，框架设计，以及数据、结构等问题（不定期更新）
 
 | &nbsp;Java基础&nbsp; | &nbsp;&nbsp;&nbsp;JVM&nbsp;&nbsp;&nbsp; | 算法设计 | 架构设计 | 操作系统 | &nbsp;数据库&nbsp; | &nbsp;&nbsp;Linux&nbsp;&nbsp;&nbsp; |
-| :--------: | :---------: | :---------: | :---------: | :---------: | :---------:| :---------: |
-| [:coffee:](#coffee-java) | [:bulb:](#bulb-JVM) | [:pencil:](#pencil-算法设计) | [:art:](#art-架构设计) | [:computer:](#computer-操作系统)| [:floppy_disk:](#floppy_disk-databases) | [:banana:](#banana-linux) |
+| :--------: | :---------: | :---------: | :---------: | :---------: | :---------:| :---------: | | :---------:| :---------: |
+| [:coffee:](#coffee-java) | [:bulb:](#bulb-JVM) | [:pencil:](#pencil-算法设计) | [:art:](#art-架构设计) | [:computer:](#computer-操作系统)| [:floppy_disk:](#floppy_disk-databases) | [:banana:](#banana-linux) | | [:apple:](#apple-TCP与HTTP) | | [:safe:](#safe-网络与安全) |
 
 ## :coffee: java基础
 - [String,StringBuffer,StringBuilder](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/string.md)
@@ -59,13 +59,12 @@
 
 ## :art: 架构设计
 - **spring**
-  * 初始化流程及原理
-  * IOC (...)
-  * AOP (...)
-  * bean生命周期
-  * 事务管理以及事务传播属性
+  * [初始化流程及原理](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/spring/spring-core.md)
+  * [IOC](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/spring/spring-ioc.md)
+  * [AOP](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/spring/spring-aop.md)
+  * [事务管理以及事务传播属性](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/spring/spring-transaction.md)
 - **springMVC**
-  * [原理、注解及其原理](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/springmvc.md)
+  * [原理、注解及其原理](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/springmvc/springmvc.md)
 - **springboot**
   * [启动原理](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/springboot.md)
 - **hibernate**
@@ -74,7 +73,7 @@
   * [与hibernate的区别](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/Hibernate-MyBatis.md)
 - **nginx**
   * [nginx环境搭建](https://github.com/havenBoy/interview/blob/master/Architecture-design/nginx/nginx.md)
-  * 配置文件的解释
+  * [配置文件的解释](https://github.com/havenBoy/interview/blob/master/Architecture-design/nginx/nginx-config.md)
 - **Redis**
   * [redis集群搭建](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/rediscluster.md)
   * [redis线程模型原理](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redisthread.md)
@@ -83,8 +82,11 @@
   * [缓存雪崩、击穿、穿透](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redis-destroy.md)
 - **Docker**
 - **zookeeper**
+  * [zookeeper使用的场景](https://github.com/havenBoy/interview/blob/master/Architecture-design/zookeeper/scene.md)
+  * [zookeeper Watcher锁机制](https://github.com/havenBoy/interview/blob/master/Architecture-design/zookeeper/watcher.md)
 - **Elasticsearch**
 - **dubbo**
+  * [dubbo原理解读](https://github.com/havenBoy/interview/blob/master/Architecture-design/dubbo/dubbo-core.md)
 - **mq**
   * [消息队列概述](https://github.com/havenBoy/interview/blob/master/Architecture-design/others/mq.md)
 - **Maven**
@@ -92,23 +94,26 @@
 - **Others**
   * [防止订单的重复提交](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/first.md)
   * [分布式系统的幂等性](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/second.md)
-  * [分布式事务出现及解决]()
   * [设计模式](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/Java%2024%20%20design-pattern%20%20and%20%207%20standard/conclusion.md)
   * [什么是一致性hash](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/third.md)
   * [缓存与数据库的一致性](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/cache-same.md)
   * [分布式锁与事务](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/lock-transaction.md)
+  * [如何设计秒杀系统](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/seconds-kill.md)
 ## :art: 微服务
 - [服务雪崩，服务降级，服务熔断](https://github.com/havenBoy/Java-Interview/blob/master/microService/first.md)
 
 ## :computer: 操作系统
-- [http1.0-1.1](https://github.com/havenBoy/Java-Interview/blob/master/operator/http1.0-1.1.md)
 - [进程调度算法]()
-- [进程切换]()
-
+- [进程切换问题]()
+## :apple: TCP与HTTP
+- [http1.0-1.1](https://github.com/havenBoy/Java-Interview/blob/master/tcp-http/http1.0-1.1.md)
+## :safe: 网络与安全
+- [常见的网站攻击方法？](https://github.com/havenBoy/Java-Interview/blob/master/netsafe/attack.md)
 ## :banana: Linux
 - [常用的命令有那些？]()
 
 ## :floppy_disk: 数据库
 - [索引相关](https://github.com/havenBoy/interview/blob/master/databases/index.md)
+- [MYSQL数据库主从数据库延时问题](https://github.com/havenBoy/interview/blob/master/databases/time-late.md)
 
 ### [我的博客园](http://www.cnblogs.com/zxx-813/)
