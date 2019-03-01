@@ -3,7 +3,7 @@
 
 | &nbsp;Java基础&nbsp; | &nbsp;&nbsp;&nbsp;JVM&nbsp;&nbsp;&nbsp; | 算法设计 | 架构设计 | 操作系统 | &nbsp;数据库&nbsp; | &nbsp;&nbsp;Linux&nbsp;&nbsp;&nbsp; |
 | :--------: | :---------: | :---------: | :---------: | :---------: | :---------:| :---------: | | :---------:| :---------: |
-| [:coffee:](#coffee-java) | [:bulb:](#bulb-JVM) | [:pencil:](#pencil-算法设计) | [:art:](#art-架构设计) | [:computer:](#computer-操作系统)| [:floppy_disk:](#floppy_disk-databases) | [:banana:](#banana-linux) | | [:apple:](#apple-TCP与HTTP) | | [:safe:](#safe-网络与安全) |
+| [:coffee:](#coffee-java) | [:bulb:](#bulb-JVM) | [:pencil:](#pencil-算法设计) | [:art:](#art-架构设计) | [:computer:](#computer-操作系统)| [:floppy_disk:](#floppy_disk-databases) | [:banana:](#banana-linux) | [:apple:](#apple-TCP与HTTP) | [:safe:](#safe-网络与安全) |
 
 ## :coffee: java基础
 - [String,StringBuffer,StringBuilder](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/string.md)
@@ -25,7 +25,7 @@
   * [ReentrantLock](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/ReentrantLock.md)
   * [ThreadLocal](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/ThreadLocal.md)
   * [多线程常用方法(sleep,wait,notify,join...)](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/sleep-wait.md)
-  * [CountDownLatch、CyclicBarrier和Semaphore](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/CountDownLatch.md)
+  * [AQS与CAS](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/aqs-cas.md)
 - [javaIO/javaNIO](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/javaIO-javaNIO.md)
 - [Java序列化](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/serializable.md)
 - [泛型](https://github.com/havenBoy/havenboy-java-Interview/blob/master/javabasic/generics.md)
@@ -77,6 +77,7 @@
 - **Redis**
   * [redis集群搭建](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/rediscluster.md)
   * [redis线程模型原理](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redisthread.md)
+  * [redis事务](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redis-transaction.md)
   * [redis三种模式介绍及其持久化方式比较](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redismode.md)
   * [缓存概述](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redisall.md)
   * [缓存雪崩、击穿、穿透](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redis-destroy.md)
@@ -105,8 +106,14 @@
 ## :computer: 操作系统
 - [进程调度算法]()
 - [进程切换问题]()
+- [网络IO模型](https://github.com/havenBoy/Java-Interview/blob/master/netsafe/io-mode.md)
+- [死锁的出现以及解决](https://github.com/havenBoy/Java-Interview/blob/master/operator/locks.md)
 ## :apple: TCP与HTTP
 - [http1.0-1.1](https://github.com/havenBoy/Java-Interview/blob/master/tcp-http/http1.0-1.1.md)
+- https
+- 三次握手与四次挥手
+- TCP粘包/拆包
+- 浏览器打开一个链接的细节
 ## :safe: 网络与安全
 - [常见的网站攻击方法？](https://github.com/havenBoy/Java-Interview/blob/master/netsafe/attack.md)
 ## :banana: Linux
@@ -114,6 +121,7 @@
 
 ## :floppy_disk: 数据库
 - [索引相关](https://github.com/havenBoy/interview/blob/master/databases/index.md)
+- [sql与数据库优化](https://github.com/havenBoy/interview/blob/master/databases/sql-improve.md)
 - [MYSQL数据库主从数据库延时问题](https://github.com/havenBoy/interview/blob/master/databases/time-late.md)
-
+- [慢sql诊断](https://github.com/havenBoy/interview/blob/master/databases/sql-conclusion.md)
 ### [我的博客园](http://www.cnblogs.com/zxx-813/)
