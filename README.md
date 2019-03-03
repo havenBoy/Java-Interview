@@ -107,7 +107,7 @@
 ## :computer: 操作系统
 - [进程调度算法]()
 - [进程切换问题]()
-- [网络IO模型](https://github.com/havenBoy/Java-Interview/blob/master/netsafe/io-mode.md)
+- [网络IO模型](https://github.com/havenBoy/Java-Interview/blob/master/operator/io-mode.md)
 - [死锁的出现以及解决](https://github.com/havenBoy/Java-Interview/blob/master/operator/locks.md)
 ## :apple: TCP与HTTP
 - [http1.0-1.1](https://github.com/havenBoy/Java-Interview/blob/master/tcp-http/http1.0-1.1.md)
@@ -125,4 +125,4 @@
 - [sql与数据库优化](https://github.com/havenBoy/interview/blob/master/databases/sql-improve.md)
 - [MYSQL数据库主从数据库延时问题](https://github.com/havenBoy/interview/blob/master/databases/time-late.md)
 - [慢sql诊断](https://github.com/havenBoy/interview/blob/master/databases/sql-conclusion.md)
-### [我的博客园](http://www.cnblogs.com/zxx-813/)
+### [欢迎来到我的博客园](http://www.cnblogs.com/zxx-813/)
