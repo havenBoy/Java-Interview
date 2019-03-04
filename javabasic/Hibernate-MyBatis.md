@@ -24,7 +24,7 @@
 
   不同点：
 
-  HIbernate： SessionFactory配置文件中详细配置，然后在表对象映射配置中配置那种缓存；
+  Hibernate： SessionFactory配置文件中详细配置，然后在表对象映射配置中配置那种缓存；
 
   Mybatis： 每个具体表映射对象中详细配置，不同的表可以实现不同的缓存机制；
 
