@@ -98,7 +98,7 @@
   * [设计模式](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/Java%2024%20%20design-pattern%20%20and%20%207%20standard/conclusion.md)
   * [什么是一致性hash](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/third.md)
   * [缓存与数据库的一致性](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/cache-same.md)
-  * [分布式锁与事务](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/lock-transaction.md)
+  * [分布式锁与事务与session](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/lock-transaction.md)
   * [如何设计秒杀系统](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/seconds-kill.md)
 ## :art: 微服务
 - [服务雪崩，服务降级，服务熔断](https://github.com/havenBoy/Java-Interview/blob/master/microService/first.md)
@@ -110,7 +110,7 @@
 - [死锁的出现以及解决](https://github.com/havenBoy/Java-Interview/blob/master/operator/locks.md)
 ## :apple: TCP与HTTP
 - [http1.0-1.1](https://github.com/havenBoy/Java-Interview/blob/master/tcp-http/http1.0-1.1.md)
-- https
+- https一次加密的过程
 - 三次握手与四次挥手
 - TCP粘包/拆包
 - 浏览器打开一个链接的细节
