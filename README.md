@@ -99,7 +99,7 @@
   * [缓存与数据库的一致性](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/cache-same.md)
   * [分布式锁与事务与session](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/lock-transaction.md)
   * [如何设计秒杀系统](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/seconds-kill.md)
-  * [quartz与集群的整合](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/quartz.md)
+  * [quartz与springboot的整合](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/quartz.md)
 ## :art: 微服务
 - [服务雪崩，服务降级，服务熔断](https://github.com/havenBoy/Java-Interview/blob/master/microService/first.md)
 
