@@ -85,6 +85,9 @@
   * [zookeeper使用的场景](https://github.com/havenBoy/interview/blob/master/Architecture-design/zookeeper/scene.md)
   * [zookeeper Watcher锁机制](https://github.com/havenBoy/interview/blob/master/Architecture-design/zookeeper/watcher.md)
 - **Elasticsearch**
+- **Hadoop**
+  * [HDFS]()
+  * [MapReduce]()
 - **dubbo**
   * [dubbo原理解读](https://github.com/havenBoy/interview/blob/master/Architecture-design/dubbo/dubbo-core.md)
 - **mq**
