@@ -20,7 +20,9 @@
   	}
   ```
 
-  最好的情况是数组已经完全有序，此时算法的时间复杂度为n，否则其他的情况时间复杂度为n^2
+  最好的情况是数组已经完全有序，此时算法的时间复杂度为n，否则其他的情况时间复杂度为n^2；
+
+  优化：
 
 - 选择排序
 
@@ -87,6 +89,8 @@
 
 - 希尔排序
 
+  思想：
+
 - 归并排序
 
   思想：采用分治的思想，把一个大问题分解为多个小问题，解决了每一个小问题，后把小问题的解合并就得到大问题的解，时间复杂度为nlogN
@@ -123,6 +127,51 @@
   ```
 
 - 堆排序
+
+  利用堆的数据结构的性质设计的算法，是一个近似于完全的二叉树，子节点的值用于大于或者小于父节点；
+
+  思想：初始时时无序区，把堆顶元素与最后一个元素互换后，可能会违反堆的性质，因此需要调整为新堆，不断的重复此过程，即可完成排序；
+
+  ~~~java
+      public static void heapSort(int[] arr) {
+          //初始化堆
+          for (int i = arr.length/2; i >= 0; i--) {
+             adjust(arr, i, arr.length);
+          }
+          //
+          for (int i = arr.length-1; i > 0; i--) {
+              swap(arr, 0, i); //交换操作
+              adjust(arr, 0, i); //调整操作
+          }
+      }
+      //创建堆的函数
+      public static void adjust(int[] arr, int i, int len) {
+          int child;
+          int father;
+          for (father = arr[i]; getLeft(i) < len; i = child) {
+              child = getLeft(i);
+              if (child != len -1 && arr[child] < arr[child+1]) {
+                  child++;
+              }
+              if (father < arr[child]) {
+                  arr[i] = arr[child];
+              } else {
+                  break;
+              }
+          }
+          arr[i] = father;
+      }
+      //得到节点的左孩子
+      public static int getLeft(int i) {
+          return i * 2 + 1;
+      }
+      //交换数字
+      public static void swap(int[] arr, int left, int right) {
+          int temp = arr[left];
+          arr[left] = arr[right];
+          arr[right] = temp;
+      }
+  ~~~
 
 - 二分查找法
 
