@@ -2,7 +2,7 @@
 
 - 冒泡排序
 
-  思想：从第一个数字开始，与下一位数字进行比较，如果大，交换位置，如果小，继续，重复步骤，直到最后一个数字即可进行正确的排序，
+  思想：从第一个数字开始，与下一位数字进行比较，如果大，交换位置，如果小，继续，重复步骤，直到最后一个数字即可进行正确的排序
 
   ```java
   	public static int[] bubbleSort(int[] arr) {
@@ -89,7 +89,28 @@
 
 - 希尔排序
 
-  思想：
+  思想：对原先的数据进行分组，然后做直接插入排序，完成后缩小数组的数量，重复操作，直到变为一个数组
+
+  时间复杂度为nlogN，最坏的时间复杂度是n^2；
+
+  ~~~java
+      public static void shellSort(int[] arr) {
+          int j, tmp;
+          for (int sec = arr.length/2; sec > 0; sec/=2) {
+              for (int i = sec; i < arr.length; i++) {
+                  tmp = arr[i];
+                  for (j = i - sec; j >= 0; j -= sec) {
+                      if (tmp < arr[j]) {
+                          arr[j + sec] = arr[j];
+                      } else {
+                          break;
+                      }
+                  }
+                  arr[j + sec] = tmp;
+              }
+          }
+      }
+  ~~~
 
 - 归并排序
 
@@ -138,7 +159,6 @@
           for (int i = arr.length/2; i >= 0; i--) {
              adjust(arr, i, arr.length);
           }
-          //
           for (int i = arr.length-1; i > 0; i--) {
               swap(arr, 0, i); //交换操作
               adjust(arr, 0, i); //调整操作
