@@ -91,6 +91,8 @@
 
   思想：对原先的数据进行分组，然后做直接插入排序，完成后缩小数组的数量，重复操作，直到变为一个数组
 
+  算法的好坏取决于段的选取，对于不同的数据量选取不同的段数；
+
   时间复杂度为nlogN，最坏的时间复杂度是n^2；
 
   ~~~java
@@ -193,6 +195,30 @@
       }
   ~~~
 
+- 直接插入排序
+
+  ~~~java
+  public void insertionSort(int[]a) {
+     for(int i=0;i<a.length-1;i++)
+     {
+         int currentItem=a[i+1];
+         for(int j=i;j>=0;j--)
+         {
+             if(currentItem<a[j]) {
+                 a[j+1]=a[j];
+                 a[j]=currrentItem;
+             }
+             else {
+                 a[j+1]=currentItem;
+                 break;
+             }
+         }
+     }
+  }
+  ~~~
+
+  
+
 - 二分查找法
 
   面试必考：必须掌握
@@ -215,4 +241,4 @@
   	}
   ```
 
-  ​
+  
