@@ -114,8 +114,7 @@
 ## :apple: TCP与HTTP
 - [http1.0-1.1](https://github.com/havenBoy/Java-Interview/blob/master/tcp-http/http1.0-1.1.md)
 - https一次加密的过程
-- 三次握手与四次挥手
-- TCP粘包/拆包
+- [TCP粘包/拆包](https://github.com/havenBoy/Java-Interview/blob/master/netsafe/tcp-package.md)
 - [浏览器打开一个链接的细节](https://github.com/havenBoy/Java-Interview/blob/master/tcp-http/browers.md)
 ## :grapes: 网络与安全
 - [常见的网站攻击方法？](https://github.com/havenBoy/Java-Interview/blob/master/netsafe/attack.md)
@@ -127,4 +126,3 @@
 - [sql与数据库优化](https://github.com/havenBoy/interview/blob/master/databases/sql-improve.md)
 - [MYSQL数据库主从数据库延时问题](https://github.com/havenBoy/interview/blob/master/databases/time-late.md)
 - [慢sql诊断](https://github.com/havenBoy/interview/blob/master/databases/sql-conclusion.md)
-### [欢迎来到我的博客园](http://www.cnblogs.com/zxx-813/)
