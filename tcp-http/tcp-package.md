@@ -10,5 +10,16 @@
     * MSS
        - 指的是TCP建立连接后，双方约定可以传输的最大的TCP报文长度，是TCP用来限制应用层可发送的最大字节数，
        - 如果底层的MTU为1500byte，那么MSS = 1500 - 20(IPHeader) - 20(TCPheader) = 1460byte
+
     * MTU
        - 通信协议中最大的传输单元，指的是TCP/IP四层协议中数据链路层的最大传输单元，普遍使用的以太网的MTU是1500;
+       
+    * 图示
+      - ![图片](https://github.com/havenBoy/havenboy-java-Interview/blob/master/image/5.jpg)
+
+  
+    * 出现粘包的原因
+      - 发送的数据小于TCP发送缓冲区的大小，TCP将多次写入缓冲区的数据一次发送出去；
+      - 接收应用层没有及时读取缓冲区中的数据；
+      - 数据发送过快，数据包堆积在缓冲区多个数据后才发送出去；
+    * 
