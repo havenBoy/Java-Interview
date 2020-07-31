@@ -114,7 +114,7 @@
 ## :apple: TCP与HTTP
 - [http1.0-1.1](https://github.com/havenBoy/Java-Interview/blob/master/tcp-http/http1.0-1.1.md)
 - https一次加密的过程
-- [TCP粘包/拆包](https://github.com/havenBoy/Java-Interview/blob/master/netsafe/tcp-package.md)
+- [TCP粘包/拆包](https://github.com/havenBoy/Java-Interview/blob/master/tcp-http/tcp-package.md)
 - [浏览器打开一个链接的细节](https://github.com/havenBoy/Java-Interview/blob/master/tcp-http/browers.md)
 ## :grapes: 网络与安全
 - [常见的网站攻击方法？](https://github.com/havenBoy/Java-Interview/blob/master/netsafe/attack.md)
