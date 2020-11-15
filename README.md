@@ -107,8 +107,8 @@
 - [服务雪崩，服务降级，服务熔断](https://github.com/havenBoy/Java-Interview/blob/master/microService/first.md)
 
 ## :computer: 操作系统
-- [进程调度算法]()
-- [进程切换问题]()
+- [进程调度算法](https://github.com/havenBoy/Java-Interview/blob/master/operator/process-schedule.md)
+- [进程切换问题](https://github.com/havenBoy/Java-Interview/blob/master/operator/process-switch.md)
 - [网络IO模型](https://github.com/havenBoy/Java-Interview/blob/master/operator/io-mode.md)
 - [死锁的出现以及解决](https://github.com/havenBoy/Java-Interview/blob/master/operator/locks.md)
 ## :apple: TCP与HTTP
