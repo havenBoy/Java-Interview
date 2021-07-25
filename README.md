@@ -120,6 +120,10 @@
 - [常见的网站攻击方法？](https://github.com/havenBoy/Java-Interview/blob/master/netsafe/attack.md)
 ## :banana: Linux
 - [常用的命令有那些？]()
+## :apple: Bigdata
+-[大数据面试前准备？](https://github.com/havenBoy/Java-Interview/blob/master/big_data/interview_before.md)
+-[java基础装备](https://github.com/havenBoy/Java-Interview/blob/master/big_data/java_basic.md)
+-[hadoop主要内容](https://github.com/havenBoy/Java-Interview/blob/master/big_data/hadoop.md)
 
 ## :orange: 数据库
 - [索引相关](https://github.com/havenBoy/interview/blob/master/databases/index.md)
