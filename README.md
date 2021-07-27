@@ -123,8 +123,9 @@
 ## :apple: 大数据
 - [大数据面试前准备？](https://github.com/havenBoy/Java-Interview/blob/master/big_data/interview_before.md)
 - [java基础装备](https://github.com/havenBoy/Java-Interview/blob/master/big_data/java_basic.md)
-- [hadoop主要内容](https://github.com/havenBoy/Java-Interview/blob/master/big_data/hadoop.md)
-
+- [hadoop概览](https://github.com/havenBoy/Java-Interview/blob/master/big_data/hadoop.md)
+- [yarn](https://github.com/havenBoy/Java-Interview/blob/master/big_data/yarn.md)
+- [sqoop](https://github.com/havenBoy/Java-Interview/blob/master/big_data/sqoop.md)
 ## :orange: 数据库
 - [索引相关](https://github.com/havenBoy/interview/blob/master/databases/index.md)
 - [sql与数据库优化](https://github.com/havenBoy/interview/blob/master/databases/sql-improve.md)

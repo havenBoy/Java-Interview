@@ -16,7 +16,7 @@
     - 可靠性--会保存数据的多个副本，当任务发生错误时，会将失败的任务重新分配
   - hadoop集群中hadoop需要启动那些进程，作用是什么？
     - namenode 负责文件系统元数据信息，管理对集群存储文件与文件系统命名空间的访问
-    - datanode  负责某个节点的真实数据存储，一个节点一个datanode的守护进程
+    - datanode  负责某个节点的真实数据存储，提供来自文件系统客户端的读写请求，块的创建以及删除
     - secondary_namenode  并不是namenode的守护进程，而是负责namenode合并editlog，减少namenode启动的时间
     - resource_manager 是yarn平台的守护进程，负责所有资源的分配的调度
     - node_manager 单个节点的资源管理 用于resource_manager具体命令的执行
@@ -36,7 +36,7 @@
     - 启动完成后 50070 8088 18888
     - 常见的dfs命令  hadoop fs ...
   - hdfs 的垃圾回收机制 在core-site.xml配置
-    - fs.trash.interval 是以分钟为单位
+    - fs.trash.interval 是以分钟为单位。默认删除会直接删除掉，不会以垃圾的方式存在 
   - hdfs的写数据流程
     1. 客户端通过FileSystem模块向name请求上传文件，namenode检查目标文件是否存在，检查父目录是否存在
     2. namenode返回是否可以上传此文件
