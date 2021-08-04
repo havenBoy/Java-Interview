@@ -1,5 +1,5 @@
 ## HIVE
-> 是一个构建在hadoop上的数据仓库，可将结构化的数据文件映射为表，并提供SQL查询功能  
+> 是一个构建在hadoop上的数据仓库工具，可将结构化的数据文件映射为表，并提供SQL查询功能  
 > 用于查询的SQL语句会被映射为MapReduce任务执行，提交到hadoop上执行
 
 - 特点 
@@ -19,6 +19,12 @@
     - 优化逻辑执行计划： 逻辑层
     - 生成物理执行计划
     - 优化物理执行计划
+- hive 数据模型
+  - db: 在hive表现为hive.metastore.warehouse.dir下的文件夹
+  - table  表
+  - external table 数据存放
+  - partition  分区
+  - bucket 同一张表下哈希散列下的多个文件
 - HIVE数据类型
   - 整型：tinyint,smallint,int,bigint
   - 布尔：boolean 
@@ -32,4 +38,30 @@
   - 使用数据库  use database_name;
   - 新建数据库  create database xx if not exist database_name [comment 'xxx'] [location 'hdfs://path'] [with dbproperties]
   - 查看数据库信息  desc database [extended] database_name
+  - 创建分区
+  - 删除分区  会删除对应文件夹下的文件
   - 
+- 优化
+- 内部表与外部表的区别：
+  - 外部表只存在元数据信息，在删除表时，外部表只会删除元数据信息，而内部表会删除数据与元数据
+- join
+  - inner join
+  - left join
+  - right join
+- json字符串
+  - insert overwrite table select get_json_object(line, '$.id') as id from xxx
+
+- 函数
+  - round   取整
+  - floor   去除小数，最大的整数
+  - cell    向上取整
+  - rand    随机数
+  - abs     绝对值
+  - 日期函数  year/month/day/weekofyear
+  - 字符串函数  length/concat/lower/reverse/split
+  - 类型转换   cast(value as TYPE)
+  - 爆炸函数   lateral view explode(col)
+  - udf/udtf/udaf  一进一出 (extends UDF)/输入一行输出多行()/多行输入一行输出（extends UDAF）
+  - 窗口函数  
+    - NTILE
+    - ROW_NUMBER  按照

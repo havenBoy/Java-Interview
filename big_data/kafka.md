@@ -10,8 +10,8 @@
 - kafka组件
   - broker 一个或者多个实例  服务端实例
   - topic 一个消息的类别  每个topic包含一个或者partition
-  - partition 物理概念
-  - producer 发布消息到kafkad的broker
+  - partition 分区，是物理概念
+  - producer 发布消息到kafka的broker
   - consumer 消费者，从kafka的broker消费消息
   - 消费者组 每一个consumer属于一个特定的consumer
 
