@@ -33,3 +33,10 @@
   - 新建数据库  create database xx if not exist database_name [comment 'xxx'] [location 'hdfs://path'] [with dbproperties]
   - 查看数据库信息  desc database [extended] database_name
   - 
+- 内部表与外部表的区别以及转换
+  - 内部表也叫管理表，表的目录会放置在HDFS下
+  - 外部表会在创建时在指定的路径下创建表的目录，如果指定location路径不存在，则与内部表一样。
+  - 在删除表时，内外部表存在差异：  
+    1. 内部表在删除时，会删除元数据信息以及hdfs上的目录以及数据  
+    2. 外部表在删除时，不会删除hdfs上的目录以及数据，只会清除元数据信息
+  - 转换： alter table  xxx set tblproperties ('EXTERNAL' = 'TRUE/FALSE')  //注意这里是大写
