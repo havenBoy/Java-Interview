@@ -19,7 +19,7 @@
   - container
     它是yarn中资源的抽象，封装了某个节点上多维度的资源，比如磁盘，内存，cpu等，resource_manager给app_master返回的资源是用  
     container来衡量的，yarn会给每个任务分配一个container，任务只能使用这个container中的资源。  
-- yarn工作原理简述 
+- yarn工作原理简述 --需要详细说明
   - client提交任务到yarn  
   - resource_manager选择一个node_manager，启动一个container来执行application_master实例  
   - application_master向resource_manager申请更多的资源，如果container中的资源不足的情况下；  
