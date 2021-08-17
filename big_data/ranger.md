@@ -1,5 +1,5 @@
 ## Ranger
-> 是大数据领域一个集中式安全管理框架，目的是通过制定策略实现对Hadoop组件的集中式安全管理
+> 是大数据领域一个集中式安全管理框架，目的是通过制定策略实现对Hadoop组件的集中式安全管理  
 > 实现对集群中数据的安全访问  
 - ranger组成
   1. Ranger Admin  用户管理策略，提供WebUI与RestFul接口
@@ -9,8 +9,8 @@
 - 依赖组件
   1. JDK用于运行RangerAdmin/RangerKMS
   2. python 2.7用于ranger的自动化安装
-  3. git用于Ranger的编译
-  4. maven3.6用于Ranger的编译
+  3. git，用于Ranger的编译
+  4. maven3.6.2+，用于Ranger的编译
   5. RDMS用于存储授权策略，存储Ranger用户、组，存储审核日志 
 - 支持扩展性组件
   1. HDFS
@@ -20,7 +20,7 @@
   5. KAFKA
   6. ELASTICSEARCH
   7. KYLIN
-- 编译打包
+- 编译打包  
   0. 前置条件，环境中包含python3环境，git环境，npm前端环境，maven环境3.6.2+
   1. 从github或者gitee获取到关于ranger2.1.0的源码，https://gitee.com/mirrors/apache-ranger/repository/archive/release-ranger-2.1.0.zip
   2. 解压下载包到本地，unzip release-ranger-2.1.0.zip
@@ -167,3 +167,10 @@
   - hive 
   - hbase
   - elasticsearch
+- 原理描述
+  - 通过读取安装组件时生成的配置文件以及组件自带的jar包，通过hook机制调用各个组件服务达到权限管理
+  - 执行./enable-xx-plugin.sh建立hook机制
+  - 将插件自带conf更新到系统安装服务下
+  - 将插件自带的lib更新到系统安装的lib下
+  - 将install.properties文件内容生成.xml文件，更新到系统组件安装服务的conf下
+  - 服务重新启动，使得配置项生效
