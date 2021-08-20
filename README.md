@@ -1,6 +1,7 @@
 ![图片](https://github.com/havenBoy/havenboy-java-Interview/blob/master/image/2.jpg)
 
-| &nbsp;JAVA基础&nbsp; | &nbsp;&nbsp;&nbsp;JVM&nbsp;&nbsp;&nbsp; | 算法设计 | 架构设计 | 操作系统 | &nbsp;数据库&nbsp; | &nbsp;&nbsp;Linux&nbsp;&nbsp;&nbsp; | TCP与HTTP | 网络安全 |
+| &nbsp;JAVA基础&nbsp; | &nbsp;&nbsp;&nbsp;JVM&nbsp;&nbsp;&nbsp; | 算法设计 | 架构设计 | 操作系统 | &nbsp;数据库&nbsp; 
+| &nbsp;&nbsp;Linux&nbsp;&nbsp;&nbsp; | TCP与HTTP | 网络安全 |
 | :--------: | :---------: | :---------: | :---------: | :---------: | :---------:| :---------: | :---------: | :---------: |
 | [:coffee:](#coffee-java) | [:bulb:](#bulb-JVM) | [:pencil:](#pencil-算法设计) | [:art:](#art-架构设计) | [:computer:](#computer-操作系统)| [:orange:](#orange-databases) | [:banana:](#banana-linux)| [:apple:](#apple-TCP与HTTP) | [:grapes:](#grapes-网络与安全) |
 
@@ -81,13 +82,6 @@
   * [缓存概述](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redisall.md)
   * [缓存雪崩、击穿、穿透](https://github.com/havenBoy/interview/blob/master/Architecture-design/redis/redis-destroy.md)
 - **Docker**
-- **zookeeper**
-  * [zookeeper使用的场景](https://github.com/havenBoy/interview/blob/master/Architecture-design/zookeeper/scene.md)
-  * [zookeeper Watcher锁机制](https://github.com/havenBoy/interview/blob/master/Architecture-design/zookeeper/watcher.md)
-- **Elasticsearch**
-- **Hadoop**
-  * [HDFS]()
-  * [MapReduce]()
 - **dubbo**
   * [dubbo原理解读](https://github.com/havenBoy/interview/blob/master/Architecture-design/dubbo/dubbo-core.md)
 - **mq**
@@ -104,6 +98,7 @@
   * [如何设计秒杀系统](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/seconds-kill.md)
   * [quartz与springboot的整合](https://github.com/havenBoy/havenboy-java-Interview/blob/master/Architecture-design/others/quartz.md)
 ## :art: 微服务
+- [spring-cloud](https://github.com/havenBoy/Java-Interview/blob/master/microService/spring_cloud.md)
 - [服务雪崩，服务降级，服务熔断](https://github.com/havenBoy/Java-Interview/blob/master/microService/first.md)
 
 ## :computer: 操作系统
@@ -119,16 +114,26 @@
 ## :grapes: 网络与安全
 - [常见的网站攻击方法？](https://github.com/havenBoy/Java-Interview/blob/master/netsafe/attack.md)
 ## :banana: Linux
-- [常用的命令有那些？]()
+- [常用的命令有那些？](https://github.com/havenBoy/Java-Interview/blob/master/linux/linux_basic.md)
 ## :apple: 大数据
 - [大数据面试前准备？](https://github.com/havenBoy/Java-Interview/blob/master/big_data/interview_before.md)
 - [java基础装备](https://github.com/havenBoy/Java-Interview/blob/master/big_data/java_basic.md)
 - [hadoop概览](https://github.com/havenBoy/Java-Interview/blob/master/big_data/hadoop.md)
+- [map_reduce](https://github.com/havenBoy/Java-Interview/blob/master/big_data/map_reduce.md)
 - [yarn](https://github.com/havenBoy/Java-Interview/blob/master/big_data/yarn.md)
+- [hive](https://github.com/havenBoy/Java-Interview/blob/master/big_data/hive.md)
 - [sqoop](https://github.com/havenBoy/Java-Interview/blob/master/big_data/sqoop.md)
 - [kafka](https://github.com/havenBoy/Java-Interview/blob/master/big_data/kafka.md)
 - [hbase](https://github.com/havenBoy/Java-Interview/blob/master/big_data/hbase.md)
 - [redis](https://github.com/havenBoy/Java-Interview/blob/master/big_data/redis.md)
+- [flume](https://github.com/havenBoy/Java-Interview/blob/master/big_data/flume.md)
+- [zookeeper](https://github.com/havenBoy/Java-Interview/blob/master/big_data/zookeeper.md)
+- [spark](https://github.com/havenBoy/Java-Interview/blob/master/big_data/spark.md)
+- [flink](https://github.com/havenBoy/Java-Interview/blob/master/big_data/flink.md)
+- [ranger](https://github.com/havenBoy/Java-Interview/blob/master/big_data/ranger.md)
+- [kerberos](https://github.com/havenBoy/Java-Interview/blob/master/big_data/kerberos.md)
+- [dolphinscheduler](https://github.com/havenBoy/Java-Interview/blob/master/big_data/dolphinscheduler.md)
+- [kylin](https://github.com/havenBoy/Java-Interview/blob/master/big_data/kylin.md)
 ## :orange: 数据库
 - [索引相关](https://github.com/havenBoy/interview/blob/master/databases/index.md)
 - [sql与数据库优化](https://github.com/havenBoy/interview/blob/master/databases/sql-improve.md)

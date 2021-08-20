@@ -24,10 +24,13 @@
   4. 修改客户端的配置文件在各个节点，路径为/etc/krb5
     - 加参数dns_look_up=false
     - default_realm=EXAMPLE.COM，这个是realm默认值
-    - 修改realms的内容，EXAMPLE.COM = {  
+    - 修改realms的内容，如下：
+    ```json
+    EXAMPLE.COM = {  
          kdc = node1  
          admin_server = node1    
     }
+    ```
   5. 分发配置项到每个节点
   6. 初始化KDC数据库，执行kdb5_util create - s ,输入数据库的密码
   7. 修改kerberos的管理员配置文件，路径为/etc/kerberos/krb5kdc/kadm5.acl
