@@ -1,10 +1,10 @@
 ## kerberos
 > 认证（kerberos）+授权（那些人有权限访问，那些人没有权限访问--ranger）
-> 是一种计算机网络认证协议。
+> 是一种计算机网络认证协议，它允许某实体在非安全网络环境下通信，向另外一个实体以一种安全的方式证明自己的身份
 
 - 一些术语
   - KDC：秘钥分发中心，存储用户信息，管理发放票据（用户访问某个服务的认证信息）
-    1. AS，认证服务器
+    1. AS，认证服务器，验证client的身份，验证通过就会给一个TGT（票证授予票证）给到client
     2. DataBase，存储各个用户与服务的Principle
     3. TGS，票证授权服务器，拿到这个服务的票据才可以访问
   - Realm：所管理的一个领域或者范围
@@ -24,13 +24,10 @@
   4. 修改客户端的配置文件在各个节点，路径为/etc/krb5
     - 加参数dns_look_up=false
     - default_realm=EXAMPLE.COM，这个是realm默认值
-    - 修改realms的内容，如下：
-    ```json
-    EXAMPLE.COM = {  
+    - 修改realms的内容，EXAMPLE.COM = {  
          kdc = node1  
          admin_server = node1    
     }
-    ```
   5. 分发配置项到每个节点
   6. 初始化KDC数据库，执行kdb5_util create - s ,输入数据库的密码
   7. 修改kerberos的管理员配置文件，路径为/etc/kerberos/krb5kdc/kadm5.acl
@@ -39,7 +36,8 @@
   9. 
 - 使用
   1. 注册操作，在数据库写入一个用户数据
-    - 本地登录下为kadmin.local-> addprinc test(增加用户)-> list_principals(查询所有用户)->cpw test（修改用户的密码）-> delprinc test(删除用户)
+    - 本地登录下为kadmin.local-> addprinc test(增加用户)-> list_principals(查询所有用户)
+    ->cpw test（修改用户的密码）-> delprinc test(删除用户)
     - 远程登录，kadmin，需要输入管理员用户与密码，使用quit退出
   2. 认证操作
     - kinit test -> klist(查看所有认证完毕的用户)，使用密码来进行认证
@@ -49,7 +47,7 @@
 
 - 为hadoop开启认证
   > 为不同的服务创建不同的用户与组，在每个节点执行
-  1. hdfs:hadoop --  namenode-snn-journalNode,datanode
+  1. hdfs:hadoop --  namenode-secondaryNameNode-journalNode-datanode
   2. yarn:hadoop  --  resource_manager,node_manager
   3. mapred:hadoop -- jobHistory,mapreduce
 
@@ -62,7 +60,8 @@
   6. Web_UI
 - 修改hadoop配置文件
   - core-site.xml
-  - 
+  - hdfs-site.xml
+  - mapred-site.xml
 
 
 
