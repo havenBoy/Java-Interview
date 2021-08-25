@@ -10,7 +10,7 @@
   1. JDK用于运行RangerAdmin/RangerKMS
   2. python3用于ranger的自动化安装
   3. git，用于Ranger的编译
-  4. maven3.6.2+，用于Ranger的编译
+  4. maven3.8.2+，用于Ranger的编译
   5. RDMS用于存储授权策略，存储Ranger用户、组，存储审核日志 
 - 支持扩展性组件
   1. HDFS
@@ -57,7 +57,8 @@
     -->
     </repositories>
   ```
-  4. 将pom文件的各个关联组件，如hive,hdfs,yarn等组件的版本进行修改，修改问当前环境内的版本。以下为当前系统的版本号，建议进行修改。
+  4. 将pom文件的各个关联组件，如hive,hdfs,yarn等组件的版本进行修改，修改问当前环境内的版本。  
+  以下为当前系统的版本号，建议进行修改。目前发现Es与Hbase的版本与当前基础组件不能兼容。  
   
   |  组件名称   |   版本号   |
   |  ----      |   ----     |
@@ -116,7 +117,7 @@
 - ranger-admin安装部署
 >  此服务是ranger界面集成服务，完成部署后可登陆界面进行安全规则配置，同时服务的安全规则配置也支持API的调用  
 >  安装节点为集群内的任意节点，建议为主节点  
-  1. 使用编译命令mvn clean compile package assembly:assembly install -DskipTests=true -Drat.skip=true
+  0. 预留
   2. 解压编译打包完成后target目录下ranger-2.0.0-admin.tar.gz文件到某个路径下。  
      tar -zxvf ranger-2.0.0-admin.tar.gz -C /opt/
   3. 修改install.properties文件内容，内容如下：  
@@ -130,7 +131,7 @@
   db_password=****        #对应管理ranger数据库的密码
   policymgr_external_url=http://localhost:6080  #界面服务提供默认服务地址，如果有需要修改端口，在此修改
   ```
-  4. 赋予数据库用户root用户在localhost与当前节点管理网地址的所有权限，原因是需要使用root用户创建关于ranger数据库，如下示例：
+  4. 赋予数据库用户root用户在localhost与当前节点管理网地址的所有权限，原因是需要使用root用户创建关于ranger数据库，注意修改相关参数，如下示例：
   ```sql
   flush privileges;
   grant system_user on *.* to 'root';
@@ -149,7 +150,7 @@
 
 - 与各个组件集成
   - hdfs 
-    1. 登录ranger-admin的管理界面后，创建与hdfs的权限认证集成。
+    1. 登录ranger-admin的管理界面后，创建与hdfs的权限认证集成服务,如service_name=dev_hdfs
     2. 在编译后的target文件中找到hdfs相关的插件包为ranger-2.0.0-hdfs-plugin.tar.gz
     3. 解压到/opt/下，tar -zxvf ranger-2.0.0-hdfs-plugin.tar.gz -C /opt/
     4. 修改install.properties文件中的如下内容，其余内容可以保持不动：  
@@ -163,11 +164,65 @@
     7. 登陆ranger界面添加一个hdfs的安全策略服务，service_name与步骤4中的REPOSITORY_NAME保持一致，其余按照提示进行填写
     8. 添加一个策略的具体配置，可以选择配置相关的用户、用户组以及操作权限包括可读、可写、可执行。
     9. 配置完成后可以进行测试，验证用户如果没有权限时会出现报错信息。
-  - kafka
-  - yarn 
+  - yarn
+    1. 登陆ranger-admin界面后，创建与yarn的权限认证集成服务,如service_name=dev_yarn
+    2. 在编译的target文件中找到与yarn相关的插件包：ranger-2.0.0-yarn-plugin.tar.gz
+    3. 解压到/opt目录下，tar -zxvf ranger-2.0.0-yarn-plugin.tar.gz -C /opt/
+    4. 修改install.properties文件中的内容，其余内容保持不动
+    ```
+    POLICY_MGR_URL=http://10.58.14.201:6080  #ranger_admin web地址
+    REPOSITORY_NAME=dev_hdfs                 #策略名称，在创建策略时会用到，与界面配置保持一致
+    COMPONENT_INSTALL_DIR_NAME=/software/hadoop-2.7.2  #hdfs安装路径，即hadoop家目录地址
+    ```
+    5. 启动插件./enable-hdfs-plugin.sh，启动后需要重启hadoop以保证生效，安装部署时需要注意组件的先后顺序，同时升级也需要考虑， 需要在resource_manager节点执行
+    6. 停止插件./disable-hdfs-plugin.sh，与启动类似，需要注意执行脚本后需要重启关联组件，以确保生效。当前不需要执行此步骤
+    7. 登陆ranger界面添加一个yarn的安全策略服务，service_name与步骤4中的REPOSITORY_NAME保持一致，其余按照提示进行填写
+    8. 配置完成后可以进行测试，验证用户如果没有权限时会出现报错信息。
+  - kafka 
   - hive 
+    1. 登陆ranger-admin界面后，创建与yarn的权限认证集成服务,如service_name=dev_hive
+    2. 在编译的target文件中找到与yarn相关的插件包：ranger-2.0.0-hive-plugin.tar.gz
+    3. 解压到/opt目录下 tar -zxvf ranger-2.0.0-hive-plugin.tar.gz -C /opt/
+    4. 修改install.properties文件中的内容，其余内容保持不动
+    ```
+    POLICY_MGR_URL=http://10.58.14.201:6080  #ranger_admin web地址
+    REPOSITORY_NAME=dev_hdfs                 #策略名称，在创建策略时会用到，与界面配置保持一致
+    COMPONENT_INSTALL_DIR_NAME=/software/hive  #hive安装路径
+    ```
+    5. 启动插件./enable-hive-plugin.sh，启动后需要重启hiveserver2以保证生效，安装部署时需要注意组件的先后顺序，同时升级也需要考虑， 需要在所有hiveserver2节点执行
+    6. 停止插件./disable-hive-plugin.sh，与启动类似，需要注意执行脚本后需要重启关联组件，以确保生效。当前不需要执行此步骤
+    7. 登陆ranger界面添加一个hive的安全策略服务，service_name与步骤4中的REPOSITORY_NAME保持一致，其余按照提示进行填写
+    8. 验证策略配置后与操作是否可以匹配（不能对client失效，对odbc生效）
   - hbase
+    1. 登陆ranger-admin界面后，创建与yarn的权限认证集成服务，如service_name=dev_hbase
+    2. 在编译的target文件中找到与yarn相关的插件包：ranger-2.0.0-hbase-plugin.tar.gz
+    3. 解压到/opt目录下 tar -zxvf ranger-2.0.0-hbase-plugin.tar.gz -C /opt/
+    4. 修改install.properties文件中的内容，其余内容保持不动
+    ```
+    POLICY_MGR_URL=http://10.58.14.201:6080  #ranger_admin web地址
+    REPOSITORY_NAME=dev_hdfs                 #策略名称，在创建策略时会用到，与界面配置保持一致
+    COMPONENT_INSTALL_DIR_NAME=/software/hbase  #hbase安装路径
+    ```
+    5. 启动插件./enable-hive-plugin.sh，启动后需要重启hiveserver2以保证生效，安装部署时需要注意组件的先后顺序，同时升级也需要考虑， 需要在Hmaster与HRegionServer节点执行
+    6. 重启hbase组件的HRegionServer与HMaster，使得配置生效
+    6. 停止插件./disable-hbase-plugin.sh，与启动类似，需要注意执行脚本后需要重启关联组件，以确保生效。当前不需要执行此步骤
+    7. 登陆ranger界面添加一个hive的安全策略服务，service_name与步骤4中的REPOSITORY_NAME保持一致，其余按照提示进行填写
+    8. 验证策略配置后与操作是否可以匹配（不能对client失效，对jdbc生效）
   - elasticsearch
+    1. 登陆ranger-admin界面后，创建与yarn的权限认证集成服务，如service_name=dev_es
+    2. 在编译的target文件中找到与yarn相关的插件包：ranger-2.0.0-elasticsearch-plugin.tar.gz
+    3. 解压到/opt目录下 tar -zxvf ranger-2.0.0-elasticsearch-plugin.tar.gz -C /opt/
+    4. 修改install.properties文件中的内容，其余内容保持不动
+    ```
+    POLICY_MGR_URL=http://10.58.14.201:6080  #ranger_admin web地址
+    REPOSITORY_NAME=dev_hdfs                 #策略名称，在创建策略时会用到，与界面配置保持一致
+    COMPONENT_INSTALL_DIR_NAME=/software/elasticsearch  #elasticsearch安装路径
+    ```
+    5. 启动插件./enable-elasticsearch-plugin.sh，启动后需要重启hiveserver2以保证生效，安装部署时需要注意组件的先后顺序，同时升级也需要考虑， 需要在Master与Node节点执行
+    6. 重启hbase组件的HRegionServer与HMaster，使得配置生效
+    6. 停止插件./disable-elasticsearch-plugin.sh，与启动类似，需要注意执行脚本后需要重启关联组件，以确保生效。当前不需要执行此步骤
+    7. 登陆ranger界面添加一个hive的安全策略服务，service_name与步骤4中的REPOSITORY_NAME保持一致，其余按照提示进行填写
+    8. 验证策略配置后与操作是否可以匹配（不能对client失效，对odbc生效）
 - 原理描述
   - 通过读取安装组件时生成的配置文件以及组件自带的jar包，通过hook机制调用各个组件服务达到权限管理
   - 执行./enable-xx-plugin.sh建立hook机制
@@ -176,12 +231,328 @@
   - 将install.properties文件内容生成.xml文件，更新到系统组件安装服务的conf下
   - 服务重新启动，使得配置项生效
 
-- ranger接口使用 （策略下发具有延迟）
-  1. 服务相关接口（只管理本集群组件，在创建策略前创建服务数据） 当服务删除时，所有策略失效；服务具有互斥性，先定义先生效
+- ranger接口使用 （策略下发具有延迟，30s）
+  1. 服务相关接口（只管理本集群组件，在创建策略前创建服务对象） 当服务删除时，所有策略失效
+     ```java
+      //需要引入的包与类
+      import com.alibaba.fastjson.JSON;
+      import com.alibaba.fastjson.JSONObject;
+      import com.sun.jersey.api.client.Client;
+      import com.sun.jersey.api.client.ClientResponse;
+      import com.sun.jersey.api.client.WebResource;
+      import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
+      import java.util.HashMap;
+      import java.util.Map;
+      import org.apache.ranger.plugin.model.RangerService;
+      import org.apache.ranger.plugin.util.RangerRESTUtils;
+     ```
     - 通过Id值查询服务详细信息
+    ```java
+    //根据Id获取服务数据
+    public static RangerService getService(int id) {
+        String url = "http://%s:6080/service/public/v2/api/service/%s";
+        Client client = null;
+        ClientResponse response = null;
+        try {
+            client = Client.create();
+            client.addFilter(new HTTPBasicAuthFilter("admin", "admin"));
+            WebResource resource = client.resource(String.format(url, "10.58.14.201", id));
+            response = resource.accept(RangerRESTUtils.REST_MIME_TYPE_JSON).get(ClientResponse.class);
+            if (null != response && response.getStatus() == 200) {
+                return response.getEntity(RangerService.class);
+            }
+        } finally {
+            if (response != null) {
+                response.close();
+            }
+            if (client != null) {
+                client.destroy();
+            }
+        }
+        return null;
+    }
+    ```
     - 获取所有服务详细信息
+    ```java
+    public static JSONObject listAllService() {
+      String URL_SERVICE = "http://%s:6080/service/plugins/services";
+      //可添加分页参数?page=0&pageSize=100
+      Client client = null;
+      ClientResponse response = null;
+      try {
+          client = Client.create();
+          client.addFilter(new HTTPBasicAuthFilter("admin", "admin"));
+          WebResource resource = client.resource(String.format(URL_SERVICE, "10.58.14.201"));
+          response = resource.accept(RangerRESTUtils.REST_MIME_TYPE_JSON).get(ClientResponse.class);
+          if (null != response && response.getStatus() == 200) {
+              return response.getEntity(JSONObject.class);
+          }
+      } finally {
+          if (response != null) {
+              response.close();
+          }
+          if (client != null) {
+              client.destroy();
+          }
+      }
+      return null;
+    }
+    ```
     - 创建服务接口
-    - 服务删除接口
+    ```java
+    public static void createService() {
+        String URL_SERVICE = "http://%s:6080/service/plugins/services";
+        Client client = null;
+        ClientResponse response = null;
+        try {
+            client = Client.create();
+            client.addFilter(new HTTPBasicAuthFilter("admin", "admin"));
+            WebResource resource = client.resource(String.format(URL_SERVICE, "10.58.14.201"));
+            response = resource.accept(RangerRESTUtils.REST_MIME_TYPE_JSON).
+                type(RangerRESTUtils.REST_EXPECTED_MIME_TYPE).post(ClientResponse.class, JSON.toJSON(rangerService()));
+            if (null != response && response.getStatus() == 200) {
+                System.out.println(response.getEntity(String.class));
+            } else {
+                System.out.println(response.getStatus());
+                System.out.println("error");
+            }
+        } finally {
+            if (response != null) {
+                response.close();
+            }
+            if (client != null) {
+                client.destroy();
+            }
+        }
+    }
+    public static RangerService rangerService() {
+        RangerService rangerService = new RangerService();
 
+        rangerService.setName("test1");
+        rangerService.setType("hdfs");
+        rangerService.setIsEnabled(true);
+        rangerService.setDescription("desc");
+
+        Map<String, String> configMap = new HashMap<String, String>();
+        configMap.put("fs.default.name", "hdfs://10.58.14.201:9000");
+        configMap.put("hadoop.rpc.protection", "authentication");
+        configMap.put("hadoop.security.authentication", "simple");
+        configMap.put("hadoop.security.authorization", "false");
+        configMap.put("username", "root");
+        configMap.put("password", "Admin123.");
+
+        rangerService.setConfigs(configMap);
+        return rangerService;
+    }
+    ```
+    - 服务删除接口
+    ```java
+    public static void deleteService(int id) {
+        String URL_SERVICE = "http://%s:6080/service/plugins/services";
+        Client client = null;
+        try {
+            client = Client.create();
+            client.addFilter(new HTTPBasicAuthFilter("admin", "admin"));
+            WebResource resource = client.resource(String.format(URL_SERVICE + "/" + id, "10.58.14.201"));
+            resource.accept(RangerRESTUtils.REST_MIME_TYPE_JSON).delete();
+        } finally {
+            if (client != null) {
+                client.destroy();
+            }
+        }
+    }
+    ```
   2. 策略相关接口
+    ```java
+      //需要引入的包与类
+      import com.alibaba.fastjson.JSON;
+      import com.alibaba.fastjson.JSONObject;
+      import com.sun.jersey.api.client.Client;
+      import com.sun.jersey.api.client.ClientResponse;
+      import com.sun.jersey.api.client.WebResource;
+      import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
+      import java.util.ArrayList;
+      import java.util.Collections;
+      import java.util.HashMap;
+      import java.util.List;
+      import java.util.Map;
+      import org.apache.ranger.plugin.model.RangerPolicy;
+      import org.apache.ranger.plugin.model.RangerPolicy.RangerPolicyItem;
+      import org.apache.ranger.plugin.model.RangerPolicy.RangerPolicyItemAccess;
+      import org.apache.ranger.plugin.model.RangerPolicy.RangerPolicyResource;
+      import org.apache.ranger.plugin.util.RangerRESTUtils;
+     ```
+  - 通过Id值查询策略数据
+  ```java
+  public static RangerPolicy getPolicy(int id) {
+      String URL_REQUEST = "http://%s:6080/service/public/v2/api/policy/%s";
+      Client client = null;
+      ClientResponse response = null;
+      try {
+          client = Client.create();
+          client.addFilter(new HTTPBasicAuthFilter("admin", "admin"));
+          WebResource resource = client.resource(String.format(URL_REQUEST, "10.58.14.201", id));
+          response = resource.accept(ACCEPT_CONTENT_TYPE).get(ClientResponse.class);
+          if (response.getStatus() == 200) {
+              return response.getEntity(RangerPolicy.class);
+          }
+      } finally {
+          if (response != null) {
+              response.close();
+          }
+          if (client != null) {
+              client.destroy();
+          }
+      }
+      return null;
+    }
+  ```
+  - 查询一个服务下所有的策略数据
+  ```java
+      public static List<RangerPolicy> getPolicy(String serviceName) {
+        //可带分页参数如：?pageSize=25&startIndex=0
+        String url_service_policy = "http://%s:6080/service/public/v2/api/service/%s/policy";
+        //url_service_policy += "?pageSize=25&startIndex=0";
+        Client client = null;
+        ClientResponse response = null;
+        try {
+            client = Client.create();
+            client.addFilter(new HTTPBasicAuthFilter("admin", "admin"));
+            WebResource resource = client.resource(String.format(url_service_policy, "10.58.14.201", serviceName));
+            response = resource.accept(ACCEPT_CONTENT_TYPE).get(ClientResponse.class);
+            if (response.getStatus() == 200) {
+                return response.getEntity(List.class);
+            }
+        } finally {
+            if (response != null) {
+                response.close();
+            }
+            if (client != null) {
+                client.destroy();
+            }
+        }
+        return null;
+    }
+  ```
+  - 策略的创建
+  ```java
+  public static void createPolicy() {
+        String createUrl = "http://%s:6080/service/public/v2/api/policy";
+        Client client = null;
+        ClientResponse response = null;
+        try {
+            client = Client.create();
+            client.addFilter(new HTTPBasicAuthFilter("admin", "admin"));
+
+            WebResource resource = client.resource(String.format(createUrl, "10.58.14.201"));
+            response = resource.accept(RangerRESTUtils.REST_EXPECTED_MIME_TYPE)
+                .type(RangerRESTUtils.REST_EXPECTED_MIME_TYPE).post(ClientResponse.class, JSON.toJSON(policy()));
+
+            if (response != null && response.getStatus() == 200) {
+                System.out.println(response.getEntity(JSONObject.class));
+            } else {
+                System.out.println("errRequest..." + response.getEntity(String.class));
+            }
+        } finally {
+            if (response != null) {
+                response.close();
+            }
+            if (client != null) {
+                client.destroy();
+            }
+        }
+    }
+    public static RangerPolicy policy() {
+        RangerPolicy policy = new RangerPolicy();
+
+        policy.setService("dev_hdfs1111");
+        policy.setName("rest_156");
+        policy.setPolicyType(0);
+        policy.setIsAuditEnabled(true);
+        policy.setIsEnabled(true);
+        policy.setDescription("hdfs policy for 156");
+
+        Map<String, RangerPolicyResource> resource = new HashMap<String, RangerPolicyResource>(1);
+
+        RangerPolicyResource rangerPolicyResource = new RangerPolicyResource();
+        rangerPolicyResource.setValues(Collections.singletonList("/ranger_test"));
+        rangerPolicyResource.setIsRecursive(true);
+        resource.put("path", rangerPolicyResource);
+        policy.setResources(resource);
+
+        List<RangerPolicyItem> items = new ArrayList<RangerPolicyItem>();
+
+        RangerPolicyItem item = new RangerPolicyItem();
+        item.setUsers(Collections.singletonList("hive"));
+
+        RangerPolicyItemAccess access = new RangerPolicyItemAccess();
+        access.setType("read");
+        access.setIsAllowed(true);
+        item.setAccesses(Collections.singletonList(access));
+
+        items.add(item);
+        policy.setPolicyItems(items);
+
+        return policy;
+    }
+  ```
+  - 策略的更新
+  ```java
+    public static void updatePolicy(RangerPolicy policy) {
+        String createUrl = "http://%s:6080/service/public/v2/api/policy/%s";
+        Client client = null;
+        ClientResponse response = null;
+        try {
+            client = Client.create();
+            client.addFilter(new HTTPBasicAuthFilter("admin", "admin"));
+
+            RangerPolicy rangerPolicy = policy();
+            //对策略的描述进行修改
+            rangerPolicy.setDescription("update123");
+
+            WebResource resource = client.resource(String.format(createUrl, "10.58.14.201", policy.getId()));
+            response = resource.accept(RangerRESTUtils.REST_EXPECTED_MIME_TYPE)
+                .type(RangerRESTUtils.REST_EXPECTED_MIME_TYPE).put(ClientResponse.class, JSON.toJSON(rangerPolicy));
+            if (response != null && response.getStatus() == 200) {
+                RangerPolicy result = response.getEntity(RangerPolicy.class);
+                System.out.println(result.getId());
+            } else {
+                System.out.println("errRequest, response: " + response.toString());
+            }
+        } finally {
+            if (response != null) {
+                response.close();
+            }
+            if (client != null) {
+                client.destroy();
+            }
+        }
+    }
+  ```
+  - 策略的删除
+  ```java
+    public static RangerPolicy deletePolicy(int id) {
+        Client client = null;
+        ClientResponse response = null;
+        try {
+            client = Client.create();
+            client.addFilter(new HTTPBasicAuthFilter("admin", "admin"));
+            WebResource resource = client.resource(String.format(URL_REQUEST, "10.58.14.201", id));
+            response = resource.accept(ACCEPT_CONTENT_TYPE).delete(ClientResponse.class);
+            if (204 == response.getStatus()) {
+                System.out.println("delete 1");
+            } else {
+                System.out.println("delete error");
+            }
+        } finally {
+            if (response != null) {
+                response.close();
+            }
+            if (client != null) {
+                client.destroy();
+            }
+        }
+        return null;
+    }
+  ```
   3. 用户与用户组相关接口
