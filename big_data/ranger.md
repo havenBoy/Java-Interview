@@ -115,8 +115,8 @@
   ```
 
 - ranger-admin安装部署
->  此服务是ranger界面集成服务，完成部署后可登陆界面进行安全规则配置，同时服务的安全规则配置也支持API的调用  
->  安装节点为集群内的任意节点，建议为主节点  
+  >  此服务是ranger界面集成服务，完成部署后可登陆界面进行安全规则配置，同时服务的安全规则配置也支持API的调用  
+  >  安装节点为集群内的任意节点，建议为主节点  
   1. 预留
   2. 解压编译打包完成后target目录下ranger-2.1.0-admin.tar.gz文件到某个路径下。  
      tar -zxvf ranger-2.1.0-admin.tar.gz -C /opt/
@@ -138,7 +138,7 @@
   drop user 'root'@'localhost';
   create user 'root'@'localhost' identified by '123456';
   grant all privileges on *.* to 'root'@'localhost' with grant option;
-
+  
   drop user 'root'@'10.58.14.201';
   create user 'root'@'10.58.14.201' identified by '123456';
   grant all privileges on *.* to 'root'@'10.58.14.201' with grant option;
@@ -354,12 +354,12 @@
     }
     public static RangerService rangerService() {
         RangerService rangerService = new RangerService();
-
+  
         rangerService.setName("test1");
         rangerService.setType("hdfs");
         rangerService.setIsEnabled(true);
         rangerService.setDescription("desc");
-
+  
         Map<String, String> configMap = new HashMap<String, String>();
         configMap.put("fs.default.name", "hdfs://10.58.14.201:9000");
         configMap.put("hadoop.rpc.protection", "authentication");
@@ -367,7 +367,7 @@
         configMap.put("hadoop.security.authorization", "false");
         configMap.put("username", "root");
         configMap.put("password", "Admin123.");
-
+  
         rangerService.setConfigs(configMap);
         return rangerService;
     }
@@ -408,7 +408,7 @@
       import org.apache.ranger.plugin.model.RangerPolicy.RangerPolicyItemAccess;
       import org.apache.ranger.plugin.model.RangerPolicy.RangerPolicyResource;
       import org.apache.ranger.plugin.util.RangerRESTUtils;
-     ```
+    ```
   - 通过Id值查询策略数据
   ```java
   public static RangerPolicy getPolicy(int id) {
@@ -470,11 +470,11 @@
         try {
             client = Client.create();
             client.addFilter(new HTTPBasicAuthFilter("admin", "admin"));
-
+  
             WebResource resource = client.resource(String.format(createUrl, "10.58.14.201"));
             response = resource.accept(RangerRESTUtils.REST_EXPECTED_MIME_TYPE)
                 .type(RangerRESTUtils.REST_EXPECTED_MIME_TYPE).post(ClientResponse.class, JSON.toJSON(policy()));
-
+  
             if (response != null && response.getStatus() == 200) {
                 System.out.println(response.getEntity(JSONObject.class));
             } else {
@@ -491,35 +491,35 @@
     }
     public static RangerPolicy policy() {
         RangerPolicy policy = new RangerPolicy();
-
+  
         policy.setService("dev_hdfs1111");
         policy.setName("rest_156");
         policy.setPolicyType(0);
         policy.setIsAuditEnabled(true);
         policy.setIsEnabled(true);
         policy.setDescription("hdfs policy for 156");
-
+  
         Map<String, RangerPolicyResource> resource = new HashMap<String, RangerPolicyResource>(1);
-
+  
         RangerPolicyResource rangerPolicyResource = new RangerPolicyResource();
         rangerPolicyResource.setValues(Collections.singletonList("/ranger_test"));
         rangerPolicyResource.setIsRecursive(true);
         resource.put("path", rangerPolicyResource);
         policy.setResources(resource);
-
+  
         List<RangerPolicyItem> items = new ArrayList<RangerPolicyItem>();
-
+  
         RangerPolicyItem item = new RangerPolicyItem();
         item.setUsers(Collections.singletonList("hive"));
-
+  
         RangerPolicyItemAccess access = new RangerPolicyItemAccess();
         access.setType("read");
         access.setIsAllowed(true);
         item.setAccesses(Collections.singletonList(access));
-
+  
         items.add(item);
         policy.setPolicyItems(items);
-
+  
         return policy;
     }
   ```
@@ -532,11 +532,11 @@
         try {
             client = Client.create();
             client.addFilter(new HTTPBasicAuthFilter("admin", "admin"));
-
+  
             RangerPolicy rangerPolicy = policy();
             //对策略的描述进行修改
             rangerPolicy.setDescription("update123");
-
+  
             WebResource resource = client.resource(String.format(createUrl, "10.58.14.201", policy.getId()));
             response = resource.accept(RangerRESTUtils.REST_EXPECTED_MIME_TYPE)
                 .type(RangerRESTUtils.REST_EXPECTED_MIME_TYPE).put(ClientResponse.class, JSON.toJSON(rangerPolicy));
