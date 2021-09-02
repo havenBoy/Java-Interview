@@ -5,11 +5,13 @@
   - 具有较打优势，但spark不能完全替代hadoop,spark主要用于替代hadoop中的MapReduce，存储可以使用HDFS  
   - spark对硬件的要求较高，对内存与cpu有一定的要求  
   - spark已经融入了Hadoop的生态圈，使用yarn实现资源的调度，借助hdfs来进行存储
+  
 - spark的特点
   - 快: 与hadoop比较快，基于内存要快100倍左右，
   - 易用: 支持java、python、scala等的API，支持交互式的python与scala的shell
   - 兼容性：方便与其他开源产品进行兼容
   - spark core、spark sql、spark streaming等
+  
 - spark的运行模式
   - local  本地模式，开发测试使用
   - standalone 独立集群模式，开发测试使用
@@ -17,9 +19,11 @@
   - on yarn 集群模式，生产环境使用，较多使用场景  
     运行在yarn集群上，由yarn负责资源管理，spark负责任务的调度与计算  
     优点：计算资源按需伸缩，集群利用率高  
+  
 - spark shell
   入门使用的工具，方便用户进行交互编程，是测试或者学习时使用  
   spark-shell --master local[*] 表示使用当前的机器上所有可用的资源  
+  
 - spark的wordCount
   sc.textFile(path).flatMap(_.spilt(" ")).map((_, 1)).reduceByKey(_+_).collect  
 
@@ -33,6 +37,7 @@
     2. 修改spark-env.sh
     3. 启动hdfs与yarn
     4. 提交任务
+  
 - 配置历史服务
   需要查看历史服务运行的状况，需要修改以下2个文件
   1. spark-default.conf
@@ -42,16 +47,19 @@
   - 配置多个master  
     1. 使用多个zookeeper，需要重新修改spark-env.sh,后分发
     2. 重启集群，需要在多个master上启动，会形成一个HA的环境
+  
 - spark运行框架
   - Driver
   - Executor
   - Master&worker  独立部署环境中使用,资源组件
   - Application Master 
+  
 - 核心概念
   - Executor  运行在工作节点的一个JVM进程
   - core  指定CPU core数量，虚拟核数
   - 并行度  并行执行任务的核数
   - 有向
+  
 - spark-submit
   - --class  指定主函数类
   - --master 指定运行节点
@@ -59,6 +67,7 @@
   - --total-executor-cores 2  所有执行总的核数
   - xxx.jar  所要运行的jar
   - xxxx 命令行参数
+  
 - spark-submit  部署在yarn上
   - --class
   - --master yarn 
@@ -69,43 +78,56 @@
   - --queue default 
   - xxx.jar 
   - xxx参数
+  
 - wordcount
   要求：写出spark的wordcount
+  
 - 三大数据类型
   - RDD  装饰者模式，其数据处理模式类似于IO
-  描述：弹性分布式数据集，是spark最基本的数据抽象，代表一个不可变，可分区，元素可以并行计算的集合，最小的计算单元  
-  在调用collect时才会进行真正的方法调用  
+    描述：弹性分布式数据集，是spark最基本的数据抽象，代表一个不可变，可分区，元素可以并行计算的集合，
+  
+    是spark中可以运行的最小计算单元  
+    在调用collect时才会进行真正的方法调用  
+    
     - 弹性：包括存储的弹性，容错的弹性，计算的弹性，分片的弹性
     - 分布式：数据是存储在大数据集群的不同节点上
     - 数据集： RDD封装了计算逻辑，不保存数据
     - 数据抽象： 是一个抽象类，需要实现子类具体实现
     - 不可变: 封装的逻辑不可变，如果需要改变，需要实现新的RDD
     - 可分区，并行计算 
+    
   -  五大主要属性
     - 分区列表：执行并行计算，分布式计算  getPartitions
     - 分区计算函数：分区    compute
     - RDD的依赖关系：getDependencies 
     - 分区器：数据分区的处理
     - 首选位置：判断计算发送到那个节点效率最优
-  - 执行原理
     
+  - 执行原理
+  
 - RDD创建
   -  外部文件创建  
     1. 文件  文件、文件夹、hdfs，通配符文件夹或者文件
     2. hdfs
-  -  从内存或者集合中创建 
+    
+  - 从内存或者集合中创建 
+
     1. 准备环境  
-    val sc = new SparkContext(new SparkConf().setMaster("local[*]").setAppName("app"));
+       val sc = new SparkContext(new SparkConf().setMaster("local[*]").setAppName("app"));
+
     2. 创建RDD  
-    val seq = Seq[Int](1,2,3,4)
-    //并行，以下是等价的
-    //val rdd: RDD[Int] = sc.parallelize(seq)
-    val rdd: RDD[Int] = sc.makeRDD(seq)
-    rdd.collect.foreach(println)
-    3. 关闭环境 
-    sc.stop()
-  3. 从其他RDD创建
-  4. 
+       val seq = Seq[Int](1,2,3,4)
+       //并行，以下是等价的
+       //val rdd: RDD[Int] = sc.parallelize(seq)
+       val rdd: RDD[Int] = sc.makeRDD(seq)
+       rdd.collect.foreach(println)
+
+       3. 关闭环境
+
+          sc.stop()
+
+       4. 从其他RDD创建
+
 - 分区与并行度（注意概念的区分）
   - 默认并行度defaultParallelism，为当前运行环境的可用最大核数
   - 分区规则：  
@@ -119,6 +141,7 @@
     3. 数据分区的偏移量范围的计算
     4. 偏移量不会被重复读取
     5. 如果为多个文件时，会以文件为单位进行
+  
 - RDD常用方法
   - 转换算子，即功能的补充，装饰方法的内容，flatMap  Map 
     - mapPartitions  会将整个分区的数据全部加载在内存中，可能会导致内存的溢出，传递一个迭代器，返回一个迭代器

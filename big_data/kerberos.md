@@ -23,11 +23,17 @@
   3. 修改服务的配置文件在主节点，路径为/var/kerberos/krb5kdc/kdc.conf，需要修改realms，为公司网址地址
   4. 修改客户端的配置文件在各个节点，路径为/etc/krb5
     - 加参数dns_look_up=false
+  
     - default_realm=EXAMPLE.COM，这个是realm默认值
-    - 修改realms的内容，EXAMPLE.COM = {  
-         kdc = node1  
-         admin_server = node1    
-    }
+  
+    - 修改realms的内容
+  
+         ~~~json
+         EXAMPLE.COM = {  
+             kdc = node1  
+             admin_server = node1    
+         }
+         ~~~
   5. 分发配置项到每个节点
   6. 初始化KDC数据库，执行kdb5_util create - s ,输入数据库的密码
   7. 修改kerberos的管理员配置文件，路径为/etc/kerberos/krb5kdc/kadm5.acl
@@ -37,7 +43,7 @@
 - 使用
   1. 注册操作，在数据库写入一个用户数据
     - 本地登录下为kadmin.local-> addprinc test(增加用户)-> list_principals(查询所有用户)
-    ->cpw test（修改用户的密码）-> delprinc test(删除用户)
+      ->cpw test（修改用户的密码）-> delprinc test(删除用户)
     - 远程登录，kadmin，需要输入管理员用户与密码，使用quit退出
   2. 认证操作
     - kinit test -> klist(查看所有认证完毕的用户)，使用密码来进行认证

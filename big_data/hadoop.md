@@ -2,13 +2,14 @@
   > 泛指hadoop生态圈，狭义指的是这个开源框架，包括hdfs+yarn+map_reduce  
   > HDFS 分布式文件系统，解决海量文件的存储  
   > YARN是作业调度与集群资源管理的框架 解决资源任务的调度  
-  > MAPREDUCE 分布式运算编程框架 解决海量数据的计算  
-  - **hadoop1.0与hadoop2.0的区别？**
+  > MAPREDUCE 分布式运算编程框架 解决海量数据的计算   
+
+- **hadoop1.0与hadoop2.0的区别？**
 
      hadoop1.0 包含hdfs与MapReduce，不包含yarn，其资源调度使用的是MapReduce内置的资源管理去调度  
      hadoop2.0引入yarn作为资源调度框架，mapreduce只负责计算  
      Yarn框架中将JobTracker资源分配和作业控制分开,这也就是resource_manager与application_master的原型  
-     
+
   - hadoop特性优点？
     - 扩容能力--容易将节点扩充到一个hadoop集群中
     - 成本低--使用廉价的机器组成服务器集群
@@ -53,8 +54,12 @@
     4. 客户端接收，以本地缓存，然后写入目标文件
   - secondaryNameNode的作用
     1. namenode是管理元数据信息 datanode是负责具体数据存储
+    
     2. 负责协作namenode把editlog 到fsimage文件中
-    3. 达到触发的条件  1h或者100W 把namenode积累的所有edits与一个最新的fsimage下载到本地，在内存中进行合并，这个过程称为checkpoint
+    
+    3. 达到触发的条件 1h或者100W 把namenode积累的所有edits与一个最新的fsimage下载到本地，
+    
+       在内存中进行合并，这个过程称为checkpoint
   - Hadoop参数调优
     1. 在hdfs-site.xml配置多目录，需要提前配置好，否则修改后需要重启集群
     2. namenode有一个工作线程池，用来处理DataNode的并发心跳与客户端并发的元数据操作  

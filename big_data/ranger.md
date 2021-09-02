@@ -60,15 +60,15 @@
   4. 将pom文件的各个关联组件，如hive,hdfs,yarn等组件的版本进行修改，修改问当前环境内的版本。  
   以下为当前系统的版本号，建议进行修改。目前发现kafka与hbase的版本与当前基础组件不能兼容,其中hbase组件不考虑
   
-  |  组件名称   |   版本号   |
-  |  ----      |   ----     |
-  |  hdfs      |   3.1.1    |
-  |  yarn      |   3.1.1    |
-  |  hive      |   3.1.0    |
-  |  hbase     |   2.3.4    |
-  |  kafka     |   2.1.0    |
-  |  kylin     |   4.0.0    |
-  |  elasticsearch  | 7.1.1 |
+  |   组件名称    | 版本号 |
+  | :-----------: | :----: |
+  |     hdfs      | 3.1.1  |
+  |     yarn      | 3.1.1  |
+  |     hive      | 3.1.0  |
+  |     hbase     | 2.3.4  |
+  |     kafka     | 2.1.0  |
+  |     kylin     | 4.0.0  |
+  | elasticsearch | 7.1.1  |
   5. mvn clean compile package install -DskipTests=true -Drat.skip=true 跳过单元测试编译打包
   6. 命令执行成功后在当前文件下生成target目录，如下：  
   ```
