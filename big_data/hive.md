@@ -10,8 +10,13 @@
   - 执行的延迟较高，不适合做数据的实时处理，适合海量数据的离线处理  
 - HIVE体系架构
   - command line shell 通过hive命令行的方式来操作数据
+  
   - thift/jdbc  通过thift协议按照标准JDBC来操作数据  
-  - meta_store 表名，表结构，字段名，字段类型等称为元数据，所有的元数据会存储在RDMS中，默认为derby,且元数据可被共享
+  
+  - meta_store 表名，表结构，字段名，字段类型等称为元数据，所有的元数据会存储在RDMS中，
+  
+    默认为derby,且元数据可被共享
+  
   - HQL执行流程如下：  
     - 语法解析：Antlr定义出SQL的语法规则，完成语法与词法的分析，将SQL转化为AST Tree语法树  
     - 语义解析：遍历AST Tree 抽象出基本组成单元QueryBlock
@@ -35,11 +40,19 @@
   - 二进制类型：binary
 - 常见DDL语句
   - 查看数据库  show databases;
+  
   - 使用数据库  use database_name;
-  - 新建数据库  create database xx if not exist database_name [comment 'xxx'] [location 'hdfs://path'] [with dbproperties]
+  
+  - 新建数据库  create database xx if not exist database_name [comment 'xxx'] 
+  
+    [location 'hdfs://path'] [with dbproperties]
+  
   - 查看数据库信息  desc database [extended] database_name
+  
   - 创建分区
+  
   - 删除分区  会删除对应文件夹下的文件
+  
   - 
 - join
   - inner join
