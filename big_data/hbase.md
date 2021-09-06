@@ -5,11 +5,7 @@
 
 ## 为什么会有HBASE？
 
-​        我们都知道，hadoop可以通过hdfs来解决存储结构化、半结构化、以及非结构化的数据，它是传统数据库的补充，是海量数据存储的最佳办法，
-
-但是海量数据的随机访问是无法做到的，这个就意味者我们它只能顺序的访问数据，即使是最简单的访问也需要遍历所有的数据集，所以必须要有
-
-一种方法来解决海量数据存储与随机访问问题，所以HBASE就诞生了。
+​        我们都知道，hadoop可以通过hdfs来解决存储结构化、半结构化、以及非结构化的数据，它是传统数据库的补充，是海量数据存储的最佳办法，但是海量数据的随机访问是无法做到的，这个就意味者我们它只能顺序的访问数据，即使是最简单的访问也需要遍历所有的数据集，所以必须要有一种方法来解决海量数据存储与随机访问问题，所以HBASE就诞生了。
 
 > 数据结构分类
 >
@@ -125,7 +121,7 @@ HBASE是一个标准的master/slave架构，由三个组件组成：
   1. 维护Master分配的region，处理region server IO请求
   2. 负责切分单个大的Region
 
-- ### 协作
+- ### 协作说明
 
   
 
@@ -134,17 +130,22 @@ HBASE是一个标准的master/slave架构，由三个组件组成：
 - ### 读数据流程
 
   1. 客户端从zk上获取meta表的数据，决定数据将通过那个Region Server来处理
+
   2. 访问数据的所在Region Server，客户端会缓存这些数据并更新缓存
+
   3. 客户端从行键所在的region server上获取数据
-  4. 如果是获取相同的数据，客户端会从缓存中获取行键所在的Region Server，不用每次都请求数据，除非Region失效导致缓存过期
+
+  4. 如果是获取相同的数据，客户端会从缓存中获取行键所在的Region Server，不用每次都请求数据，
+
+     除非Region失效导致缓存过期
 
 - ### 写数据流程
 
-1. 客户端会向Region Server提交写的请求
-2. Region Server会找到对应的Region
-3. Region会检测数据的schema是否一致
-4. 就数据写入Wal Log中
-5. 将数据写入MemStore,当缓存已经满时，需要将数据刷新到HFile中
+  1. 客户端会向Region Server提交写的请求
+  2. Region Server会找到对应的Region
+  3. Region会检测数据的schema是否一致
+  4. 就数据写入Wal Log中
+  5. 将数据写入MemStore,当缓存已经满时，需要将数据刷新到HFile中
 
 ## 八、常用shell命令
 
@@ -264,15 +265,184 @@ HBASE是一个标准的master/slave架构，由三个组件组成：
 
 ## 九、Java API使用
 
+- pom依赖添加
+
+  ~~~xml
+      <dependency>
+        <groupId>org.apache.hbase</groupId>
+        <artifactId>hbase-client</artifactId>
+        <version>2.3.4</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.25</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>4.0.1</version>
+        <scope>provided</scope>
+      </dependency>
+  ~~~
+
 - 创建连接
+
+  ~~~java
+  Configuration configuration = HBaseConfiguration.create();
+  configuration.set("hbase.zookeeper.property.clientPort", "2181");
+  configuration.set("hbase.zookeeper.quorum", "127.0.0.1");
+  configuration.set("zookeeper.znode.parent", "/hbase-unsecure");
+  try {
+      connection = ConnectionFactory.createConnection(configuration);
+      admin = (HBaseAdmin) connection.getAdmin();
+      TableName[] tableNames = admin.listTableNames();
+  } catch (IOException e) {
+      logger.error("连接创建失败！");
+  }
+  
+  assert (connection != null && admin != null);
+  logger.info("连接创建成功！");
+  ~~~
+
 - 创建表
+
+  ~~~java
+  TableName tableName = TableName.valueOf("test_1");
+  if (admin.tableExists(tableName)) {
+      return;
+  }
+  TableDescriptorBuilder builder = TableDescriptorBuilder.newBuilder(tableName);
+  
+  //列族创建指定
+  List<ColumnFamilyDescriptor> familyDescriptors = new ArrayList<ColumnFamilyDescriptor>();
+  ColumnFamilyDescriptorBuilder familyDescriptorBuilder1 = ColumnFamilyDescriptorBuilder
+      .newBuilder(Bytes.toBytes("f1"));
+  ColumnFamilyDescriptorBuilder familyDescriptorBuilder2 = ColumnFamilyDescriptorBuilder
+      .newBuilder(Bytes.toBytes("f2"));
+  familyDescriptors.add(familyDescriptorBuilder1.build());
+  familyDescriptors.add(familyDescriptorBuilder2.build());
+  builder.setColumnFamilies(familyDescriptors);
+  
+  admin.createTable(builder.build());
+  ~~~
+
 - 删除表
+
+  ~~~java
+  public static void dropTable() throws IOException {
+      //这里是表名称
+      TableName tableName = TableName.valueOf("test_1");
+      if (!admin.isTableDisabled(tableName)) {
+          admin.disableTable(tableName);
+      }
+      admin.deleteTable(tableName);
+  }
+  ~~~
+
 - 添加数据
+
+  ~~~java
+      public static void put() throws IOException {
+          //指定表名称
+          TableName tableName = TableName.valueOf("test_1");
+          //构建put请求时，需要将rowkey传入作为构造参数
+          Put put = new Put(Bytes.toBytes("r1"));
+          //指定列族，列名以及值
+          put.addColumn(Bytes.toBytes("f1"), Bytes.toBytes("name"), Bytes.toBytes("xiong"));
+          put.addColumn(Bytes.toBytes("f2"), Bytes.toBytes("school"), Bytes.toBytes("street"));
+  
+          HTable table = (HTable) connection.getTable(tableName);
+          table.put(put);
+      }
+  ~~~
+
 - 获取rowkey指定的数据
+
+  ~~~java
+  public static void selectOne2() throws IOException {
+      String rowKey = "r1";
+      Get get = new Get(Bytes.toBytes(rowKey));
+  
+      TableName tableName = TableName.valueOf("test_1");
+      HTable table = (HTable) connection.getTable(tableName);
+      Result result = table.get(get);
+      logger.info("获取指定行键数据：{}", result);
+  }
+  ~~~
+
 - 获取指定行指定列最新数据
+
+  ~~~java
+      public static void selectOne1() throws IOException {
+          Get get = new Get(Bytes.toBytes("r1"));
+  
+          TableName tableName = TableName.valueOf("test_1");
+          HTable table = (HTable) connection.getTable(tableName);
+          Result result = table.get(get);
+  
+          logger.info("name:{}", Bytes.toString(result.getValue(Bytes.toBytes("f1"),                 Bytes.toBytes("name"))));
+          logger.info("school:{}", Bytes.toString(result.getValue(Bytes.toBytes("f2"), Bytes.toBytes("school"))));
+      }
+  ~~~
+
 - 获取所有数据
+
+  ~~~java
+      public void tableScanner() throws IOException {
+          TableName tableName = TableName.valueOf("test_1");
+  
+          HTable table = (HTable) connection.getTable(tableName);
+          Scan scan = new Scan();
+          ResultScanner scanner = table.getScanner(scan);
+          for (Result result : scanner) {
+              logger.info("遍历的每一个结果：{}", result);
+          }
+      }
+  ~~~
+
 - 获取表中指定数据
-- 其他
+
+  ~~~java
+      public void tableScannerFilter() throws IOException {
+          TableName tableName = TableName.valueOf("test_1");
+  
+          HTable table = (HTable) connection.getTable(tableName);
+  
+          Filter filter = new PageFilter(10);
+          Scan scan = new Scan();
+          scan.setFilter(filter);
+          ResultScanner scanner = table.getScanner(scan);
+          for (Result result : scanner) {
+              logger.info("遍历的每一个结果：{}", result);
+          }
+      }
+  ~~~
+
+- 删除数据
+
+  ~~~java
+      public static void deleteData() throws IOException {
+          //指定表名称
+          HTable table = (HTable) connection.getTable(TableName.valueOf("test_1"));
+          //指定rowKey
+          Delete delete = new Delete(Bytes.toBytes("r1"));
+          //指定列族
+          delete.addFamily(Bytes.toBytes("f1"));
+          //指定列族、列名
+          delete.addColumn(Bytes.toBytes("f1"), Bytes.toBytes("name"));
+          table.delete(delete);
+      }
+  ~~~
+
+- 连接销毁
+
+  ~~~java
+      public static void destroy() throws IOException {
+          admin.close();
+          connection.close();
+      }
+  ~~~
 
 ## 十、过滤器介绍
 
@@ -292,6 +462,28 @@ HBASE是一个标准的master/slave架构，由三个组件组成：
 
      都继承于CompareFilter，创建一个过滤器需要2个参数，第一个是比较运算符，第二个是比较器实例
 
-  2. ##### 专用过滤器
+     比较运算符包括：
 
+     ~~~java
+     @Public
+     public enum CompareOperator {
+         LESS,  //小于
+         LESS_OR_EQUAL,//小于等于
+         EQUAL,//等于
+         NOT_EQUAL,//不等于
+         GREATER_OR_EQUAL,//大于等于
+         GREATER,//大于
+         NO_OP;//非，取反
+     
+         private CompareOperator() {
+         }
+     }
+     ~~~
+  
+  2. ##### 专用过滤器
+  
   3. ##### 包装过滤器
+
+## 十一、协处理器
+
+- #### 简介

@@ -1,21 +1,24 @@
 ## kafka
 >  是由scala语言编写的，是一个分布式，分区，多副本，多订阅者的消息系统
 
-- 优势对比：  
+- #### 优势对比
+  
   - 可靠性：分布式，分区，复制与容错
   - 可扩展性：可扩容与缩容，无需停机
   - 性能：发布与订阅信息具有高吞吐量
   - 快：保证零停机与零数据丢失
-
-- kafka组件
+  
+- #### kafka组成
+  
   - broker 一个或者多个实例  服务端实例
   - topic 一个消息的类别  每个topic包含一个或者partition
   - partition 分区，是物理概念
   - producer 发布消息到kafka的broker
   - consumer 消费者，从kafka的broker消费消息
   - 消费者组 每一个consumer属于一个特定的consumer
-
-- kafka架构
+  
+- #### kafka架构
+  
   - producer
   - zookeeper
   - consumer
