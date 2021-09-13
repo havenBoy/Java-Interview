@@ -405,13 +405,32 @@ HBASE是一个标准的master/slave架构，由三个组件组成：
 
   ~~~java
       public void tableScannerFilter() throws IOException {
+          //指定表名称
           TableName tableName = TableName.valueOf("test_1");
-  
           HTable table = (HTable) connection.getTable(tableName);
+          //取10条数据
+          PageFilter pageFilter = new PageFilter(10);
+          //值过滤器，value = 10
+          ValueFilter valueFilter = new ValueFilter(CompareOperator.EQUAL, new LongComparator(10));
+          //列族过滤器，列族前缀等于f1
+          FamilyFilter familyFilter = new FamilyFilter(CompareOperator.EQUAL, new BinaryPrefixComparator(Bytes.toBytes("f1")));
+          //列限定发符=f1:name
+          QualifierFilter qualifierFilter = new QualifierFilter(CompareOperator.EQUAL,
+              new BinaryComparator(Bytes.toBytes("f1:name")));
+          //rowkey = 子字符串包含f1
+          RowFilter rowFilter = new RowFilter(CompareOperator.NOT_EQUAL, new SubstringComparator("f1"));
   
-          Filter filter = new PageFilter(10);
+          //必须符合一个
+          FilterList filterList = new FilterList(Operator.MUST_PASS_ONE);
+          //必须所有的过滤器都通过
+          //FilterList filterList = new FilterList(Operator.MUST_PASS_ALL);
+          filterList.addFilter(pageFilter);
+          filterList.addFilter(familyFilter);
+          filterList.addFilter(valueFilter);
+          filterList.addFilter(qualifierFilter);
+          filterList.addFilter(rowFilter);
           Scan scan = new Scan();
-          scan.setFilter(filter);
+          scan.setFilter(filterList);
           ResultScanner scanner = table.getScanner(scan);
           for (Result result : scanner) {
               logger.info("遍历的每一个结果：{}", result);
@@ -462,28 +481,130 @@ HBASE是一个标准的master/slave架构，由三个组件组成：
 
      都继承于CompareFilter，创建一个过滤器需要2个参数，第一个是比较运算符，第二个是比较器实例
 
-     比较运算符包括：
+     - 比较运算符包括：
 
-     ~~~java
-     @Public
-     public enum CompareOperator {
-         LESS,  //小于
-         LESS_OR_EQUAL,//小于等于
-         EQUAL,//等于
-         NOT_EQUAL,//不等于
-         GREATER_OR_EQUAL,//大于等于
-         GREATER,//大于
-         NO_OP;//非，取反
-     
-         private CompareOperator() {
-         }
-     }
-     ~~~
-  
+       ~~~java
+       @Public
+       public enum CompareOperator {
+           LESS,  //小于
+           LESS_OR_EQUAL,//小于等于
+           EQUAL,//等于
+           NOT_EQUAL,//不等于
+           GREATER_OR_EQUAL,//大于等于
+           GREATER,//大于
+           NO_OP;//非，取反
+       
+           private CompareOperator() {
+           }
+       }
+       ~~~
+
+     - 比较器实例都继承于**ByteArrayComparable**， 包括以下几种：
+
+       | 比较器实例                | 描述                                                         |
+       | ------------------------- | ------------------------------------------------------------ |
+       | BigDecimalComparator      | 按照字典序对字节数组进行排                                   |
+       | BinaryComparator          | 按照字典序对字节数组进行排序                                 |
+       | BinaryComponentComparator |                                                              |
+       | BinaryPrefixComparator    | 按照给出的字符串前缀对字节数组进行排序                       |
+       | BitComparator             | 按位进行比较                                                 |
+       | LongComparator            | 判断给定的数值是否相等                                       |
+       | NullComparator            | 判断给定的值是否为空                                         |
+       | RegexStringComparator     | 使用指定的正则表达式与指定字节数组进行比较，只能支持等于或者不等于 |
+       | SubstringComparator       | 判断指定的字符串是否出现在指定的字节数组中                   |
+
+     - 比较过滤器种类
+
+       | 比较过滤器种类        | 描述                                     |
+       | --------------------- | ---------------------------------------- |
+       | DependentColumnFilter | 一个ValueFilter + 一个时间戳过滤器的组合 |
+       | FamilyFilter          | 基于列族来过滤数据                       |
+       | QualifierFilter       | 基于列名进行过滤数据                     |
+       | RowFilter             | 基于行键过滤数据                         |
+       | ValueFilter           | 基于单元格数据进行过滤                   |
+
   2. ##### 专用过滤器
-  
+
+     继承于filterBase类，适合更加精确，范围更小的查询
+
   3. ##### 包装过滤器
+
+     通过包装现有的过滤器实现某些拓展的过滤功能
+
+  4. ##### FilterList
+
+  ​       当需要多个过滤条件进行查询时使用
+
+  ​       可以使用filterList的构造器与addFilters方法进行传入多个过滤器
 
 ## 十一、协处理器
 
 - #### 简介
+
+  允许将业务的代码放在服务端regionServer执行，将处理好的数据返回给客户端，而不是将所有数据全部返回客户端，在客户端进行数据的过滤，这样可以降低需要传输的数据量，从而提高处理效率。在实际的应用中，权限的校验、二级索引都是使用协处理器来实现的。
+
+- #### 类型
+
+  - **Observer**
+
+    类似于关系型数据库中的触发器，当某些事件发生后，这类协处理器会被server端调用，一般来说，权限的校验（在数据查询或者插入时，会调用preGet或者prePut方法）、二级索引（使用协处理器来维护二级索引）。
+
+    一般来说分为以下四种类型：
+
+    - RegionObserver     如Get或者Put操作  hbase.coprocessor.region.classes
+    - RegionServerObserver   如服务的启动、停止、或者文件合并
+    - MasterObserver  观察Hmaster的事件发生，如表的创建、删除或者结构的修改    hbase.coprocessor.master.classes
+    - WalObserver  支持与预写日志相关的事件   hbase.coprocessor.wal.classes
+
+    以上的四种类型的协处理器都继承于Coprocessor接口
+
+  - **Endpoint**
+
+    类似于关系型数据库中的存储过程，客户端可以在服务端调用此类协处理器来对数据进行处理，然后再返回数据。
+
+    以求最大值为例，如果是把所有的数据全部返回到客户端再进行求聚合操作，客户端的压力会很大，如果采用协处理器，用户可以将求最大值的操作部署在RegionServer上，Hbase会触发每个节点并发执行求最大值的操作，将每个Region 的最大值返回，最后只要在客户端计算各个Region返回数据的最大值即可。
+
+- #### **协处理的加载方式**
+
+  - 静态加载
+
+    静态加载一般为系统级的加载，作用的范围是HBASE上所有的表，需要重启Hbase服务才能生效；
+
+  - 动态加载
+
+    动态加载一般为表级别的处理器，作用于指定的表，而不是所有的表，不需要重启Hbase服务；
+
+- #### 静态加载与卸载
+
+  1. 在hbase-site.xml文件中定义需要加载的协处理器
+
+     ~~~xml
+     <property>
+         <name>hbase.coprocessor.region.classes</name>  必须是特定的class，否则不能识别，类型在各个协处理器后边
+         <value>org.myname.hbase.coprocessor.endpoint.SumEndPoint</value> 这里是自定义的协处理器实现类
+     </property
+     ~~~
+
+  2. 将打包编译好的jar包放在hbase的安装目录下
+
+  3. 重启hbase即可
+
+  4. 卸载时，只要将xml文件中的内容移除，然后重启hbase即可。
+
+- #### 动态加载与卸载
+
+  一般是有2种方式，一个是Hbase shell ,一种是 java Api方式
+
+  - **Hbase shell**    在动态加载表时必须要使得表脱机，即disable表
+    1. disable table_name
+    2. 使用如下的命令进行加载协处理器
+    3. 启用表
+    4. 验证是否启用成功
+    5. 卸载时，也需要将表首先disable掉
+    6. alter 'table_name'
+    7. enable table_name
+  - **Java API**
+
+## 十二、容灾与备份
+
+## 十三、二级索引 
