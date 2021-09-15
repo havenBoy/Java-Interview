@@ -596,15 +596,42 @@ HBASE是一个标准的master/slave架构，由三个组件组成：
   一般是有2种方式，一个是Hbase shell ,一种是 java Api方式
 
   - **Hbase shell**    在动态加载表时必须要使得表脱机，即disable表
-    1. disable table_name
+    1. 首先需要将表脱机，disable table_name  
     2. 使用如下的命令进行加载协处理器
     3. 启用表
     4. 验证是否启用成功
     5. 卸载时，也需要将表首先disable掉
-    6. alter 'table_name'
+    6. alter 'table_name' 
     7. enable table_name
   - **Java API**
 
 ## 十二、容灾与备份
+
+- **copyTable**
+
+  可以支持从现有的表的数据拷贝到新的表中，具有以下的特点：
+
+  1. 在执行命令之前，需要创建相同结构的表
+  2. 表拷贝的操作是使用JavaAPI，使用scan获取到数据，然后使用put将数据导入
+  3. 支持时间区间、row区间，改变表的名称，列族名称等
+
+  - **同集群下的拷贝：**
+
+    ~~~shell
+    hbase org.apache.hadoop.hbase.mapreduce.CopyTable \
+    --new.name=table_new table_old
+    ~~~
+
+  - **跨集群的拷贝：**
+
+    ~~~shell
+    hbase org.apache.hadoop.hbase.mapreduce.CopyTable \
+    --peer.adr=dstClusterZK:2181:/hbase 
+    --new.name=new_table table_old(旧表名)
+    ~~~
+
+- **import/export**
+
+- **snapshot**
 
 ## 十三、二级索引 
