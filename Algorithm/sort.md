@@ -198,23 +198,23 @@
 - 直接插入排序
 
   ~~~java
-  public void insertionSort(int[]a) {
-     for(int i=0;i<a.length-1;i++)
-     {
-         int currentItem=a[i+1];
-         for(int j=i;j>=0;j--)
+      public void insertionSort(int[]a) {
+         for(int i=0;i<a.length-1;i++)
          {
-             if(currentItem<a[j]) {
-                 a[j+1]=a[j];
-                 a[j]=currrentItem;
-             }
-             else {
-                 a[j+1]=currentItem;
-                 break;
+             int currentItem=a[i+1];
+             for(int j=i;j>=0;j--)
+             {
+                 if(currentItem<a[j]) {
+                     a[j+1]=a[j];
+                     a[j]=currrentItem;
+                 }
+                 else {
+                     a[j+1]=currentItem;
+                     break;
+                 }
              }
          }
-     }
-  }
+      }
   ~~~
 
   
