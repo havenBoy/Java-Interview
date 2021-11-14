@@ -12,12 +12,25 @@
   建议使用sqoop1.x版本，还有sqoop2版本，但二者的版本不兼容。
 
   - **下载与解压**
+
   - **配置环境变量**
+
   - **修改配置文件sqoop-env.sh.template**
+
   - **拷贝mysql的驱动类到lib文件夹下**
+
   - **验证**
 
+    sqoop version
+
 - ##### 基本使用命令
+
+  - sqoop help  查看sqoop所有的命令，帮助命令
+  - sqoop help 命令名称   查看指定命令的使用
+
+- **mysql与sqoop的相关操作**
+
+  - 
 
 - ##### HDFS的导入与导出
 

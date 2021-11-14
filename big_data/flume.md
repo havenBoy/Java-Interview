@@ -37,7 +37,7 @@
   **种类：**
 
   1. Hdfs Sink
-  2. HIve Sink
+  2. Hive Sink
   3. Hbase Sink
   4. Avro Sink
 
