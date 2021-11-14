@@ -1,18 +1,21 @@
 ## Ranger
-> 是大数据领域一个集中式安全管理框架，目的是通过制定策略实现对Hadoop组件的集中式安全管理  
+> 是大数据领域一个集中式安全管理框架，目的是通过制定策略实现对Hadoop组件的集中式安全管理
 > 实现对集群中数据的安全访问  
-- ranger组成
+- #### ranger组成
+  
   1. Ranger Admin  用户管理策略，提供WebUI与RestFul接口
   2. Ranger UserSync 用于将Unix系统同步到Ranger Admin
   3. Ranger TagSync 同步atlas中Tag信息，基于标签的权限管理
   4. Ranger KMS 对hadoop KMS的管理策略与秘钥管理
-- 依赖组件
+- #### 依赖组件
+  
   1. JDK用于运行RangerAdmin/RangerKMS
   2. python3用于ranger的自动化安装
   3. git，用于Ranger的编译
   4. maven3.6.2+，用于Ranger的编译
   5. RDMS用于存储授权策略，存储Ranger用户、组，存储审核日志 
-- 支持扩展性组件
+- #### 支持扩展性组件
+  
   1. HDFS
   2. HBASE
   3. HIVE
@@ -20,14 +23,16 @@
   5. KAFKA
   6. ELASTICSEARCH
   7. KYLIN
-- 编译打包  
+- #### 编译打包  
+  
   0. 前置条件，环境中包含python3环境，git环境，npm前端环境，maven环境3.6.2+
-  1. 从github或者gitee获取到关于ranger2.1.0的源码，https://gitee.com/mirrors/apache-ranger/repository/archive/release-ranger-2.1.0.zip
-  2. 解压下载包到本地，unzip release-ranger-2.1.0.zip
-  3. 注释pom.xml文件中repository中的标签，使得直接使用本地仓库，内容如下：
-  ```xml
+  1. 从github或者gitee获取到关于ranger2.1.0的源码
+  2. https://gitee.com/mirrors/apache-ranger/repository/archive/release-ranger-2.1.0.zip
+  3. 解压下载包到本地，unzip release-ranger-2.1.0.zip
+  4. 注释pom.xml文件中repository中的标签，使得直接使用本地仓库，内容如下：
+	```xml
     <repositories> 
-	  <!--
+    <!--
     <repository>
         <id>apache.snapshots.https</id>
         <name>Apache Development Snapshot Repository</name>
@@ -57,8 +62,10 @@
     -->
     </repositories>
   ```
-  4. 将pom文件的各个关联组件，如hive,hdfs,yarn等组件的版本进行修改，修改问当前环境内的版本。  
-  以下为当前系统的版本号，建议进行修改。目前发现kafka与hbase的版本与当前基础组件不能兼容,其中hbase组件不考虑
+  4. 将pom文件的各个关联组件，如hive,hdfs,yarn等组件的版本进行修改，修改问当前环境内的版本。
+      以下为当前系统的版本号，建议进行修改。目前发现kafka与hbase的版本与当前基础组件不能兼容
+      
+      其中hbase组件不考虑，暂时不对hbase做权限管理
   
   |   组件名称    | 版本号 |
   | :-----------: | :----: |
@@ -113,8 +120,9 @@
   -rw-r--r--. 1 root root  17213353 Aug 11 15:08 ranger-2.1.0-yarn-plugin.zip
   -rw-r--r--. 1 root root         5 Aug 11 15:11 version
   ```
-
-- ranger-admin安装部署
+  
+- #### ranger-admin安装部署
+  
   >  此服务是ranger界面集成服务，完成部署后可登陆界面进行安全规则配置，同时服务的安全规则配置也支持API的调用  
   >  安装节点为集群内的任意节点，建议为主节点  
   1. 预留
@@ -148,8 +156,9 @@
   5. 初始化服务，执行命令./setup.sh
   6. 启动ranger-admin，执行命令ranger-admin start 
   7. 界面输入policymgr_external_url中设置的url，进行登录ranger界面，默认账户/密码为admin/admin
-
-- Usersync安装部署
+  
+- #### Usersync安装部署
+  
   > 可以用来同步uninx或者ldap中已经存在的系统用户到ranger数据库
   1. 在编译好的文件夹下找到ranger-2.1.0-usersync.tar.gz
   2. 解压在/opt路径下，注意使用root用户操作
@@ -166,8 +175,10 @@
   4. 使用root用户执行脚本：./setup.sh
   5. 启动  ranger-usersync start 
   6. 在ranger admin的控制台查看是否可以同步到用户数据，注意不是即时同步
-- 与各个组件集成
-  - hdfs 
+- #### 与各个组件集成
+  
+  - ##### hdfs 
+    
     1. 登录ranger-admin的管理界面后，创建与hdfs的权限认证集成服务,如service_name=dev_hdfs
     2. 在编译后的target文件中找到hdfs相关的插件包为ranger-2.1.0-hdfs-plugin.tar.gz
     3. 解压到/opt/下，tar -zxvf ranger-2.1.0-hdfs-plugin.tar.gz -C /opt/
@@ -182,7 +193,8 @@
     7. 登陆ranger界面添加一个hdfs的安全策略服务，service_name与步骤4中的REPOSITORY_NAME保持一致，其余按照提示进行填写
     8. 添加一个策略的具体配置，可以选择配置相关的用户、用户组以及操作权限包括可读、可写、可执行。
     9. 配置完成后可以进行测试，验证用户如果没有权限时会出现报错信息。
-  - yarn
+  - ##### yarn
+    
     1. 登陆ranger-admin界面后，创建与yarn的权限认证集成服务,如service_name=dev_yarn
     2. 在编译的target文件中找到与yarn相关的插件包：ranger-2.1.0-yarn-plugin.tar.gz
     3. 解压到/opt目录下，tar -zxvf ranger-2.1.0-yarn-plugin.tar.gz -C /opt/
@@ -195,8 +207,9 @@
     5. 启动插件./enable-hdfs-plugin.sh，启动后需要重启hadoop以保证生效，安装部署时需要注意组件的先后顺序，同时升级也需要考虑， 需要在resource_manager节点执行
     6. 停止插件./disable-hdfs-plugin.sh，与启动类似，需要注意执行脚本后需要重启关联组件，以确保生效。当前不需要执行此步骤
     7. 登陆ranger界面添加一个yarn的安全策略服务，service_name与步骤4中的REPOSITORY_NAME保持一致，其余按照提示进行填写
-    8. 配置完成后可以进行测试，验证用户如果没有权限时会出现报错信息。
-  - kafka 
+    8. 配置完成后可以进行测试，验证用户如果没有权限时会出现报错信息
+  - ##### kafka 
+    
     1. 在编译后的插件目录中找到与yarn相关的插件包：ranger-2.1.0-kafka-plugin.tar.gz
     2. 解压到/opt目录下，tar -zxvf ranger-2.1.0-kafka-plugin.tar.gz -C /opt/
     3. 修改install.properties文件中的内容，其余内容保持不动，如下：
@@ -205,7 +218,8 @@
     POLICY_MGR_URL=http://xxx:6080                             #ranger_admin安装位置
     REPOSITORY_NAME=kafka_dev                                  #与配置项的kafka的服务名称保持一致
     ```
-  - hive 
+  - ##### hive 
+    
     1. 登陆ranger-admin界面后，创建与yarn的权限认证集成服务,如service_name=dev_hive
     2. 在编译的target文件中找到与yarn相关的插件包：ranger-2.1.0-hive-plugin.tar.gz
     3. 解压到/opt目录下 tar -zxvf ranger-2.1.0-hive-plugin.tar.gz -C /opt/
@@ -219,7 +233,8 @@
     6. 停止插件./disable-hive-plugin.sh，与启动类似，需要注意执行脚本后需要重启关联组件，以确保生效。当前不需要执行此步骤
     7. 登陆ranger界面添加一个hive的安全策略服务，service_name与步骤4中的REPOSITORY_NAME保持一致，其余按照提示进行填写
     8. 验证策略配置后与操作是否可以匹配（不能对client失效，对odbc生效）
-  - hbase
+  - ##### hbase
+    
     1. 登陆ranger-admin界面后，创建与yarn的权限认证集成服务，如service_name=dev_hbase
     2. 在编译的target文件中找到与yarn相关的插件包：ranger-2.1.0-hbase-plugin.tar.gz
     3. 解压到/opt目录下 tar -zxvf ranger-2.1.0-hbase-plugin.tar.gz -C /opt/
@@ -234,7 +249,8 @@
     6. 停止插件./disable-hbase-plugin.sh，与启动类似，需要注意执行脚本后需要重启关联组件，以确保生效。当前不需要执行此步骤
     7. 登陆ranger界面添加一个hive的安全策略服务，service_name与步骤4中的REPOSITORY_NAME保持一致，其余按照提示进行填写
     8. 验证策略配置后与操作是否可以匹配（不能对client失效，对jdbc生效）
-  - elasticsearch
+  - ##### elasticsearch
+    
     1. 登陆ranger-admin界面后，创建与yarn的权限认证集成服务，如service_name=dev_es
     2. 在编译的target文件中找到与yarn相关的插件包：ranger-2.1.0-elasticsearch-plugin.tar.gz
     3. 解压到/opt目录下 tar -zxvf ranger-2.1.0-elasticsearch-plugin.tar.gz -C /opt/
@@ -249,15 +265,17 @@
     6. 停止插件./disable-elasticsearch-plugin.sh，与启动类似，需要注意执行脚本后需要重启关联组件，以确保生效。当前不需要执行此步骤
     7. 登陆ranger界面添加一个hive的安全策略服务，service_name与步骤4中的REPOSITORY_NAME保持一致，其余按照提示进行填写
     8. 验证策略配置后与操作是否可以匹配（不能对client失效，对odbc生效）
-- 原理描述
+- #### 原理描述
+  
   - 通过读取安装组件时生成的配置文件以及组件自带的jar包，通过hook机制调用各个组件服务达到权限管理
   - 执行./enable-xx-plugin.sh建立hook机制
   - 将插件自带conf更新到系统安装服务下
   - 将插件自带的lib更新到系统安装的lib下
   - 将install.properties文件内容生成.xml文件，更新到系统组件安装服务的conf下
   - 服务重新启动，使得配置项生效
+  
+- #### ranger接口使用 （策略下发具有延迟，定时同步策略间隔时间30s）
 
-- ranger接口使用 （策略下发具有延迟，定时同步策略间隔时间30s）
   0. 未补充完成，可参考https://ranger.apache.org/apidocs/index.html
   1. 服务相关接口（只管理本集群组件，在创建策略前创建服务对象） 当服务删除时，所有策略失效
      ```java
@@ -273,32 +291,35 @@
       import org.apache.ranger.plugin.model.RangerService;
       import org.apache.ranger.plugin.util.RangerRESTUtils;
      ```
-    - 通过Id值查询服务详细信息
-    ```java
-    //根据Id获取服务数据
-    public static RangerService getService(int id) {
-        String url = "http://%s:6080/service/public/v2/api/service/%s";
-        Client client = null;
-        ClientResponse response = null;
-        try {
-            client = Client.create();
-            client.addFilter(new HTTPBasicAuthFilter("admin", "admin"));
-            WebResource resource = client.resource(String.format(url, "10.58.14.201", id));
-            response = resource.accept(RangerRESTUtils.REST_MIME_TYPE_JSON).get(ClientResponse.class);
-            if (null != response && response.getStatus() == 200) {
-                return response.getEntity(RangerService.class);
-            }
-        } finally {
-            if (response != null) {
-                response.close();
-            }
-            if (client != null) {
-                client.destroy();
-            }
-        }
-        return null;
-    }
-    ```
+
+  2. 通过Id值查询服务详细信息
+
+     ~~~java
+     //根据Id获取服务数据
+     public static RangerService getService(int id) {
+         String url = "http://%s:6080/service/public/v2/api/service/%s";
+         Client client = null;
+         ClientResponse response = null;
+         try {
+             client = Client.create();
+             client.addFilter(new HTTPBasicAuthFilter("admin", "admin"));
+             WebResource resource = client.resource(String.format(url, "10.58.14.201", id));
+             response = resource.accept(RangerRESTUtils.REST_MIME_TYPE_JSON).get(ClientResponse.class);
+             if (null != response && response.getStatus() == 200) {
+                 return response.getEntity(RangerService.class);
+             }
+         } finally {
+             if (response != null) {
+                 response.close();
+             }
+             if (client != null) {
+                 client.destroy();
+             }
+         }
+         return null;
+     }
+     ~~~
+
     - 获取所有服务详细信息
     ```java
     public static JSONObject listAllService() {
@@ -557,6 +578,7 @@
     }
   ```
   - 策略的删除
+  
   ```java
     public static RangerPolicy deletePolicy(int id) {
         Client client = null;
@@ -583,3 +605,10 @@
     }
   ```
   3. 用户与用户组相关接口
+  
+     - 用户创建
+     - 用户删除
+     - 用户列表查询
+  
+     
+
