@@ -116,9 +116,9 @@
 ## :banana: Linux
 - [常用的命令有那些？](https://github.com/havenBoy/Java-Interview/blob/master/linux/linux_basic.md)
 ## :apple: 大数据
-- [大数据面试前准备？](https://github.com/havenBoy/Java-Interview/blob/master/big_data/interview_before.md)
-- [java基础装备](https://github.com/havenBoy/Java-Interview/blob/master/big_data/java_basic.md)
-- [hadoop概览](https://github.com/havenBoy/Java-Interview/blob/master/big_data/hadoop.md)
+- [大数据before？](https://github.com/havenBoy/Java-Interview/blob/master/big_data/interview_before.md)
+- [java基础](https://github.com/havenBoy/Java-Interview/blob/master/big_data/java_basic.md)
+- [hadoop](https://github.com/havenBoy/Java-Interview/blob/master/big_data/hadoop.md)
 - [map_reduce](https://github.com/havenBoy/Java-Interview/blob/master/big_data/map_reduce.md)
 - [yarn](https://github.com/havenBoy/Java-Interview/blob/master/big_data/yarn.md)
 - [hive](https://github.com/havenBoy/Java-Interview/blob/master/big_data/hive.md)
@@ -134,6 +134,7 @@
 - [kerberos](https://github.com/havenBoy/Java-Interview/blob/master/big_data/kerberos.md)
 - [dolphinscheduler](https://github.com/havenBoy/Java-Interview/blob/master/big_data/dolphinscheduler.md)
 - [kylin](https://github.com/havenBoy/Java-Interview/blob/master/big_data/kylin.md)
+- [clickhouse](https://github.com/havenBoy/Java-Interview/blob/master/big_data/clickhouse.md)
 ## :orange: 数据库
 - [索引相关](https://github.com/havenBoy/interview/blob/master/databases/index.md)
 - [sql与数据库优化](https://github.com/havenBoy/interview/blob/master/databases/sql-improve.md)

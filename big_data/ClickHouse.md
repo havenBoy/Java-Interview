@@ -278,9 +278,7 @@ SummingMergeTree
   -  如果是集群表，某一台建表语句会自动在其他的节点上创建
 - 分布式表的创建来管理本地表
 
-
-
-
+## [九、高级部分](https://github.com/havenBoy/Java-Interview/blob/master/big_data/clickhouse-high.md)
 
 
 
