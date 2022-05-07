@@ -135,6 +135,9 @@
 - [dolphinscheduler](https://github.com/havenBoy/Java-Interview/blob/master/big_data/dolphinscheduler.md)
 - [kylin](https://github.com/havenBoy/Java-Interview/blob/master/big_data/kylin.md)
 - [clickhouse](https://github.com/havenBoy/Java-Interview/blob/master/big_data/clickhouse.md)
+- flinkCDC
+- atlas
+- griffin
 ## :orange: 数据库
 - [索引相关](https://github.com/havenBoy/interview/blob/master/databases/index.md)
 - [sql与数据库优化](https://github.com/havenBoy/interview/blob/master/databases/sql-improve.md)

@@ -1,6 +1,6 @@
 # Canal
 
-## 一、什么是canal
+### 一、什么是canal
 
 - canal组件
 
@@ -22,7 +22,7 @@
 
 3.2 伪装为从节点
 
-## 二、mysql的准备
+### 二、mysql的准备
 
 - 修改配置文件路径为/etc/my,cnf
 
