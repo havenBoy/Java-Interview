@@ -76,6 +76,50 @@
   - zookeeper
   - consumer
   
+- #### kafka高级配置项
+  
+  - **cleanup.policy**
+  
+  ​       过期或达到日志上限的清理策略（delete-删除；compact-压缩）
+  
+  ​       默认值为delete
+  
+  - **compression.type**
+  
+  ​       指定给该topic最终的压缩类型（uncompressed；snappy；lz4；gzip；producer）
+  
+  ​       默认值为producer
+  
+  - **delete.retention.ms**
+  
+  ​       压缩日志保留的最长时间，也是消费端消息的最长时间。单位为毫秒
+  
+  ​      （默认值：86400000）
+  
+  - **retention.bytes**
+  
+  ​       topic每个分区的最大文件大小。
+  
+  ​      （默认值：-1没有限制）
+  
+  - **segment.bytes**
+  
+  ​       topic的文件是以segment文件存储的，该参数控制每个segment文件的大小
+  
+  ​      （默认值：1073741824）
+  
+  - **segment.index.bytes**
+  
+  ​       对于segment日志的索引文件大小限制
+  
+  ​       （默认值：10M）
+  
+  - **retention.ms**
+  
+  ​       日志文件保留的分钟数。数据存储的最大时间超过这个时间会根据cleanup.policy策略处理数据。
+  
+  ​       默认为7 * 24 * 60  min
+  
 - #### kafka集群的数量计算
 
 - #### kafka消费是否有序？
