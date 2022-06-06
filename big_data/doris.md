@@ -98,20 +98,26 @@
 
 - ##### 字段类型
 
-  | 字段类型 | 字段长度（字节） | 备注 |
-  | -------- | ---------------- | ---- |
-  | TINYINT  | 1                |      |
-  | SMALLINT | 2                |      |
-  | INT      | 4                |      |
-  | BIGINT   | 8                |      |
-  | LARGEINT | 16               |      |
-  | FLOAT    | 4                |      |
-  | DOUBLE   | 12               |      |
-  | DECIMAL  | 16               |      |
-  | DATE     | 3                |      |
-  | DATETIME | 8                |      |
+  | 字段类型        | 字段长度（字节） | 备注 |
+  | --------------- | ---------------- | ---- |
+  | TINYINT         | 1                |      |
+  | SMALLINT        | 2                |      |
+  | INT             | 4                |      |
+  | BIGINT          | 8                |      |
+  | LARGEINT        | 16               |      |
+  | FLOAT           | 4                |      |
+  | DOUBLE          | 12               |      |
+  | DECIMAL         | 16               |      |
+  | DATE            | 3                |      |
+  | DATETIME        | 8                |      |
+  | CHAR[(length)]  |                  |      |
+  | VCHAR[(length)] |                  |      |
+  | BOOLEAN         |                  |      |
+  | HLL             |                  |      |
+  | BITMAP          |                  |      |
+  | STRING          |                  |      |
 
-- 
+  
 
 ### 四、数据的导入与导出
 
