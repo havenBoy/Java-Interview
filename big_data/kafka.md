@@ -1,6 +1,8 @@
 ## kafka
 >  是由scala语言编写的，是一个分布式，分区，多副本，多订阅者的消息系统
 
+### part1: 基础信息
+
 - #### 优势对比
   
   - 可靠性：分布式，分区，复制与容错
@@ -172,4 +174,281 @@
     只要有一个分区不存在已经提交的offset时，会抛出异常
   
 - #### offset的手动提交与自动提交
+
+### part2: 权限管理相关
+
+#### 一、基本概念
+
+- **认证（authentication）**：包括client与broker以及broker与zookeeper之间的互相认证
+- **信道加密（encryption）**：指的是client端与broker以及broker与broker之间数据传输时配置SSL，是一种非对称的加密方式，默认是关闭的
+- **授权（authorization）** ：通过ACL命令行来使用用户的权限控制
+- **SASL（Simple Authentication and Security Layer）**，是一个安全层框架，具体实现可以是kerberos、PLAIN或者SCRAM
+
+对于中小型的kafka集群来说，用户系统并不复杂，集群用户也不会很多，而且会运行在内网环境，SSL加密也不会是很必要。
+
+SASL/PLAIN而言，运维的成本较小，适合中小型kafka集群，弊端是不能动态进行用户的增减。
+
+| 认证机制    | 引入版本 | 使用场景                                                     |
+| ----------- | -------- | ------------------------------------------------------------ |
+| SASL/GSSAPI | 0.9      | 适用于本身已经实现Kerberos认证的场景，需要给集群中的broker与访问用户申请principals |
+| SASL/PLAIN  | 0.10.2   | 适应与中小型kafka集群，账户文件会配置到一个静态文件中，不支持动态增加减用户, 需要重启broker |
+| SASL/SCRAM  | 0.10.2   | 适应于中小型kafka集群，可以将用户的信息存储在zk中，无需重启集群即可支持认证用户的动态增加减 |
+
+#### 二、kafka集成SASL/PLAIN步骤
+
+- **zookeeper配置SASL（可配置）**
+
+    1. zoo.cfg文件配置
+
+        ```properties
+        authProvider.1=org.apache.zookeeper.server.auth.SASLAuthenticationProvider
+        requireClientAuthScheme=sasl
+        ```
+
+    2. 新建zk_server_jaas_config文件，为zk添加账户认证信息
+
+        ```properties
+        Server {
+            org.apache.kafka.common.security.plain.PlainLoginModule required
+            ##这里的用户名与密码指的是zk集群之间认证的用户与密码
+            username="admin	"
+            password="Test123."
+            ##这里使用user_{user} 指的是user用户的密码，用来定义zk客户端的用户与密码，按需添加
+            user_kafka="zk_kafka_client_passwd";
+        };
+        ```
+
+    3. 将kafka认证相关jar包拷贝到lib下
+
+        ```
+        kafka-clients-2.4.1.jar
+        lz4-java-1.6.0.jar
+        slf4j-api-1.7.28.jar
+        slf4j-log4j12-1.7.28.ja
+        snappy-java-1.1.7.3.jar
+        ```
+
+    4. 修改zkEnv.sh文件
+
+        ```shell
+        export SERVER_JVM_OPTIONS="-Djava.security.auth.login.config=/usr/hdp/3.1.0.0-78/zookeeper/conf"
+        ```
+
+- **kafka配置SASL/PLAIN**
+
+    1. 创建kafka_server_jaas_conf文件， 内容如下:
+
+        ```properties
+        KafkaServer {
+            org.apache.kafka.common.security.plain.PlainLoginModule required
+        	    # username和password是broker用于初始化连接到其他的broker
+                username="admin"
+                password="admin" 
+                # 下面定义了所有连接到broker和broker验证的所有的客户端连接包括其他broker的用户密码
+                user_admin="admin"   
+                user_alice="alice"; # 这里增加了alice用户，密码alice
+        };
+        kafkaClient {
+            org.apache.kafka.common.security.plain.PlainLoginModule required
+            username="admin" # 这里是kafka客户端连接broker的用户名
+            password="admin"; # 这里是kafka客户端连接broker的密码
+            # 上面应该是对应KafkaServer中的user_admin配置项
+        };
+        ```
+
+    2. 传递配置信息到启动参数中，在kafka-env.sh文件中添加如下一行：
+
+        ```shell
+        export KAFKA_KERBEROS_PARAMS="-Djava.security.auth.login.config=/usr/hdp/3.1.0.0-78/kafka/conf/kafka_jaas.conf"
+        ```
+
+    3. 配置server.properties文件，内容追加如下参数：
+
+        ```properties
+        advertised.listeners=SASL_PLAINTEXT://host.name:port
+        sasl.enabled.mechanisms=PLAIN
+        sasl.mechanism.inter.broker.protocol=PLAIN
+        security.inter.broker.protocol=SASL_PLAINTEXT
+        allow.everyone.if.no.acl.found=false   ## 需要配置，否则所有的权限会暴露出来
+        
+        authorizer.class.name=kafka.security.auth.SimpleAclAuthorizer
+        advertised.listeners=SASL_PLAINTEXT://ip:port
+        super.users=User:admin
+        ```
+
+#### 三、kafka配置SASL/SCRAM
+
+1. 创建一个关于jass_conf的文件
+
+    ```properties
+    KafkaServer {
+      org.apache.kafka.common.security.scram.ScramLoginModule required
+      ##org.apache.kafka.common.security.plain.PlainLoginModule required
+      username="admin"
+      password="Test123."
+      user_admin="Test123."
+      user_admin1="Test123.";
+    };
+    
+    KafkaClient {
+      org.apache.kafka.common.security.scram.ScramLoginModule required
+      ##org.apache.kafka.common.security.plain.PlainLoginModule required
+      username="admin"
+      password="Test123."
+      user_admin="Test123.";
+    };
+    ```
+
+2. server.properties文件的配置新增如下：
+
+    ```properties
+    advertised.listeners=SASL_PLAINTEXT://host.name:port
+    sasl.enabled.mechanisms=SCRAM-SHA-512
+    sasl.mechanism.inter.broker.protocol=SCRAM-SHA-512
+    security.inter.broker.protocol=SASL_PLAINTEXT
+    allow.everyone.if.no.acl.found=false   ## 需要配置，否则所有的权限会暴露出来
+    
+    authorizer.class.name=kafka.security.auth.SimpleAclAuthorizer
+    advertised.listeners=SASL_PLAINTEXT://ip:port
+    ##这里指定出最高权限的用户
+    super.users=User:admin
+
+3. 使用脚本kafka-configs.sh初始化出最高权限用户admin的密码：
+
+   ```shell
+   ## 创建用户，并指定密码
+   /usr/hdp/3.1.0.0-78/kafka/bin/kafka-configs.sh --zookeeper 192.168.0.35:2181 --alter --add-config 'SCRAM-SHA-512=[password=Test123.]' --entity-type users --entity-name admin
+   ```
+
+   **后续普通用户的创建也可以基于此命令行，原因是没有与之对应的java_api可以使用，使用版本需要在2.7.0以上才可以**
+
+   ```shell
+   ##用户列表
+   /usr/hdp/3.1.0.0-78/kafka/bin/kafka-configs.sh --zookeeper 192.168.0.35:2181 --describe --entity-type users
+   ##创建用户admin1
+   /usr/hdp/3.1.0.0-78/kafka/bin/kafka-configs.sh --zookeeper 192.168.0.35:2181 --alter --add-config 'SCRAM-SHA-512=[password=Test123.]' --entity-type users --entity-name admin1
+   ##如果是编辑用户的密码时，使用相同的命令行，修改下密码即可
+   ##创建用户组aa关于用户admin1
+   /usr/hdp/3.1.0.0-78/kafka/bin/kafka-acls.sh --authorizer kafka.security.auth.SimpleAclAuthorizer --authorizer-properties zookeeper.connect=192.168.0.35:2181 --add --allow-principal User:admin1  --group aa
+   ##删除用户组aa
+   /usr/hdp/3.1.0.0-78/kafka/bin/kafka-acls.sh --authorizer kafka.security.auth.SimpleAclAuthorizer --authorizer-properties zookeeper.connect=192.168.0.35:2181 --remove --allow-principal User:admin1  --group aa
+   ##删除用户admin1，并且移除掉相关zk的节点信息
+   /usr/hdp/3.1.0.0-78/kafka/bin/kafka-configs.sh --zookeeper 192.168.0.35:2181 --alter --delete-config 'SCRAM-SHA-512=[password=Test123.]' --entity-type users --entity-name admin1
+   ./zkCli.sh
+   rmr /config/users/admin2
+   ```
+
+#### 四、java Api 操作ACL
+
+```java
+   /**
+     * 操作Acl  **不支持更新**
+     * @param resourceType  当前版本主要包括TOPIC以及GROUP
+     * @param resourceName  资源名称，主要体现为主题的名称或者是组的名称
+     * @param username      当前的acl对那个用户生效
+     * @param operation     
+     */
+public void opreateACL(ResourceType resourceType, String resourceName, String username, AclOperation operation) {
+    ResourcePattern resource = new ResourcePattern(resourceType, resourceName, PatternType.LITERAL);
+    AccessControlEntry accessControlEntry = new 
+        AccessControlEntry("User:" + username, "*", operation,      AclPermissionType.ALLOW);
+    AclBinding aclBinding = new AclBinding(resource, accessControlEntry);
+
+    //创建ACl
+    CreateAclsResult createAclsResult = client.createAcls(Collections.singletonList(aclBinding));
+    //删除Acl
+    CreateAclsResult createAclsResult = client.deleteAcls(Collections.singletonList(AclBindingFilter.ANY));
+    for (Map.Entry<AclBinding, KafkaFuture<Void>> e : createAclsResult.values().entrySet()) {
+        KafkaFuture<Void> future = e.getValue();
+        try {
+            future.get();
+            boolean success = !future.isCompletedExceptionally();
+            if (success) {
+                logger.info("acl create success");
+            }
+        } catch (Exception exc) {
+            logger.warn("acl create error: {0}", exc);
+            exc.printStackTrace();
+        }
+    }
+}
+/**
+*  罗列出所有的ACL规则列表
+**/
+public void describeACL() {
+
+    DescribeAclsResult describeAclsResult = client.describeAcls(AclBindingFilter.ANY);
+    try {
+        Collection<AclBinding> aclBindings = describeAclsResult.values().get();
+        for (AclBinding get : aclBindings) {
+            System.out.println(get.pattern().name());
+            System.out.println(get.pattern().patternType());
+            System.out.println(get.pattern().resourceType());
+            System.out.println(get.entry().principal());
+            System.out.println(get.entry().permissionType());
+            System.out.println(get.entry().operation());
+            System.out.println("-------------------------");
+        }
+    } catch (Exception e) {
+        logger.error("acl list error");
+    }
+}
+
+   /**
+     * 罗列出所有的消费组
+     */
+public Set<String> listGroup() {
+    Set<String> consumers = new HashSet<>();
+    try {
+        ListConsumerGroupsResult listConsumerGroupsResult = client.listConsumerGroups();
+        consumers = listConsumerGroupsResult.valid()
+            .get(10L, TimeUnit.SECONDS).stream().map(ConsumerGroupListing::groupId).collect(Collectors.toSet());
+        System.out.println(consumers);
+    } catch (Exception e) {
+        logger.error("kafka consumer list error！", e);
+    }
+    return consumers;
+}
+```
+
+| 问题描述                                                     | 答复                                  | 备注                                               |
+| ------------------------------------------------------------ | ------------------------------------- | -------------------------------------------------- |
+| 1. ACL策略是否可以支持更新？                                 | 不支持                                | 支持新增与删除，但不支持更新操作，不具有主键的概念 |
+| 2. ACL策略的资源名称是否可以随意定义，即在添加时，是否进行资源的校验 | 不会                                  |                                                    |
+| 3. ACL删除需要指定哪些参数？                                 | 如添加ACL的参数，具体参数参见新增参数 |                                                    |
+| 4. 新增2条相同的ACL策略，是否会报错？                        | 不会报错，最终展示一条                |                                                    |
+
+#### 五、资源与权限点控制
+
+| 资源类型 | 操作类型                                              | 备注                                                         |
+| -------- | ----------------------------------------------------- | ------------------------------------------------------------ |
+| TOPIC    | READ（读取）/WRITE（写入）/DELETE（删除）/ALL（全部） | 根据业务适当添加权限点，当前业务一般需要勾选ALL              |
+| GROUP    | READ（读取）                                          | 不建议其他权限点，当前业务只有source有添加消费组标识<br />需要识别到，消费组随机生成，要有”所有“选项才可行 |
+
+```java
+UNKNOWN((byte)0), 未知
+ANY((byte)1), 任意权限，带有任意的过滤条件
+ALL((byte)2), 所有权限点
+READ((byte)3), 读取
+WRITE((byte)4), 写入
+CREATE((byte)5), 创建
+DELETE((byte)6), 删除
+ALTER((byte)7), 修改，包括分区以及副本的修改
+DESCRIBE((byte)8), 主题的描述权限
+CLUSTER_ACTION((byte)9), 集群操作权限
+DESCRIBE_CONFIGS((byte)10), 配置的描述权限
+ALTER_CONFIGS((byte)11), 配置的修改权限
+IDEMPOTENT_WRITE((byte)12); 幂等写权限
+```
+
+#### 六、框架选择
+
+| 框架名称 | yahoo/kafka-manager                         | didi/LogiKm                            |
+| -------- | ------------------------------------------- | -------------------------------------- |
+| 版本号   | 2.6.                                        | 2.6.0                                  |
+| 研发公司 | yahoo                                       | didi                                   |
+| 开发语言 | scala                                       | java                                   |
+| 体验地址 | https://10.58.56.180:9010/   admin/Test123. | http://10.58.56.180:8080/  admin/admin |
+| 优势     |                                             |                                        |
+| 劣势     |                                             |                                        |
 
