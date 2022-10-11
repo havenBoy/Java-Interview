@@ -3,177 +3,177 @@
 
 ### part1: 基础信息
 
-- #### 优势对比
-  
-  - 可靠性：分布式，分区，复制与容错
-  - 可扩展性：可扩容与缩容，无需停机
-  - 性能强大：发布与订阅信息具有高吞吐量
-  - 速度快：保证零停机与零数据丢失
-  
-- #### kafka组成
-  
-  - **broker**    一个或者多个实例  服务端实例
-  - **topic**      一个消息的类别  每个topic包含一个或者多个partition
-  - **partition**    分区，是物理概念
-  - **producer**      发布消息到kafka的broker
-  - **consumer**    消费者，从broker消费消息
-  - **consumer group**     每一个consumer属于一个特定的consumer 组
-  
-- #### Shell
+#### 优势对比
 
-  - 查看topic
+- 可靠性：分布式，分区，复制与容错
+- 可扩展性：可扩容与缩容，无需停机
+- 性能强大：发布与订阅信息具有高吞吐量
+- 速度快：保证零停机与零数据丢失
 
-    ```shell
-     bin/kafka-topics.sh --zookeeper hostname:2181 --list
-     
-     --zookeeper 指的是zk的集群地址
-    ```
+#### kafka组成
 
-  - 创建topic
+- **broker**    一个或者多个实例  服务端实例
+- **topic**      一个消息的类别  每个topic包含一个或者多个partition
+- **partition**    分区，是物理概念
+- **producer**      发布消息到kafka的broker
+- **consumer**    消费者，从broker消费消息
+- **consumer group**     每一个consumer属于一个特定的consumer组
 
-    ```shell
-    bin/kafka-topics.sh --zookeeper hostname:2181 --create --replication-factor 3 --partitions 1 --topic topic_name
-    
-    --topic 定义topic名
-    --replication-factor 定义副本数
-    --partitions 定义分区数
-    ```
+#### Shell
 
-  - 删除topic
+- 查看topic
 
-    ```shell
-    bin/kafka-topics.sh --zookeeper hostname:2181 --delete --topic topic_name
-    
-    --zookeeper 指的是zk的集群地址
-    ```
+  ```shell
+   bin/kafka-topics.sh --zookeeper hostname:2181 --list
+   
+   --zookeeper 指的是zk的集群地址
+  ```
 
-  - 生产数据
+- 创建topic
 
-    ```shell
-    bin/kafka-console-producer.sh --broker-list hostname:9092 --topic topic_name
-    
-    --broker-list 指的是broker实例的集群节点
-    ```
+  ```shell
+  bin/kafka-topics.sh --zookeeper hostname:2181 --create --replication-factor 3 --partitions 1 --topic topic_name
+  
+  --topic 定义topic名
+  --replication-factor 定义副本数
+  --partitions 定义分区数
+  ```
 
-  - 消费数据
+- 删除topic
 
-    ```shell
-    bin/kafka-console-consumer.sh  --bootstrap-server hostname:9092 --from-beginning --topic topic_name
-    
-    --from-beginning：会把first主题中以往所有的数据都读取出来，根据业务场景选择是否增加该配置
-    --bootstrap-server：生产消息的服务器
-    ```
+  ```shell
+  bin/kafka-topics.sh --zookeeper hostname:2181 --delete --topic topic_name
+  
+  --zookeeper 指的是zk的集群地址
+  ```
 
-  - 主题信息描述
+- 生产数据
 
-    ```shell
-    bin/kafka-topics.sh --zookeeper hostname:2181  --describe --topic topic_name
-    
-    --zookeeper 指的是zk的集群地址
-    ```
+  ```shell
+  bin/kafka-console-producer.sh --broker-list hostname:9092 --topic topic_name
+  
+  --broker-list 指的是broker实例的集群节点
+  ```
 
-- #### kafka架构
-  
-  - producer
-  - zookeeper
-  - consumer
-  
-- #### kafka高级配置项
-  
-  - **cleanup.policy**
-  
-  ​       过期或达到日志上限的清理策略（delete-删除；compact-压缩）
-  
-  ​       默认值为delete
-  
-  - **compression.type**
-  
-  ​       指定给该topic最终的压缩类型（uncompressed；snappy；lz4；gzip；producer）
-  
-  ​       默认值为producer
-  
-  - **delete.retention.ms**
-  
-  ​       压缩日志保留的最长时间，也是消费端消息的最长时间。单位为毫秒
-  
-  ​      （默认值：86400000）
-  
-  - **retention.bytes**
-  
-  ​       topic每个分区的最大文件大小。
-  
-  ​      （默认值：-1没有限制）
-  
-  - **segment.bytes**
-  
-  ​       topic的文件是以segment文件存储的，该参数控制每个segment文件的大小
-  
-  ​      （默认值：1073741824）
-  
-  - **segment.index.bytes**
-  
-  ​       对于segment日志的索引文件大小限制
-  
-  ​       （默认值：10M）
-  
-  - **retention.ms**
-  
-  ​       日志文件保留的分钟数。数据存储的最大时间超过这个时间会根据cleanup.policy策略处理数据。
-  
-  ​       默认为7 * 24 * 60  min
-  
-- #### kafka集群的数量计算
+- 消费数据
 
-- #### kafka消费是否有序？
+  ```shell
+  bin/kafka-console-consumer.sh  --bootstrap-server hostname:9092 --from-beginning --topic topic_name
   
-  kafka能够保证分区内消息的顺序，但不能保证整体的有序性 ，如果需要保证有序性，只要有一个分区即可
-  
-- #### 消费者组与分区的关系
+  --from-beginning：会把first主题中以往所有的数据都读取出来，根据业务场景选择是否增加该配置
+  --bootstrap-server：生产消息的服务器
+  ```
 
-- #### 生产者分区策略
+- 主题信息描述
+
+  ```shell
+  bin/kafka-topics.sh --zookeeper hostname:2181  --describe --topic topic_name
   
-  - 没有指定分区号，轮询
-  - 没有指定分区号，指定key 会根据key%hashcode 分发到不同的分区内
+  --zookeeper 指的是zk的集群地址
+  ```
+
+#### kafka架构
+
+- producer
+- zookeeper
+- consumer
+
+#### kafka高级配置项
+
+- **cleanup.policy**
+
+​       过期或达到日志上限的清理策略（delete-删除；compact-压缩）
+
+​       默认值为delete
+
+- **compression.type**
+
+​       指定给该topic最终的压缩类型（uncompressed；snappy；lz4；gzip；producer）
+
+​       默认值为producer
+
+- **delete.retention.ms**
+
+​       压缩日志保留的最长时间，也是消费端消息的最长时间。单位为毫秒
+
+​      （默认值：86400000）
+
+- **retention.bytes**
+
+​       topic每个分区的最大文件大小。
+
+​      （默认值：-1没有限制）
+
+- **segment.bytes**
+
+​       topic的文件是以segment文件存储的，该参数控制每个segment文件的大小
+
+​      （默认值：1073741824）
+
+- **segment.index.bytes**
+
+​       对于segment日志的索引文件大小限制
+
+​       （默认值：10M）
+
+- **retention.ms**
+
+​       日志文件保留的分钟数。数据存储的最大时间超过这个时间会根据cleanup.policy策略处理数据。
+
+​       默认为7 * 24 * 60  min
+
+#### kafka集群的数量计算
+
+#### kafka消费是否有序？
+
+kafka能够保证分区内消息的顺序，但不能保证整体的有序性 ，如果需要保证有序性，只要有一个分区即可
+
+#### 消费者组与分区的关系
+
+#### 生产者分区策略
+
+- 没有指定分区号，轮询
+- 没有指定分区号，指定key 会根据key%hashcode 分发到不同的分区内
+
+#### 数据丢失
+
+- **生产者方面**
+  同步模式 ack = 1 只要leader收到，认为会后续同步，ack = 0 会分发数据，但不等待 ack = -1会等待所有副本收到数据
   
-- #### 数据丢失
+- **broker 方面**
+
+  采用分区副本机制，保证数据的高可用
+
+- **消费者方面**
   
-  - **生产者方面**
-    同步模式 ack = 1 只要leader收到，认为会后续同步，ack = 0 会分发数据，但不等待 ack = -1会等待所有副本收到数据
-    
-  - **broker 方面**
-  
-    采用分区副本机制，保证数据的高可用
-  
-  - **消费者方面**
-    
-    拿到数据后，数据会存储在hbase或者mysql中，但有时存储组件不可靠，导致数据没有写入但offset已经发生改变，主要是因为offset的异步提交 
-    **解决方法**： 修改为手动提交，由于默认是采用自动提交offset导致的消息不同步
-  
-- #### 数据重复问题
-  
-  - 落表时，创建唯一主键或者索引，避免重复数据
-  - 业务逻辑处理，查询时，判断是否存在，如果存在则不处理，如果不存在，则先插入redis，在进行业务的逻辑处理
-  
-- #### 数据查找过程
-  
-  - 通过offset确定数据保存在那个分区内的segement   .index(稀疏索引) .log（真正数据存储）
-  - 查找对应segment里边的index文件， 如果没有找到offset会查询到最近一条数据，下一条数据即为查询的数据  
-  
-- #### auto.offset.reset值
-  
-  - latest    
-  
-    各分区下有已经提交的offset时，从提交的offset开始消费，无提交的offset的消息时，会消费新产生的该分区下的数据，是默认值
-  
-  - earliest  
-  
-    如果有提交的offset时，从提交的offset开始消费，但如果没有提交的offset时，会从头开始消费
-  
-  - none  
-  
-    只要有一个分区不存在已经提交的offset时，会抛出异常
-  
-- #### offset的手动提交与自动提交
+  拿到数据后，数据会存储在hbase或者mysql中，但有时存储组件不可靠，导致数据没有写入但offset已经发生改变，主要是因为offset的异步提交 
+  **解决方法**： 修改为手动提交，由于默认是采用自动提交offset导致的消息不同步
+
+#### 数据重复问题
+
+- 落表时，创建唯一主键或者索引，避免重复数据
+- 业务逻辑处理，查询时，判断是否存在，如果存在则不处理，如果不存在，则先插入redis，在进行业务的逻辑处理
+
+#### 数据查找过程
+
+- 通过offset确定数据保存在那个分区内的segement   .index(稀疏索引) .log（真正数据存储）
+- 查找对应segment里边的index文件， 如果没有找到offset会查询到最近一条数据，下一条数据即为查询的数据  
+
+#### auto.offset.reset值
+
+- latest    
+
+  各分区下有已经提交的offset时，从提交的offset开始消费，无提交的offset的消息时，会消费新产生的该分区下的数据，是默认值
+
+- earliest  
+
+  如果有提交的offset时，从提交的offset开始消费，但如果没有提交的offset时，会从头开始消费
+
+- none  
+
+  只要有一个分区不存在已经提交的offset时，会抛出异常
+
+#### offset的手动提交与自动提交
 
 ### part2: 权限管理相关
 
@@ -416,7 +416,7 @@ public Set<String> listGroup() {
 | 1. ACL策略是否可以支持更新？                                 | 不支持                                | 支持新增与删除，但不支持更新操作，不具有主键的概念 |
 | 2. ACL策略的资源名称是否可以随意定义，即在添加时，是否进行资源的校验 | 不会                                  |                                                    |
 | 3. ACL删除需要指定哪些参数？                                 | 如添加ACL的参数，具体参数参见新增参数 |                                                    |
-| 4. 新增2条相同的ACL策略，是否会报错？                        | 不会报错，最终展示一条                |                                                    |
+| 4. 新增2条相同的ACL策略，是否会报错？                        | 不会报错，最终展示一条                | 自动覆盖旧的策略                                   |
 
 #### 五、资源与权限点控制
 
