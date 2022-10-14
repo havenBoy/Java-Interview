@@ -1,14 +1,14 @@
 ## Ranger
 > 是大数据领域一个集中式安全管理框架，目的是通过制定策略实现对Hadoop组件的集中式安全管理
 > 实现对集群中数据的安全访问  
-### ranger组成
+### 一、ranger组成
 
 1. Ranger Admin  用户管理策略，提供WebUI与RestFul接口
 2. Ranger UserSync 用于将Unix系统同步到Ranger Admin
 3. Ranger TagSync 同步atlas中Tag信息，基于标签的权限管理
 4. Ranger KMS 对hadoop KMS的管理策略与秘钥管理
 
-### 依赖组件
+### 二、依赖组件
 
 1. JDK用于运行RangerAdmin/RangerKMS
 2. python3用于ranger的自动化安装
@@ -16,7 +16,7 @@
 4. maven3.6.2+，用于Ranger的编译
 5. RDMS用于存储授权策略，存储Ranger用户、组，存储审核日志 
 
-### 支持扩展性组件
+### 三、支持扩展性组件
 
 1. HDFS
 2. HBASE
@@ -29,7 +29,7 @@
 9. SQOOP
 10. ATLAS
 
-### 编译打包  
+### 四、编译打包  
 
 0. 前置条件，环境中包含python3环境，git环境，npm前端环境，maven环境3.6.2+
 1. 从github或者gitee获取到关于ranger2.1.0的源码
@@ -127,7 +127,7 @@ drwxr-xr-x. 3 root root        22 Aug 11 15:03 maven-shared-archive-resources
 -rw-r--r--. 1 root root         5 Aug 11 15:11 version
 ```
 
-### ranger-admin安装部署
+### 五、ranger-admin安装部署
 
 >  此服务是ranger界面集成服务，完成部署后可登陆界面进行安全规则配置，同时服务的安全规则配置也支持API的调用  
 >  安装节点为集群内的任意节点，建议为主节点  
@@ -163,7 +163,7 @@ flush privileges;
 6. 启动ranger-admin，执行命令ranger-admin start 
 7. 界面输入policymgr_external_url中设置的url，进行登录ranger界面，默认账户/密码为admin/admin
 
-### Usersync安装部署
+### 六、Usersync安装部署
 
 > 可以用来同步uninx或者ldap中已经存在的系统用户到ranger数据库
 1. 在编译好的文件夹下找到ranger-2.1.0-usersync.tar.gz
@@ -182,7 +182,7 @@ unix_group=hadoop
 5. 启动  ranger-usersync start 
 6. 在ranger admin的控制台查看是否可以同步到用户数据，注意不是即时同步
 
-### 与各个组件集成
+### 七、与各个组件集成
 
 #### hdfs 
 
@@ -269,7 +269,7 @@ COMPONENT_INSTALL_DIR_NAME=/software/hbase  #hbase安装路径
 
 #### elasticsearch（一般使用opendistro）
 
-### hive数据脱敏
+### 八、hive数据脱敏
 
 - 一般包含行过滤（Row filter）与列屏蔽（Column Masking），且只能对select操作进行行列级别数据脱敏
 
@@ -295,7 +295,7 @@ COMPONENT_INSTALL_DIR_NAME=/software/hbase  #hbase安装路径
   | Date:show only year        | 仅显示日期字符串的年份部分，并将月份和日期默认为01/01        |
   | Custom                     | 可使用任何有效Hive UDF(返回与被屏蔽的列中的数据类型相同的数据类型)来自定义策略 |
 
-### 原理描述
+### 九、原理描述
 
 - 通过读取安装组件时生成的配置文件以及组件自带的jar包，通过hook机制调用各个组件服务达到权限管理
 - 执行./enable-xx-plugin.sh建立hook机制
@@ -304,7 +304,7 @@ COMPONENT_INSTALL_DIR_NAME=/software/hbase  #hbase安装路径
 - 将install.properties文件内容生成.xml文件，更新到系统组件安装服务的conf下
 - 服务重新启动，使得配置项生效
 
-### ranger接口使用 
+### 十、ranger接口使用
 
 0. 策略下发具有延迟，定时同步策略间隔时间30s--可修改配置）
 
