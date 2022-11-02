@@ -51,7 +51,7 @@
 
   ```shell
   bin/kafka-console-producer.sh --broker-list hostname:9092 --topic topic_name
-  
+  --produce.config config/produce.properties
   --broker-list 指的是broker实例的集群节点
   ```
 
@@ -59,9 +59,11 @@
 
   ```shell
   bin/kafka-console-consumer.sh  --bootstrap-server hostname:9092 --from-beginning --topic topic_name
-  
-  --from-beginning：会把first主题中以往所有的数据都读取出来，根据业务场景选择是否增加该配置
+  --from-beginning：会把first主题中以往所有的数据都读取出来，根据业务场景选择是否增加该配置,默认为latest
   --bootstrap-server：生产消息的服务器
+  # 带有特定消费参数的消费数据，也可以适用于jass的权限体系查询
+  bin/kafka-console-consumer.sh  --bootstrap-server hostname:9092 --topic topic_name 
+  --consumer.config config/consumer.properties
   ```
 
 - 主题信息描述
