@@ -282,6 +282,8 @@ COMPONENT_INSTALL_DIR_NAME=/software/hbase  #hbase安装路径
 
   在row level filter的框中，添加一个过滤条件。相当于自动在查询到的结果后自动添加一个where条件
 
+  不需要添加where关键字即可
+
 - Column Masking
 
   | 屏蔽选项                   | 描述                                                         |
@@ -293,7 +295,7 @@ COMPONENT_INSTALL_DIR_NAME=/software/hbase  #hbase安装路径
   | Nullify                    | 用NULL值替换原值                                             |
   | Unmasked                   | 原样显示                                                     |
   | Date:show only year        | 仅显示日期字符串的年份部分，并将月份和日期默认为01/01        |
-  | Custom                     | 可使用任何有效Hive UDF(返回与被屏蔽的列中的数据类型相同的数据类型)来自定义策略 |
+  | Custom                     | 可使用任何有效Hive UDF(返回与被屏蔽的列中的数据类型相同的数据类型)来自定义策略<br />表达式如： CASE WHEN (name=='Tamara') THEN mask(email) ELSE email END<br />固定字符串如：“this is cover info”   这里的引号必须，否则会被识别为字段，如果字段不存在，则会查询报错<br / |
 
 ### 九、原理描述
 

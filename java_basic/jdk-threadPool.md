@@ -64,11 +64,11 @@ this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
   ```
 - newCachedThreadPool()
   ```java
-  public static ExecutorService newCachedThreadPool() {
-        return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
-                                      60L, TimeUnit.SECONDS,
-                                      new SynchronousQueue<Runnable>());
-    }
+      public static ExecutorService newCachedThreadPool() {
+            return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+                                          60L, TimeUnit.SECONDS,
+                                          new SynchronousQueue<Runnable>());
+        }
   ```
   * 解释：
     - 此线程池的大小不是固定的，如果当前的线程大于当前任务的线程数，就会回收一部分资源，如果有新的任务创建时，则会生成新的线程来处理；
