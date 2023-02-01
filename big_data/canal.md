@@ -24,7 +24,7 @@
 
 ### 二、mysql的准备
 
-- 修改配置文件路径为/etc/my,cnf
+- 修改配置文件路径为/etc/my.cnf
 
 - 重启mysql
 

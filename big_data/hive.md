@@ -94,3 +94,14 @@
     1. 内部表在删除时，会删除元数据信息以及hdfs上的目录以及数据  
     2. 外部表在删除时，不会删除hdfs上的目录以及数据，只会清除元数据信息
   - 转换： alter table  xxx set tblproperties ('EXTERNAL' = 'TRUE/FALSE')  //注意这里是大写
+  
+  ### HIVE查询优化
+  
+  - JVM重用
+  - 严格模式的含义
+  - limit语句优化
+  - 并行执行
+  - 输出合并小文件
+  - fetch抓取
+  - 本地模式
+  - 表的优化
