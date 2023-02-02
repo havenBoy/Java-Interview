@@ -45,8 +45,6 @@ Apache Flink 是一个框架与分布式的处理引擎，用于对于无界与�
 
   在配置文件中，使用参数taskmanager.numOfTaskSlots： 5   指定
 
-- 
-
 ### 五、DataStream基础篇
 
 - ##### 代码处理的基本构成
@@ -61,7 +59,9 @@ Apache Flink 是一个框架与分布式的处理引擎，用于对于无界与�
 
   1. 需要获取SteamExecutionEnvironment对象，
 
-     直接调用getExecutionEnvironment方法，如果程序是本地的，就返回一个本地环境，如果是使用jar包提交到集群环境，那么返回是集群执行环境，该方法会根据当前的运行方式来返回具体的执行环境
+     直接调用getExecutionEnvironment方法，如果程序是本地的，就返回一个本地环境，如果是使用jar包提交到集群环境，
+
+     那么返回是集群执行环境，该方法会根据当前的运行方式来返回具体的执行环境
 
   2. createLocalEnvironment
 
