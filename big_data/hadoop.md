@@ -41,7 +41,7 @@ Yarn框架中将JobTracker资源分配和作业控制分开,这也就是resource
 - 启动yarn start-yarn.sh
 - 启动历史服务器 
 - 一键启动  start-all.sh 不建议使用，已经过时
-- 启动完成后 50070 8088 18888
+- 启动完成后 常见的端口50070（hdfsweb界面端口） 8088 （yarn任务运行状态web界面） 18888 （历史服务器端口）9000 客户端内部端口
 - 常见的dfs命令  hadoop fs ...
 
 ### hdfs 的垃圾回收机制 
@@ -92,15 +92,48 @@ Yarn框架中将JobTracker资源分配和作业控制分开,这也就是resource
 1. 如果是MR造成的系统宕机，需要控制yarn同时运行任务数量以及每个任务申请的最大内存
 2. 如果是写入文件过量造成的namenode宕机，写入上一级的增加消息的缓冲，增加kafka的存储大小
 
+### hadoop小文件优化与处理
+
+- **小文件问题解释**
+
+  小文件指的是文件的大小明显小于hdfs的block的大小，当前默认block的大小为128M
+
+  block的大小的设置取决于当前操作系统与磁盘读取文件的速率，原始为64M
+
+  hdfs中任意一个文件，都会在namenode中存在一个元数据信息，这个信息的大小约等于150byte
+
+  如果小文件的数量较大时，namenode会占用较大的内存，对于文件的读取与写入及其困难
+
+  后续在处理小文件时，任务的启动与停止占用了比任务处理更多的时间
+
+  一般可以启用JVM参数重用，达到在一个JVM中跑多个MAP任务，可以减少JVM启动与停止的花销
+
+- **小文件出现的情况**
+
+  1. 日志文件，日志是翻滚的，每天都会有一个文件产生
+  2. 实际上，每个文件就是很小，然后文件的数量就是很大，然后还没有办法合并的文件
+
+- **解决方式**
+
+  1. 在实际的环境中，需要设置小文件的阈值，业务在定期监控此大小，达到阈值执行业务上的文件合并
+  2. hadoop本身也提供了hadoop archive以及combineInputFormat类，可对小文件进行合并
+
 ### HDFS的扩容与缩容
 
 ### HDFS的安全模式
 
 - 所处的特殊模式，只接受读数据请求，不接受删除修改，删除等操作，用来保护数块的安全性
-- 在namenode启动时，hdfs会首先进入安全模式，集群会先检查数据快的完整性，datanode会向namenode汇报可用的block信息，等到达到安全标准后会自动退出安全模式
+
+- 在namenode启动时，hdfs会首先进入安全模式，集群会先检查数据快的完整性，
+
+  datanode会向namenode汇报可用的block信息，等到达到安全标准后会自动退出安全模式
+
 - 命令：hdfs dfsadmin -safemode enter/leave
 
 ### 机架感知
 
-- 通过配置一个脚本来进行映射  放在hadoop core-site.xml配置文件中，关键字为topology.script.file.name，用于namenode与jobtracker进行调用
+- 通过配置一个脚本来进行映射  放在hadoop core-site.xml配置文件中，
+
+  关键字为topology.script.file.name，用于namenode与jobtracker进行调用
+
 - 实现DNSToSwitchMapping的接口中的resolve接口来完成网络位置的映射
