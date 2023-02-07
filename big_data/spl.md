@@ -137,3 +137,23 @@ atlas   （ES+ kafka+ hbase） 对于hive数仓的元数据信息监控与全量
 
 griffin   不是很清楚 ，主要使用griffin引擎启用spark任务对数据质量进行定时监控
 
+
+
+java基础：
+
+集合、多线程、jvm
+
+http/tcp/udp
+
+排序算法
+
+spring/springboot/mybatis
+
+redis
+
+消息队列kafka/es
+
+分布式
+
+关系型数据库原理与调优
+
