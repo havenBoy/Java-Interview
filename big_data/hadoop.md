@@ -52,7 +52,7 @@ Yarn框架中将JobTracker资源分配和作业控制分开,这也就是resource
 
 ### hdfs的写数据流程
 
-1. 客户端通过FileSystem模块向name请求上传文件，namenode检查目标文件是否存在，检查父目录是否存在
+1. 客户端通过FileSystem模块向namenode请求上传文件，namenode检查目标文件是否存在，检查父目录是否存在
 2. namenode返回是否可以上传此文件
 3. 客户端请求第一个block上传到那几个datanode服务器上
 4. namenode返回几个datanode的节点
