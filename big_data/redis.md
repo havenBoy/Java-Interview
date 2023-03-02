@@ -3,10 +3,29 @@
 
 #### 一、数据类型
 
-- String  set/get  incr/decr key
-- hash  hset student name zhang/  hget key field / hdel key field
-- list lpush key value/rpush key value/ lpop key/ rpop key/
-- set sadd key value / srem key / smemmbers/
+- String  
+
+  set/get  incr/decr key
+
+  使用场景：一般的字符串，没有结构的要求，只是保存一下而已
+
+- hash  
+
+  hset student name zhang/  hget key field / hdel key field
+
+  使用场景：具有意义的实体对象，在需要某个属性时可以快速获取到
+
+- list 
+
+  lpush key value/rpush key value/ lpop key/ rpop key/
+
+  使用场景：本身是一个链表结构，适合有顺序的数据，或者消息队列
+
+- set （set/sortset）
+
+  sadd key value / srem key / smemmbers/
+
+  使用场景：是唯一的，可以自动去重，适合用于计算集合的交集，排序set适合与计算数据的topN等
 
 #### 二、redis持久化
 
@@ -62,8 +81,6 @@
 
 ​       将空对象也设置到缓存中，下次请求就不会进行再次请求  
 
-
-
 #### 五、安装部署启动（单机版）
 
 1. ```shell
@@ -107,9 +124,19 @@
 #### 八、redis为什么会快？
 
 1. 完全基于内存处理，避免上下文切换与资源竞争
-
 2. 单线程处理，
-
 3. 多路IO复用
 
-   
+#### 九、增加一个salve节点，会发生什么情况
+
+- 重新分配slots
+
+#### 十、redis的key清理策略
+
+- 在内存不够时，直接抛出异常
+- 在内存不够时，移除最近最少使用的key  （LRU）
+- 在内存不够时，随机移除某个key
+- 在设置过期时间的key值中，寻找最近最少使用的key值进行移除 （LRU）
+- 在设置过期时间的key值中，随机删除某个key值
+- 在设置过期时间的key值中，删除最接近过期时间的key值 （TTL）
+

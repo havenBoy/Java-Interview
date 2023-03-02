@@ -130,7 +130,9 @@
 
 #### kafka消费是否有序？
 
-kafka能够保证分区内消息的顺序，但不能保证整体的有序性 ，如果需要保证有序性，只要有一个分区即可
+- kafka能够保证分区内消息的顺序，但不能保证整体的有序性 ，如果需要保证有序性，只要有一个分区即可
+
+- 想办法在生产数据的时间，将需要顺序的数据放在同一个分区内。在生产数据时指定分区的位置
 
 #### 消费者组与分区的关系
 
@@ -194,10 +196,6 @@ kafka能够保证分区内消息的顺序，但不能保证整体的有序性 �
 
 新版本的消费位移被记录在broker中的一个内置主题中
 
-#### 何时会触发rebalance？ 
-
-消费组的消费实例发生变化/订阅主题的数量发生变化/主题的分区数发生变化
-
 #### zookeer什么作用，可以不使用吗 ？ 
 
 - 早期版本的kafka使用zk作为元数据的信息存储，包括消费组的管理，主题消费的状态以及offset值的记录
@@ -243,6 +241,12 @@ kafka能够保证分区内消息的顺序，但不能保证整体的有序性 �
 - 消息体的内容由固定长度的头信息与变化长度的消息体组成
 - 头信息: 8位的唯一递增的序列ID值，4位的消息长度值，4位的CRC校验信息，1位服务协议版本号，1位的压缩或者编码类型等
 - value bytes payload表示实际消息数据
+
+#### kafka中发生rebalance的时机？
+
+- 消费者发生变化时
+- 分区数发生变化时
+- 订阅主题的范围发生变化时
 
 ### part2: 权限管理相关
 
@@ -520,4 +524,79 @@ IDEMPOTENT_WRITE((byte)12); 幂等写权限
 | 体验地址 | https://10.58.56.180:9010/   admin/Test123. | http://10.58.56.180:8080/  admin/admin |
 | 优势     |                                             |                                        |
 | 劣势     |                                             |                                        |
+
+#### 七、SSL/TSL安全连接方式
+
+- 生成ssl相关证书（服务端）
+
+  ~~~shell
+  # 创建相关目录
+  mkdir -p /usr/ca/{root,server,client,trust}
+  
+  # 生成server.keystore.jks文件，即服务端的keystore
+  keytool -keystore /usr/ca/server/server.keystore.jks -alias ds-sangfor-abdi-node1 -validity 365 -genkey -keypass ds1994 -keyalg RSA -dname "CN=sangfor-abdi-node1,OU=aspire,O=aspire,L=beijing,S=beijing,C=cn" -storepass ds1994 -ext SAN=DNS:sangfor-abdi-node1
+  
+  # 生成CA认证证书
+  openssl req -new -x509 -keyout /usr/ca/root/ca-key -out /usr/ca/root/ca-cert -days 365 -passout pass:ds1994 -subj "/C=cn/ST=beijing/L=beijing/O=aspire/OU=aspire/CN=sangfor-abdi-node1"
+  
+  # 通过CA证书创建一个客户端信任证书
+  keytool -keystore /usr/ca/trust/client.truststore.jks -alias CARoot -import -file /usr/ca/root/ca-cert -storepass ds1994
+  
+  # 通过CA证书创建一个服务端器端信任证书
+  keytool -keystore /usr/ca/trust/server.truststore.jks -alias CARoot -import -file /usr/ca/root/ca-cert -storepass ds1994
+  
+  #导出服务器端证书server.cert-file
+  keytool -keystore /usr/ca/server/server.keystore.jks -alias ds-sangfor-abdi-node1 -certreq -file /usr/ca/server/server.cert-file -storepass ds1994
+  
+  #用CA给服务器端证书进行签名处理
+  openssl x509 -req -CA /usr/ca/root/ca-cert -CAkey /usr/ca/root/ca-key -in /usr/ca/server/server.cert-file -out /usr/ca/server/server.cert-signed -days 365 -CAcreateserial -passin pass:ds1994
+  
+  # 将CA证书导入到服务器端keystore
+  keytool -keystore /usr/ca/server/server.keystore.jks -alias CARoot -import -file /usr/ca/root/ca-cert -storepass ds1994
+  
+  # 将已签名的服务器证书导入到服务器keystore
+  keytool -keystore /usr/ca/server/server.keystore.jks -alias ds-sangfor-abdi-node1 -import -file /usr/ca/server/server.cert-signed -storepass ds1994
+  ~~~
+
+- 生成ssl相关证书（客户端）
+
+  ~~~shell
+  # 导出客户端证书
+  keytool -keystore /usr/ca/client/client.keystore.jks -alias ds-sangfor-abdi-node1 -validity 365 -genkey -keypass ds1994 -dname "CN=sangfor-abdi-node1,OU=aspire,O=aspire,L=beijing,S=beijing,C=cn" -ext SAN=DNS:sangfor-abdi-node1 -storepass ds1994
+  
+  # 将证书文件导入到客户端keystore
+  keytool -keystore /usr/ca/client/client.keystore.jks -alias ds-sangfor-abdi-node1 -certreq -file /usr/ca/client/client.cert-file -storepass ds1994
+  
+  # 用CA给客户端证书进行签名处理
+  openssl x509 -req -CA /usr/ca/root/ca-cert -CAkey /usr/ca/root/ca-key -in /usr/ca/client/client.cert-file -out /usr/ca/client/client.cert-signed -days 365 -CAcreateserial -passin pass:ds1994
+  
+  # 将CA证书导入到客户端keystore
+  keytool -keystore /usr/ca/client/client.keystore.jks -alias CARoot -import -file /usr/ca/root/ca-cert -storepass ds1994
+  
+  # 将已签名的证书导入到客户端keystore
+  keytool -keystore /usr/ca/client/client.keystore.jks -alias ds-sangfor-abdi-node1 -import -file /usr/ca/client/client.cert-signed -storepass ds1994
+  ~~~
+
+  
+
+- ssl客户端设置步骤
+
+- ssl客户端生产消费数据示例
+
+- ssl java客户端代码设置
+
+  ~~~java
+  //一共是五个参数需要设置
+  //configure the following three settings for SSL Encryption
+  props.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SSL");
+  props.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, "/var/private/ssl/kafka.client.truststore.jks");
+  props.put(SslConfigs.SSL_TRUSTSTORE_PASSWORD_CONFIG,  "test1234");
+  
+  // configure the following three settings for SSL Authentication
+  props.put(SslConfigs.SSL_KEYSTORE_LOCATION_CONFIG, "/var/private/ssl/kafka.client.keystore.jks");
+  props.put(SslConfigs.SSL_KEYSTORE_PASSWORD_CONFIG, "test1234");
+  props.put(SslConfigs.SSL_KEY_PASSWORD_CONFIG, "test1234");
+  ~~~
+
+  
 
