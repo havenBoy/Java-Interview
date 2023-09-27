@@ -11,6 +11,8 @@
 
 - Source   数据收集组件
 
+  数据收集组件
+
   **种类：**
 
   1. Avro Source 
@@ -26,14 +28,20 @@
   4. 在实现的process方法之前，会首先调用start方法
 
 - Channel    是源与接收器之间的管道，用于存储临时数据，可以是内存或者持久化的文件系统
+=======
+  4. Jms Source
 
+- Channel
+
+  是源与接收器之间的管道，用于存储临时数据，可以是内存或者持久化的文件系统
   **种类：**
 
   1. Memory Channel
   2. File Channel
   3. Kafka Channel
-  
-- Sink    从channel中获取Event，并将其存入外部存储系统或者下一个Source中，成功后会将Event从Channel中移除
+- Sink
+
+  主要是从channel中获取Event，并将其存入外部存储系统或者下一个Source中，成功后会将Event从Channel中移除
 
   **种类：**
 
@@ -56,6 +64,13 @@
 
 source -> interceptor -> channel -> sink
 
+- Agent
+
+  是一个独立的JVM进程，包括了Source，Channel，Sink
+
+#### 架构模式
+
+>>>>>>> 30d3f0cfb3f4f212024c171d0b57bf3dcb5daead
 #### 安装部署
 
 - JDK安装
@@ -89,3 +104,8 @@ source -> interceptor -> channel -> sink
   5. 启动flume日志采集的进程
   6. 测试，查看消费者端是否有数据消费
 
+<<<<<<< HEAD
+=======
+- 
+
+>>>>>>> 30d3f0cfb3f4f212024c171d0b57bf3dcb5daead

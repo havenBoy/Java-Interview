@@ -57,34 +57,36 @@
   1. 越短越好，一般不超过16个字节，内存一般是8字节对齐，可以利用操作系统的最佳特性（长度原则）
 
   2. 一般可以为随机数，UUID，hash算法。（**散列/随机原则**）
-
+  
      > 注意：如果是以时间字符串作为rowkey时，一般建议将时间字符串放在后缀，前边加上随机值，
      >
      > 这样可以将时间随机分布在几个region上，降低数据查询时集中在个别regionServer上。
-
-  3. 在设计上必须保证row key的唯一性（**唯一性**）
+  
+    3. 在设计上必须保证row key的唯一性（**唯一性**）
+  
 
 - ### column family  （列族）
 
-  表中的每一个列必然属于某个列族，列族是表schema的一部分，所以需要在建表时指定。
+​      表中的每一个列必然属于某个列族，列族是表schema的一部分，所以需要在建表时指定。
 
-  列族的所有列都以列族作为前缀，比如:    info:name , info:age等
+​      列族的所有列都以列族作为前缀，比如:    info:name , info:age等
 
 - ### column qualifier （列限定符）
 
   可以理解为列名，比如上述描述中name与age字段都可以称为info列族的列限定符，但列限定符不是表schema的一部分，
 
-  在数据插入时可以动态指定
+- ### column qualifier （列限定符）
 
+  可以理解为列名，比如上述描述中name与age字段都可以称为info列族的列限定符，但列限定符不是表schema的一部分，在数据插入时可以动态指定
 - ### column （列）
 
   列是由列族与列限定符组成，一般一个列的组成为**列族：列限定符**
 
 - ### cell (单元格)
 
-  可以理解为指定行和指定列确定的一个单元格，在hbase中可以由行、列族、列限定符、包含值与时间戳组成，
+    可以理解为指定行和指定列确定的一个单元格，在hbase中可以由行、列族、列限定符、包含值与时间戳组成，
 
-  一个单元格中的数据是由多个版本的数据组成，每个版本的数据按照时间戳区分
+​         一个单元格中的数据是由多个版本的数据组成，每个版本的数据按照时间戳区分
 
 - ### timestamp（时间戳）
 
@@ -94,12 +96,20 @@
 
 ## 五、存储结构
 
-- Regions
+​       可以理解为指定行和指定列确定的一个单元格，在hbase中可以由行、列族、列限定符、包含值与时间戳组成，一个单元格中的数据是由多个版本的数据组成，每个版本的数据按照时间戳区分
+
+- ### timestamp（时间戳）
+
+  HBASE中通过row key与column来确定的单元格为一个存储单元，每个单元格存放一个数据的多个版本，版本的索引为时间戳，类型为64位整型，在写入数据时自动赋值，当然也可以客户端显示指定，按照时间戳的倒序排序
+
+- #### Regions
+  
   1. 数据的所有行按照row key的字段字典序排列，按照行键的范围来水平切分为多个region，起始为start key，结束为end key
   2. 每个表的只有一个region，通过数据的不断增加，region会不断增大，当增大到一个阈值时，会切分为2个region
   3. 当列越来越多时，也会切分为越来越多的region
   4. region是HBASE中分布式存储与负载均衡的最小单元，一个region只能分布在一个region Server上，不能拆分
-- Region Server
+- #### Region Server
+  
   1. region server运行在hdfs的data node上，包含了以下的组件：
   2. WAL（write ahead log  预写日志） 用于存储未持久化的数据在内存中，以便故障恢复
   3. BlockCache （读缓存），将经常读取的数据缓存在内存中，如果存储不足，按照最近最少使用原则将缓存清除
@@ -107,7 +117,6 @@
   5. HFile （数据持久化文件），将行数据按照key/value形式存储在文件系统上
 
 ## 六、系统架构
-
 HBASE是一个标准的master/slave架构，由三个组件组成：
 
 - ### Zk 
@@ -131,10 +140,8 @@ HBASE是一个标准的master/slave架构，由三个组件组成：
 
 - ### 协作说明
 
-  
 
 ## 七、数据的读写流程
-
 - ### 读数据流程
 
   1. 客户端从zk上获取meta表的数据，决定数据将通过那个Region Server来处理
@@ -564,10 +571,7 @@ HBASE是一个标准的master/slave架构，由三个组件组成：
     - MasterObserver  观察Hmaster的事件发生，如表的创建、删除或者结构的修改    hbase.coprocessor.master.classes
     - WalObserver  支持与预写日志相关的事件   hbase.coprocessor.wal.classes
 
-    以上的四种类型的协处理器都继承于Coprocessor接口，一般不会实现上述的四种接口，而是继承Base类，Base实现类中只是简单的实现了接口中的方法
-
-    这样不必要在自定义的方法中不需要实现所有方法，而是重写必要的方法即可。
-
+    注意：以上的四种类型的协处理器都继承于Coprocessor接口，一般不会实现上述的四种接口，而是继承Base类，Base实现类中只是简单的实现了接口中的方法这样不必要在自定义的方法中不需要实现所有方法，而是重写必要的方法即可。
   - **Endpoint**
 
     类似于关系型数据库中的存储过程，客户端可以在服务端调用此类协处理器来对数据进行处理，然后再返回数据。
@@ -592,9 +596,8 @@ HBASE是一个标准的master/slave架构，由三个组件组成：
      <property>
          <name>hbase.coprocessor.region.classes</name>  必须是特定的class，否则不能识别，类型在各个协处理器后边
          <value>org.myname.hbase.coprocessor.endpoint.SumEndPoint</value> 这里是自定义的协处理器实现类
+     <<<<<<< HEAD
      </property>
-     ~~~
-
   2. 将打包编译好的jar包放在hbase的安装目录下
 
   3. 重启hbase即可
@@ -620,6 +623,16 @@ HBASE是一个标准的master/slave架构，由三个组件组成：
 ## 十二、容灾与备份
 
 一般来说，Hbase的容灾备份一般有三种，分别为copyTable、Export/Import、Snapshot
+    2. 使用如下的命令进行加载协处理器
+        3. 启用表
+        4. 验证是否启用成功
+        5. 卸载时，也需要将表首先disable掉
+        6. alter 'table_name' 
+        7. enable table_name
+
+  - **Java API**
+
+## 十二、容灾与备份
 
 - **copyTable**
 
@@ -663,7 +676,6 @@ HBASE是一个标准的master/slave架构，由三个组件组成：
 
   - **常用命令**
 
-    
 
 - **snapshot**
 
