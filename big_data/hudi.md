@@ -6,9 +6,8 @@
 
 #### hudi-shade打包内容
 
-1. 从gitee上下载源码到本地，使用git命令或者点击下载即可，如果是下载zip文件方式，确定好版本，版本使用的版本为0.12.1
-
-![img](https://wjinfo.feishu.cn/space/api/box/stream/download/asynccode/?code=MDYyOTQwN2Q0MDY0NjZjYTM2NTI2NjEyMzgwZGFlOTlfUmpRUFNLSktZeGZ2bUkyQVpiQTA5SzlPN2d4SkNrdTFfVG9rZW46SzVUMWJQQzYzb0lGOGJ4YkRtZmNtNmp3bmhiXzE2ODE3MjIyMzY6MTY4MTcyNTgzNl9WNA)
+1. 从gitee上下载源码到本地，使用git命令或者点击下载即可，如果是下载zip文件方式，版本使用的版本为0.12.1
+1. 要注意hudi版本与当前操作的hadoop版本，hive版本，flink以及spark版本之间的兼容xing
 
 2. 为了加速打包，一般采用linux服务器进行，在打包前需要将配置机器的maven环境
 
@@ -31,26 +30,28 @@
 ​       以下为命令：下载的路径可以通过当前指定的groupId与artifactedId以及版本号确定
 
 ```Shell
-   mvn install:install-file -DgroupId=io.confluent -DartifactId=common-config -Dversion=5.3.4 -Dpackaging=jar -Dfile=./common-config-5.3.4.jar
-   mvn install:install-file -DgroupId=io.confluent -DartifactId=common-utils -Dversion=5.3.4 -Dpackaging=jar -Dfile=./common-utils-5.3.4.jar
-   mvn install:install-file -DgroupId=io.confluent -DartifactId=kafka-avro-serializer -Dversion=5.3.4 -Dpackaging=jar -Dfile=./kafka-avro-serializer-5.3.4.jar
-   mvn install:install-file -DgroupId=io.confluent -DartifactId=kafka-schema-registry-client -Dversion=5.3.4 -Dpackaging=jar -Dfile=./kafka-schema-registry-client-5.3.4.jar
+   mvn install:install-file -DgroupId=io.confluent -DartifactId=common-config -Dversion=5.3.4 \
+   -Dpackaging=jar -Dfile=./common-config-5.3.4.jar
+   mvn install:install-file -DgroupId=io.confluent -DartifactId=common-utils -Dversion=5.3.4 \
+   -Dpackaging=jar -Dfile=./common-utils-5.3.4.jar
+   mvn install:install-file -DgroupId=io.confluent -DartifactId=kafka-avro-serializer \
+   -Dversion=5.3.4 -Dpackaging=jar -Dfile=./kafka-avro-serializer-5.3.4.jar
+   mvn install:install-file -DgroupId=io.confluent -DartifactId=kafka-schema-registry-client \
+   -Dversion=5.3.4 -Dpackaging=jar -Dfile=./kafka-schema-registry-client-5.3.4.jar
 ```
 
 8. 执行打包命令，耐心等待后，打包成功如下图：
-
-![img](https://wjinfo.feishu.cn/space/api/box/stream/download/asynccode/?code=MjQ5ZmNmZjFhYjU3NTVlMWRmNjM5NDIzZTA2NzMxYWNfekRvMXBZUk1qeXhMSVV2Z0FYZkJXUGpLYWYzU0F6QlBfVG9rZW46WktNWWIzSjVNbzJvQUN4MHNlU2NacUlwbkhlXzE2ODE3MjIyMzY6MTY4MTcyNTgzNl9WNA)
 
 9. 可在根目录/packaging/hudi-flink-bundle/target下找到关于hudi-flink1.15-bundle-0.12.1.jar0
 
 10. 在streampark环境上即可使用该jar包，正式的测试中，发现会报错，大致为：
 
-![img](https://wjinfo.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjFhMTllMDY1NTFlYTg3Njk4N2FjNjI0NzAxNmJhOGZfczBYMnZaWW1sZktqUUZMQ1lGcVlnUUlUNkdPNkY2Y0NfVG9rZW46VVR5b2JxYUJRb0FxN2d4Q0U4bWNQTFd4bmJ1XzE2ODE3MjIyMzY6MTY4MTcyNTgzNl9WNA)
+    calcite class not found 
 
-定位到，需要一个关于此类的jar包进入到任务的自定义任务中，下载的路径为：
+​       定位到，需要一个关于此类的jar包进入到任务的自定义任务中，下载的路径为：
 
-https://mvnrepository.com/artifact/org.apache.calcite/calcite-core，随便选择一个上传到任务自定义jar包中即可
+​       https://mvnrepository.com/artifact/org.apache.calcite/calcite-core，随便选择一个上传到任务自定义jar包中即可
 
 11. 上线任务并运行，会发现hudi表元数据已经被同步，具体同步信息大致如下：即为成功
 
-![img](https://wjinfo.feishu.cn/space/api/box/stream/download/asynccode/?code=MTZiMzQ5M2ExNzcyMWZhMTM4ZTdlNGU3ODc0NTMxYjNfcVU0WmhUZ2RqUkVQTWRQOHBpbUI3ajRrcG5MMmc2anpfVG9rZW46VzNLMmI3TndRb29iMFd4NlF6TWNiZGlDbmJnXzE2ODE3MjIyMzY6MTY4MTcyNTgzNl9WNA)
+    关键信息中包含 Hive Sync Tool
