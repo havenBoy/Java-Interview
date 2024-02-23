@@ -161,7 +161,7 @@ sqoop import \
 --hbase-row-key id \ 
 --m 1
 ```
-=======
+
 - **sqoop简介**
   - 导入数据：从关系型数据库导入数据到HDFS，hive,hbase等分布式文件存储
   - 导出数据：从分布式文件系统中导出数据到关系型数据库中
@@ -184,5 +184,4 @@ sqoop import \
 - ##### HIVE的导入与导出
 
 - ##### Hbase的导入与导出
->>>>>>> 30d3f0cfb3f4f212024c171d0b57bf3dcb5daead
 
